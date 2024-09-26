@@ -1,0 +1,22 @@
+<div style="display: none !important;">
+{% assign product = all_products[settings.free_product] %}
+  {% form 'product', product, id: "free-gift-product" %}
+    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" />
+    <button type="submit">Add Free Product</button>
+  {% endform %}
+</div>
+<style>
+  #free-gift-timer {
+   display: flex;
+   justify-content: space-between;
+   padding: 0 40px 15px 40px;
+   font-weight: 600;
+  }
+  #free-gift-timer._disabled {
+    display: none;
+  }
+  .giftTimer__counter {
+    min-width: 135px;
+    text-align: end;
+  }
+</style>

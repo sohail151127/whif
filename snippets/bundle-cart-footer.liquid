@@ -1,0 +1,35 @@
+{% form 'product', product, id: "add-bundle-cart-form" %}
+<div class="bundle-cart-footer">
+  <div class="empty-bundle-cart">
+    <span>{%- render 'icon' with 'cart' -%}</span><span>No products have been added to the bundle yet</span>
+  </div>
+  <div class="quantity-bundle-cart">
+    <div class="quantity-bundle-cart-left">
+      <span>{%- render 'icon' with 'cart' -%}</span>
+        <div class="bundle-quantity">
+          <span>1 </span>
+          <span>item(s) in bundle</span>
+        </div>
+    </div>
+    <div class="quantity-bundle-cart-right">
+      <div class="remaining-quantity">
+          <span>Please select one more option</span>
+      </div>
+    </div>
+    <div class="cart-price-button">
+      <div class="price-container">
+        <span>Bundle Price</span>
+        <span class="bundle-price">
+          <span class="bundle-price__regular"></span>
+          <span class="bundle-price__sale"></span>
+        </span>
+      </div>
+      <div class="cart-button-container">
+        <button class="button add-bundle" id="add-bundle-cart">
+          ADD BUNDLE TO CART
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endform %}

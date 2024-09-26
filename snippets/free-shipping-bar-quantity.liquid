@@ -1,0 +1,8 @@
+{%- if cart.requires_shipping -%}
+  <free-shipping-bar class="free-shipping-bar" threshold="5" type="quantity" total-price="{{ cart.item_count }}" reached-message="{{ settings.free_shipping_quantity_reach_text }}" unreached-message="{{ settings.free_shipping_quantity_unreach_text }}">
+    {%- comment -%}The span below is the placeholder where the content will be inserted in JS{%- endcomment -%}
+
+    <progress-bar class="progress-bar" role="progressbar" aria-valuemin="0" style="--progress: 0"></progress-bar>
+    <span>&nbsp;</span>
+  </free-shipping-bar>
+{%- endif -%}

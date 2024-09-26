@@ -1,0 +1,35 @@
+<div class="section header-progressbar ">
+   <div class="custom-progress-bar">
+           <div class="custom_header-progress-bar-next custom-next-design"></div>
+           <div  class="custom_header__discount_tiers-message--success custom-success-design"></div>
+           <div class="custom_header__discount_tiers-progress custom-progress-design">
+               <div id="progressBarFill" class="custom_header__discount_tiers-progress--track custom-track-design"></div>
+           </div>
+    </div>
+</div>
+
+
+<style>
+  .custom-success-design._hide {
+    display: none;
+}
+  .custom_header__discount_tiers-progress._hide {
+    display: none;
+}
+
+</style>
+
+
+
+{% schema %}
+  {
+    "name": "Progress bar",
+    "class":"item-bar",
+    "settings": [],
+    "presets": [
+      {
+        "name": "Progress bar"
+      }
+    ]
+  }
+{% endschema %}

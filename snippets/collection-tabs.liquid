@@ -1,0 +1,61 @@
+<div class="collection-tabs">
+  <h3 class="colection_head">Select your fragrances below</h3>
+  <div id="collection-tabs-nav" class="collection-tabs-nav">
+     <div class="tabs-items"><a href="#tab-women">Women</a></div>
+     <div class="tabs-items"><a href="#tab-men">Men</a></div>
+  </div>
+  <div id="collection-tabs-content" class="collection-tabs-contents">
+      <div class="field">
+        <input class="field__input"  type="text" id="filterSearchInput" placeholder="Search by scents, names or brands..">
+        {% render 'icon' with 'search' %}
+      </div>
+    <div id="tab-women" class="collection-tab-content">
+      <div class="custom-product-items">
+       {% for product in block.settings.collection1.products  %}
+         <div class="product-data-blk" data-title="{{ product.title }}">
+           <div class="product-data">
+             <div class="product-image">
+               <img src="{{ product.featured_image | img_url:"master" }}">
+             </div>
+             <div class="product-content">
+               <div class="product_title">{{ product.title }}</div>
+               <div class="product_price">{{ product.price | money }}</div>
+             </div>
+         </div>
+         <button class="add_button" data-variant-id ="{{  product.selected_or_first_available_variant.id }}" data-product-title ="{{ product.title }}">Add {% render 'icon' with 'plus' %} </button>
+         </div>
+       {% endfor %}
+      </div>
+        <div class="more_button">
+         <button class="show-more"><span>See More</span><span  class="icon">{% render 'icon' with 'small-chevron' %}</span> </button>
+         <button class="show-less" style="display:none"><span>See Less</span><span  class="icon">{% render 'icon' with 'small-chevron' %}</span></button>
+        </div>
+      <span class="found_text" style="display:none;">No results could be found.</span>
+     </div>
+     <div id="tab-men" class="collection-tab-content">
+        <div class="custom-product-items">
+         {% for product in block.settings.collection2.products %}
+         <div class="product-data-blk" data-title="{{ product.title }}">
+         <div class="product-data">
+           <div class="product-image">
+             <img src="{{ product.featured_image | img_url:"master" }}">
+           </div>
+           <div class="product-content">
+               <div class="product_title">{{ product.title }}</div>
+               <div class="product_price">{{ product.price | money }}</div>
+             </div>
+         </div>
+         <button class="add_button" data-variant-id ="{{  product.selected_or_first_available_variant.id }}" data-product-title ="{{ product.title }}">Add {% render 'icon' with 'plus' %} </button>
+         
+         </div>
+       {% endfor %}
+        </div>
+       <div class="more_button">
+         <button class="show-more"><span>See More</span><span class="icon">{% render 'icon' with 'small-chevron' %}</span> </button>
+         <button class="show-less" style="display:none"><span>See Less</span><span  class="icon">{% render 'icon' with 'small-chevron' %}</span></button>
+        </div>
+       <span class="found_text" style="display:none;">No results could be found.</span>
+    </div>
+    
+ </div> 
+</div> 

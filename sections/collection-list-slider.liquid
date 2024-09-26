@@ -1,0 +1,239 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.background }};
+  }
+  .section-{{ section.id }}-padding * {
+    color: {{ section.settings.color }};
+  }
+  
+  @media (max-width: 768px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="section-{{ section.id }}-padding collection-list-slider {{ section.settings.section_display }}">
+  <div class="page-width">
+    <div class="swiper swiper-{{ section.id }}">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          <div class="swiper-slide">
+            <div class="collection-list-slider__item text-center">
+              {% assign collection = collections[block.settings.collection] %}
+              <div class="collection-list-slider__image{% if section.settings.image_round %} image__round{% endif %}">
+                {% if block.settings.link != blank or collection != blank %}
+                  <a href="{{ block.settings.link | default: collection.link }}">
+                {% endif %}
+                  {% assign image = block.settings.image | default: collection.featured_image %}
+                  {% render 'lazy-image', image: image %}
+                {% if block.settings.link != blank or collection != blank %}
+                  </a>
+                {% endif %}
+              </div>
+              <div class="collection-list-slider__text">
+                <div class="rte">
+                  {% if block.settings.link != blank or collection != blank %}
+                    <a href="{{ block.settings.link | default: collection.link }}">
+                  {% endif %}
+                    {{ block.settings.text | default: collection.title | replace: '/','<br>' }}
+                  {% if block.settings.link != blank or collection != blank %}
+                    </a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+  var collectionSlider = new Swiper(".swiper-{{ section.id }}", {
+    slidesPerView: {{ section.settings.mobile_columns }},
+    spaceBetween: 15,
+    breakpoints: {
+      600: {
+        slidesPerView: 4.5,
+        spaceBetween: 20,
+      },
+      768: {
+        slidesPerView: 5,
+        spaceBetween: 20,
+      },
+      1024: {
+        slidesPerView: {{ section.settings.desktop_columns }},
+        spaceBetween: 30,
+      },
+    },
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Collection List Slider",
+    "settings": [
+      {
+        "type": "select",
+        "id": "section_display",
+        "label": "Display Section on",
+        "options": [
+          {
+            "value": "all",
+            "label": "All Sizes"
+          },
+          {
+            "value": "small-hide medium-hide",
+            "label": "Desktop Only"
+          },
+          {
+            "value": "small-hide large-hide",
+            "label": "Tablet Only"
+          },
+          {
+            "value": "medium-hide large-hide",
+            "label": "Mobile Only"
+          },
+          {
+            "value": "small-hide",
+            "label": "Desktop & Tablet"
+          },
+          {
+            "value": "medium-hide",
+            "label": "Desktop & Mobile"
+          },
+          {
+            "value": "large-hide",
+            "label": "Tablet & Mobile"
+          }
+        ],
+        "default": "all"
+      },
+      {
+        "type": "header",
+        "content": "Section Colors"
+      },
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background Color"
+      },
+      {
+        "type": "color",
+        "id": "color",
+        "label": "Text Color"
+      },
+      {
+        "type": "checkbox",
+        "id": "image_round",
+        "label": "Image Round"
+      },
+      {
+        "type": "header",
+        "content": "Section columns"
+      },
+      {
+        "type": "range",
+        "id": "desktop_columns",
+        "min": 0,
+        "max": 6,
+        "step": 1,
+        "label": "Desktop Columns",
+        "default": 6
+      },
+      {
+        "type": "range",
+        "id": "mobile_columns",
+        "min": 0,
+        "max": 5,
+        "step": 0.1,
+        "label": "Mobile Columns",
+        "default": 3.4
+      },
+      {
+        "type": "header",
+        "content": "Section Padding"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Bottom",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_top_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Top Mobile",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Bottom Mobile",
+        "default": 36
+      }
+    ],
+    "blocks": [
+      {
+        "type": "collection",
+        "name": "Collection",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "inline_richtext",
+            "id": "text",
+            "label": "Text",
+            "info": "Use '/' for the New Line"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Collection List Slider"
+      }
+    ]
+  }
+{% endschema %}

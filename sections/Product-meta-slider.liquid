@@ -1,0 +1,218 @@
+<style>
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.top }}px;
+    padding-bottom: {{ section.settings.bottom }}px;
+    background-color: {{ section.settings.background }};
+    color: rgb(var(--text-color)); 
+    --text-color: {{ section.settings.text_color.red }},{{ section.settings.text_color.green }},{{ section.settings.text_color.blue }};
+    overflow: hidden;
+  }
+
+  @media (max-width: 768px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_top }}px;
+      padding-bottom: {{ section.settings.mobile_bottom }}px;
+    }
+  }
+</style>
+{% liquid
+    if product.tags contains '_label_women'
+      assign button_class = 'button--primary'
+      assign button_class_2 = 'pink'
+    elsif product.tags contains '_label_men' or product.tags contains '_label_unisex'
+      assign button_class = 'button--secondary'
+      assign button_class_2 = 'green'
+    endif
+%}
+
+<div class="section-{{ section.id }} section section-full bg-custom Product-meta-slider">
+  <div class="product-meta-header">
+    {%- render 'section-header-2', button_class: button_class, subheading: section.settings.subheading, heading: section.settings.title, heading_color: section.settings.heading_color, heading_gradient: section.settings.heading_gradient, content: section.settings.content, link_text: section.settings.link_text, link_url: section.settings.link_url -%}
+    <div class="meta-button-wrapper">
+      <div class="swiper-button-prev {{ button_class_2 }}">
+        <svg preserveAspectRatio="xMidYMid meet" role="presentation" viewBox="0 0 6 8" style="height: 8px; width: 6px;">
+          <path d="M2.286 3.154A6.07 6.07 0 011.004.464c0-.232.115-.464.42-.464.307 0 .403.143.67.41a19.69 19.69 0 002.623 2.334C5.33 3.17 6 3.474 6 3.99c0 .517-.67.838-1.283 1.247a19.373 19.373 0 00-2.622 2.334c-.21.214-.402.428-.67.428a.467.467 0 01-.32-.145.383.383 0 01-.1-.318 6.07 6.07 0 011.281-2.69c.402-.553.575-.66.575-.856 0-.196-.173-.285-.575-.837z"></path>
+        </svg>
+      </div>
+      <div class="swiper-button-next {{ button_class_2 }}">
+        <svg preserveAspectRatio="xMidYMid meet" role="presentation" viewBox="0 0 6 8" style="height: 8px; width: 6px;">
+          <path d="M2.286 3.154A6.07 6.07 0 011.004.464c0-.232.115-.464.42-.464.307 0 .403.143.67.41a19.69 19.69 0 002.623 2.334C5.33 3.17 6 3.474 6 3.99c0 .517-.67.838-1.283 1.247a19.373 19.373 0 00-2.622 2.334c-.21.214-.402.428-.67.428a.467.467 0 01-.32-.145.383.383 0 01-.1-.318 6.07 6.07 0 011.281-2.69c.402-.553.575-.66.575-.856 0-.196-.173-.285-.575-.837z"></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="swiper swiper-{{ section.id }}">
+    <div class="swiper-wrapper">
+      {% for image in product.metafields.custom.product_slider_images.value %}
+        <div class="swiper-slide">
+          <div class="product-meta-wrapper">
+            {% render 'lazy-image', image:image %}
+            {% assign title = product.metafields.custom.product_slider_title.value[forloop.index0] %}
+            <h3 class="{{ section.settings.title_size }} font-family-1" style="color: {{ section.settings.block_color }}">{{ title }}</h3>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+    var swiper = new Swiper(".swiper-{{ section.id }}", {
+      slidesPerView: {{ section.settings.mobile_columns }},
+      spaceBetween: 0,
+      navigation: {
+        nextEl: ".section-{{ section.id }} .swiper-button-next",
+        prevEl: ".section-{{ section.id }} .swiper-button-prev",
+      },
+      breakpoints: {
+        460: {
+          slidesPerView: {{ section.settings.mobile_columns }},
+          spaceBetween: 0,
+        },
+        800: {
+          slidesPerView: 3,
+          spaceBetween: 16,
+        },
+        1024: {
+          slidesPerView: {{ section.settings.columns }},
+          spaceBetween: 16,
+        },
+      },
+    });
+  </script>
+
+{% schema %}
+  {
+    "name": "Product Meta Slider",
+    "settings": [
+      {
+        "type": "text",
+        "id": "subheading",
+        "label": "Subheading"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Featured collection"
+      },
+      {
+        "type": "richtext",
+        "id": "content",
+        "label": "Content"
+      },
+      {
+        "type": "url",
+        "id": "link_url",
+        "label": "Link URL",
+        "info": "Default to collection URL."
+      },
+      {
+        "type": "text",
+        "id": "link_text",
+        "label": "Link text",
+        "default": "View all"
+      },
+      {
+        "type": "checkbox",
+        "id": "button_secondary",
+        "label": "Button Secondary",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "Meta Blocks"
+      },
+      {
+        "type": "select",
+        "id": "title_size",
+        "label": "Block Meta Title Size",
+        "options": [
+          {
+            "value": "h1",
+            "label": "H1"
+          },
+          {
+            "value": "h2",
+            "label": "H2"
+          },
+          {
+            "value": "h3",
+            "label": "H3"
+          },
+          {
+            "value": "h4",
+            "label": "H4"
+          }
+        ],
+        "default": "h2"
+      },
+      {
+        "type": "color",
+        "id": "block_color",
+        "label": "Meta Text "
+      },
+      {
+        "type": "header",
+        "content": "Number of Columns"
+      },
+      {
+        "type": "range",
+        "id": "columns",
+        "label": "Desktop Columns",
+        "min": 0,
+        "max": 5,
+        "step": 0.1,
+        "default": 5
+      },
+      {
+        "type": "range",
+        "id": "mobile_columns",
+        "label": "Mobile Columns",
+        "min": 0,
+        "max":3,
+        "step": 0.1,
+        "default": 2
+      },
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text"
+      },
+      {
+        "type": "header",
+        "content": "Section Padding"
+      },
+      {
+        "type": "number",
+        "id": "top",
+        "label": "Padding Top"
+      },
+      {
+        "type": "number",
+        "id": "bottom",
+        "label": "Padding Bottom"
+      },
+      {
+        "type": "number",
+        "id": "mobile_top",
+        "label": "Mobile Padding Top"
+      },
+      {
+        "type": "number",
+        "id": "mobile_bottom",
+        "label": "Mobile Padding Bottom"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Product Meta Slider"
+      }
+    ]
+  }
+{% endschema %}

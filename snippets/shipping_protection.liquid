@@ -1,0 +1,34 @@
+<div class="shipping_pro_cont">
+ <div class="protection_content">
+   {% comment %}
+    {% if section.settings.product.featured_image != blank %}
+       <div class="protection_image">
+        <img src="{{ section.settings.product.featured_image | img_url:"master" }}">
+       </div>
+    {% endif %}
+    {% endcomment %}
+    <div class="toggle_button">
+      <input type="checkbox" id="toggle" class="protection_toggle" checked data_variant_id = "{{ section.settings.product.selected_or_first_available_variant.id  }}" />
+      <span class="toggle__controls">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+         <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 
+            393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
+      </span>
+    </div>
+    <div class="protection_title_price">
+      <div class="title_with_price">
+        <h3>{{ section.settings.product.title }}</h3>
+        <span>{{ section.settings.product.price | money }}</span>
+      </div>
+      <div class="pro_addtion_text">
+       {{ section.settings.product.description }}
+      </div>
+    </div>
+   
+  </div>
+</div>
+<style>
+  .protection_image img{
+    width:100px;
+  }
+</style>

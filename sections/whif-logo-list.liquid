@@ -1,0 +1,316 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+<style>
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.top }}px;
+    padding-bottom: {{ section.settings.bottom }}px;
+    background-color: {{ section.settings.background }};
+    color: rgb(var(--text-color)); 
+    --text-color: {{ section.settings.color.red }},{{ section.settings.color.green }},{{ section.settings.color.blue }};
+  }
+
+  @media (max-width: 768px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_top }}px;
+      padding-bottom: {{ section.settings.mobile_bottom }}px;
+    }
+  }
+</style>
+
+<section class="section-{{ section.id }} whif-logo-list">
+  {% if section.settings.title != blank %}
+    <div class="section-header">
+      <h2 class="{{ section.settings.size }}">{{ section.settings.title }}</h2>
+    </div>
+  {% endif %}
+  <div class="page-width medium-down-hide">
+    <div class="swiper swiper-{{ section.id }}">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          {% if block.type == 'image-slide' %}
+            <div class="swiper-slide">
+              <div class="whif-logo_container">
+                {% render 'lazy-image', image:block.settings.image %}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="page-width large-hide">
+    <div class="swiper swiper-1-{{ section.id }}">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          {% if block.type == 'image-slide' %}
+            <div class="swiper-slide">
+              <div class="whif-logo_container">
+                {% render 'lazy-image', image:block.settings.image %}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="page-width">
+    <div class="swiper swiper2 swiper-2-{{ section.id }}">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          {% if block.type == 'text-slide' %}
+            <div class="swiper-slide">
+              <div class="whif-text_container">
+                {% if block.settings.title != blank %}
+                  <h2 class="{{ section.settings.title_size }}">{{ block.settings.title }}</h2>
+                {% endif %}
+                {% if block.settings.subtitle != blank %}
+                  <h4 class="{{ section.settings.subtitle_size }}">{{ block.settings.subtitle }}</h4>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% assign fade = section.settings.fade | times: 1000 %}
+<script>
+  var newSwiper = new Swiper(".swiper-{{ section.id }}", {
+    slidesPerView: {{ section.settings.desktop_columns }},
+    spaceBetween: 32,
+  });
+</script>
+<script>
+  var newSwiper = new Swiper(".swiper-1-{{ section.id }}", {
+    slidesPerView: {{ section.settings.mobile_columns }},
+    spaceBetween: 16,
+    grabCursor: true,
+    {% comment %} centeredSlides: true, 
+    loop: true, {% endcomment %}
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 5,
+        spaceBetween: 16,
+      },
+      800: {
+        slidesPerView: 4,
+        spaceBetween: 32,
+      },
+      900: {
+        slidesPerView: 5,
+        spaceBetween: 32,
+      },
+    },
+  });
+</script>
+<script>
+  var fadeSwiper = new Swiper(".swiper-2-{{ section.id }}", {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    grabCursor: true,
+    effect: "fade",
+    autoplay: {
+      delay: {{ fade }},
+      disableOnInteraction: false,
+    },
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Whif Logo List",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background Color"
+      },
+      {
+        "type": "color",
+        "id": "color",
+        "label": "Text Color"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "select",
+        "id": "size",
+        "label": "Title Size",
+        "options": [
+          {
+            "value": "h0",
+            "label": "H0"
+          },
+          {
+            "value": "h1",
+            "label": "H1"
+          },
+          {
+            "value": "h2",
+            "label": "H2"
+          },
+          {
+            "value": "h3",
+            "label": "H3"
+          },
+          {
+            "value": "h4",
+            "label": "H4"
+          }
+        ],
+        "default": "h4"
+      },
+      {
+        "type": "header",
+        "content": "Second Slider Content"
+      },
+      {
+        "type": "select",
+        "id": "title_size",
+        "label": "Title Size",
+        "options": [
+          {
+            "value": "h0",
+            "label": "H0"
+          },
+          {
+            "value": "h1",
+            "label": "H1"
+          },
+          {
+            "value": "h2",
+            "label": "H2"
+          },
+          {
+            "value": "h3",
+            "label": "H3"
+          },
+          {
+            "value": "h4",
+            "label": "H4"
+          }
+        ],
+        "default": "h4"
+      },
+      {
+        "type": "select",
+        "id": "subtitle_size",
+        "label": "Subtitle Size",
+        "options": [
+          {
+            "value": "h6",
+            "label": "H6"
+          },
+          {
+            "value": "h5",
+            "label": "H5"
+          },
+          {
+            "value": "h4",
+            "label": "H4"
+          }
+        ],
+        "default": "h4"
+      },
+      {
+        "type": "range",
+        "id": "fade",
+        "label": "Fade Delay",
+        "min": 0.5,
+        "max": 10,
+        "default": 5,
+        "step": 0.5,
+        "unit": "s"
+      },
+      {
+        "type": "header",
+        "content": "Columns"
+      },
+      {
+        "type": "range",
+        "id": "desktop_columns",
+        "label": "Desktop Columns",
+        "min": 1,
+        "max": 10,
+        "default": 8,
+        "step": 0.5
+      },
+      {
+        "type": "range",
+        "id": "mobile_columns",
+        "label": "Mobile Columns",
+        "min": 1,
+        "max": 5,
+        "default": 5,
+        "step": 0.5
+      },
+      {
+        "type": "header",
+        "content": "Section Padding"
+      },
+      {
+        "type": "number",
+        "id": "top",
+        "label": "Padding Top"
+      },
+      {
+        "type": "number",
+        "id": "bottom",
+        "label": "Padding Bottom"
+      },
+      {
+        "type": "number",
+        "id": "mobile_top",
+        "label": "Mobile Padding Top"
+      },
+      {
+        "type": "number",
+        "id": "mobile_bottom",
+        "label": "Mobile Padding Bottom"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image-slide",
+        "name": "Image Slide",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+        ]
+      },
+      {
+        "type": "text-slide",
+        "name": "Text Slide",
+        "settings": [
+          {
+            "type": "inline_richtext",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "inline_richtext",
+            "id": "subtitle",
+            "label": "Subtitle"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Whif Logo List"
+      }
+    ]
+  }
+{% endschema %}

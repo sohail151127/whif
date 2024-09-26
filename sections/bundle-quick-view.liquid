@@ -1,0 +1,28 @@
+<div class="bundle__quick_view" data-card-id="{{ product.selected_or_first_available_variant.id }}">
+  <div class="bundle__quick_view-wrapper">
+    <div class="bundle__quick_view-content">
+      <div class="bundle__quick_view-items">
+        <div class="bundle__quick_view-close" id="bundle-popup-close">
+          <svg role="presentation" stroke-width="2" focusable="false" width="24" height="24" class="icon icon-close" viewBox="0 0 24 24">
+            <path d="M17.658 6.343 6.344 17.657M17.658 17.657 6.344 6.343" stroke="currentColor"></path>
+          </svg>
+        </div>
+        <div class="bundle__quick_view-item bundle__quick_view-item-media">
+          {%- render 'product-gallery', product: product -%}
+        </div>
+        <div class="bundle__quick_view-item bundle__quick_view-item-content">
+          <h1 class="product-info__title h2">{{ product.title }}</h1>
+          <div class="product__bundle_content-block">
+            <button type="button" class="button" data-action="quick-view-add">Add to bundle</button>
+          </div>
+          <div class="rte product__bundle_content-block">
+            {{ product.metafields.custom.product_text | metafield_tag }}
+          </div>
+          <div class="rte product__bundle_content-block">
+            {{ product.description }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

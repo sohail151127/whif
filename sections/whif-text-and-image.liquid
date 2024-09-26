@@ -1,0 +1,304 @@
+<style>
+  .section-{{ section.id }} {
+    background-color: {{ section.settings.background }};
+    color: rgb(var(--text-color)); 
+    --text-color: {{ section.settings.color.red }},{{ section.settings.color.green }},{{ section.settings.color.blue }};
+  }
+  .section-{{ section.id }} .button {
+    background: {{ section.settings.btn_bg }};
+    color: {{ section.settings.btn_color }};
+  }
+  .section-{{ section.id }} .button span {
+    background: {{ section.settings.btn_bg_2 }};
+  }
+  .section-{{ section.id }} .button span svg,
+  .section-{{ section.id }} .button span svg path {
+    color: {{ section.settings.btn_color_2 }};
+    fill: {{ section.settings.btn_color_2 }};
+  }
+</style>
+
+{% capture image %}
+   <div class="whif-image-container">
+    <div>
+      {% if section.settings.mobile_image != blank %}
+        <div class="small-hide">
+      {% endif %}
+          {% render 'lazy-image', image:section.settings.image, class:'hovered__item' %}
+      {% if section.settings.mobile_image != blank %}
+        </div>
+        <div class="medium-up-hide">
+          {% render 'lazy-image', image:section.settings.mobile_image, class:'hovered__item' %}
+        </div>
+      {% endif %}
+      {% if section.settings.image_badge != blank %}
+        <div class="whif-image_badge">
+          <h3 class="h3">{{ section.settings.image_badge }}</h3>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endcapture %}
+
+<section class="section-{{ section.id }} section whif-text-and-image {{ section.settings.section_display }}">
+  <div class="{% if section.settings.full == blank %} page-width {% endif %}whif-container-grid{% if section.settings.image_right != blank %} whif-grid-reverse{% endif %}">
+    {% if section.settings.image_right == blank %}
+      {{ image }}
+    {% endif %}
+    <div class="whif-content-container">
+      <div>
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'heading' %}
+              {% if block.settings.title != blank %}
+                <h3 class="{{ block.settings.title_size }}">{{ block.settings.title }}</h3>
+              {% endif %}
+            
+            {% when 'text' %}
+              {% if block.settings.text != blank %}
+                  <div class="rte">{{ block.settings.text }}</div>
+              {% endif %}
+
+            {% when 'icon-with-text' %}
+              {% if block.settings.text != blank or block.settings.icon_image != blank %}
+                  <div class="icon-with-text">
+                    {% if block.settings.icon_image != blank %}
+                      <div class="icon_image" style="flex: 0 0 {{ section.settings.icon_image_width }}px">
+                        {% render 'lazy-image', image:block.settings.icon_image  %}
+                      </div>
+                    {% endif %}
+                    {% if block.settings.text != blank %}
+                      <div class="rte">{{ block.settings.text }}</div>
+                    {% endif %}
+                  </div>
+              {% endif %}
+            
+            {% when 'button' %}
+              {% if block.settings.link_text != blank %}
+                <a class="button hover__button" href="{{ block.settings.link }}">
+                  <div>
+                    {{ block.settings.link_text }}
+                  </div>
+                  <!-- <span class="button-arrow">
+                    <svg preserveAspectRatio="xMidYMid meet" role="presentation" viewBox="0 0 6 8" style="height: 8px; width: 6px;">
+                      <path d="M2.286 3.154A6.07 6.07 0 011.004.464c0-.232.115-.464.42-.464.307 0 .403.143.67.41a19.69 19.69 0 002.623 2.334C5.33 3.17 6 3.474 6 3.99c0 .517-.67.838-1.283 1.247a19.373 19.373 0 00-2.622 2.334c-.21.214-.402.428-.67.428a.467.467 0 01-.32-.145.383.383 0 01-.1-.318 6.07 6.07 0 011.281-2.69c.402-.553.575-.66.575-.856 0-.196-.173-.285-.575-.837z"></path>
+                    </svg>
+                  </span> -->
+                </a>
+              {% endif %}
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+    {% if section.settings.image_right != blank %}
+      {{ image }}
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Whif Image and Text",
+    "class": "cst-design",
+    "settings": [
+      {
+        "type": "select",
+        "id": "section_display",
+        "label": "Display Section on",
+        "options": [
+          {
+            "value": "all",
+            "label": "All Sizes"
+          },
+          {
+            "value": "small-hide medium-hide",
+            "label": "Desktop Only"
+          },
+          {
+            "value": "small-hide large-hide",
+            "label": "Tablet Only"
+          },
+          {
+            "value": "medium-hide large-hide",
+            "label": "Mobile Only"
+          },
+          {
+            "value": "small-hide",
+            "label": "Desktop & Tablet"
+          },
+          {
+            "value": "medium-hide",
+            "label": "Desktop & Mobile"
+          },
+          {
+            "value": "large-hide",
+            "label": "Tablet & Mobile"
+          }
+        ],
+        "default": "all"
+      },
+      {
+        "type": "checkbox",
+        "id": "full",
+        "label": "Section Full Width"
+      },
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background Color"
+      },
+      {
+        "type": "color",
+        "id": "color",
+        "label": "Text Color"
+      },
+      {
+        "type": "header",
+        "content": "Section Content"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_image",
+        "label": "Mobile Image"
+      },
+      {
+        "type": "checkbox",
+        "id": "image_right",
+        "label": "Image Right"
+      },
+      {
+        "type": "text",
+        "id": "image_badge",
+        "label": "Image Badge Text"
+      },
+      {
+        "type": "header",
+        "content": "Block Icon Image"
+      },
+      {
+        "type": "range",
+        "id": "icon_image_width",
+        "label": "Icon Image Width",
+        "default": 30,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px"
+      },
+      {
+        "type": "color",
+        "id": "btn_bg",
+        "label": "Button Background Color"
+      },
+      {
+        "type": "color",
+        "id": "btn_color",
+        "label": "Button Text Color"
+      },
+      {
+        "type": "color",
+        "id": "btn_bg_2",
+        "label": "Button Arrow Background Color"
+      },
+      {
+        "type": "color",
+        "id": "btn_color_2",
+        "label": "Button Arrow Color"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "heading",
+        "name": "Heading",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "inline_richtext",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "select",
+            "id": "title_size",
+            "label": "Title Size",
+            "options": [
+              {
+                "value": "h1",
+                "label": "H1"
+              },
+              {
+                "value": "h2",
+                "label": "H2"
+              },
+              {
+                "value": "h3",
+                "label": "H3"
+              },
+              {
+                "value": "h4",
+                "label": "H4"
+              }
+            ],
+            "default": "h4"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "name": "Text",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          }
+        ]
+      },
+      {
+        "type": "icon-with-text",
+        "name": "Icon With Text",
+        "limit": 5,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "icon_image",
+            "label": "Icon Image"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          }
+        ]
+      },
+      {
+        "type": "button",
+        "name": "Button",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "text",
+            "id": "link_text",
+            "label": "Button Text"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Button URL"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Whif Image and Text"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,21 @@
+<div class="yotpo-widget-instance" 
+  data-yotpo-instance-id="479728" 
+  auto-inject-target-selector=".button.button--secondary" 
+  product-handle="{{product.handle}}" 
+  widget-type="SubscriptionsAddToCartWidget" 
+  full-format-product-price="{{ product.price | money }}"
+  should-auto-inject="false"
+  hooks_on="true"
+  hooks-selling-plan-changed="yotpoSelectedSellingPlanChanged(selectedSellingPlanGroup, selectedSellingPlan, isBuyOnce, selectedProductPrice)"
+  ></div>
+
+<script>
+  function yotpoSelectedSellingPlanChanged(selectedSellingPlanGroup, selectedSellingPlan, isBuyOnce, selectedProductPrice) {
+    const price = (selectedProductPrice / 100).toFixed(2);
+    console.log("price=" + price);
+    const addToCartButtonPriceElement = document.querySelectorAll('.product-page-banner button div sale-price, #bar-product-price');
+    addToCartButtonPriceElement.forEach(function(node){
+      node.innerHTML = '$' + price;
+    })
+  }
+</script>

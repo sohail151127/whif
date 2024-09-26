@@ -1,0 +1,59 @@
+{%- capture product_form_id -%}product-form-{{ section.settings.product.id }}-{{ section.id }}{%- endcapture -%}
+<div class="sticky-cart-container">
+   <div class="empty-bar-content">{{ section.settings.empty_text }}</div>
+   <div class="sticky-bundles" style="display:none;">
+      <div class="sticky-cart-items">
+        <div class="sticky-bundle-icon"><img src="{{ section.settings.image | img_url:"master"  }}"></div>
+        <div class="sticky-bubdle-record">
+          
+        </div>
+      </div>
+      <div class="sticky-button-price">
+         <div class="price-container">
+           <div class="price-heading">{{ section.settings.total_price }}</div>
+           <div class="price">
+             <div class="compair-price">{{ section.settings.product.compare_at_price | money }}</div>
+             <div class="regular-price">{{ section.settings.product.price | money }}</div>
+           </div>
+         </div>
+         <!-- <button type="button" class="bundle_cart button">Add To Cart</button> -->
+          <div class="product-info__buy-buttons bundle_cart">
+              {%- render 'buy-buttons', product: section.settings.product, form_id: product_form_id -%}
+          </div>
+        </div> 
+   </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Sticky add to cart",
+    "class": "custom-sticky-cart",
+    "settings": [
+      {
+        "type": "text",
+        "id": "empty_text",
+        "label": "Empty Text"
+      },
+      {
+        "type": "text",
+        "id": "total_price",
+        "label": "Price Heading"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "product",
+        "id": "product",
+        "label": "product"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Sticky add to cart"
+      }
+    ]
+  }
+{% endschema %}

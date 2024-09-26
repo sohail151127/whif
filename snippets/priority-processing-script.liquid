@@ -1,0 +1,74 @@
+<script>
+async function handlePriorityProcessing(e) {
+    var checkbox = document.querySelector('.priority__processing [name="priority-processing"]')
+      var target = checkbox
+      if (target.checked) {
+      var id = parseInt(target.value, 10)
+      var form = document.querySelector('#priority-processing')
+      var formData = {
+        items: [
+          {
+            id,
+            quantity: 1
+          }
+        ]
+      }
+      var res = await fetch(`${window.Shopify.routes.root}cart/add.js?sections=sections--21760198181182__cart-drawer,variant-added`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      if (res.ok) {
+        var cartContent = await (await fetch(`${window.Shopify.routes.root}cart.js`)).json()
+        var responseJson = await res.json()
+        cartContent["sections"] = responseJson["sections"];
+        form.dispatchEvent(new CustomEvent("variant:add", {
+          bubbles: true,
+          detail: {
+            items: responseJson.hasOwnProperty("items") ? responseJson["items"] : [responseJson],
+            cart: cartContent
+          }
+        }));
+        document.documentElement.dispatchEvent(new CustomEvent("cart:change", {
+          bubbles: true,
+          detail: {
+            cart: cartContent
+          }
+        }));
+        return
+      }
+      return
+    }
+    var cart = await( await fetch('/cart.js')).json()
+    var key = undefined
+    cart.items.forEach(function(item){
+      var isPriorityProcessing = item.handle === "priority-processing"
+      if (!isPriorityProcessing) return
+      key = item.key
+    })
+    if (typeof key === 'undefined') return
+    let sectionsToBundle = [];
+      document.documentElement.dispatchEvent(new CustomEvent("cart:prepare-bundled-sections", { bubbles: true, detail: { sections: sectionsToBundle } }));
+    var response = await fetch(`${Shopify.routes.root}cart/change.js`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        id: key,
+        quantity: 0,
+        sections: sectionsToBundle
+      })
+    })
+    var cartContent = await response.json()
+    document.documentElement.dispatchEvent(new CustomEvent("cart:change", {
+      bubbles: true,
+      detail: {
+        baseEvent: "line-item:change",
+        cart: cartContent
+      }
+    }));
+}
+</script>

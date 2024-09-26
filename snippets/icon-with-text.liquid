@@ -1,0 +1,43 @@
+<div class="icon_text_container">
+   <div class="icons_container">
+      {% if icon_image != blank %}
+       <div class="custom_icons">
+         <img src="{{ icon_image | img_url:"master" }}">
+        </div>
+       {% endif %}
+         <div class="icon_text">
+           {{ icon_text }}
+         </div>
+     </div>
+    <div class="icons_container">
+     {% if icon_image2 != blank %}
+       <div class="custom_icons">
+         <img src="{{ icon_image2 | img_url:"master" }}">
+      </div>
+       {% endif %}
+         <div class="icon_text">
+           {{ icon_text2 }}
+         </div>
+      </div>
+    <div class="icons_container">
+     {% if icon_image3 != blank %}
+       <div class="custom_icons">
+         <img src="{{ icon_image3 | img_url:"master" }}">
+         </div>
+       {% endif %}
+         <div class="icon_text">
+           {{ icon_text3 }}
+         </div>
+      </div>
+    <div class="icons_container">
+          {% if icon_image4 != blank %}
+           <div class="custom_icons">
+            <img src="{{ icon_image4 | img_url:"master" }}">
+           </div>
+           {% endif %}
+         <div class="icon_text">
+           {{ icon_text4 }}
+         </div>
+     
+   </div>
+</div>

@@ -1,0 +1,118 @@
+{%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+BUTTON COMPONENT
+----------------------------------------------------------------------------------------------------------------------
+
+Generate a button (or link styled as a button). It supports wide range of attributes that can be used to customize
+the appearance and functionality of the button.
+
+********************************************
+Supported variables
+********************************************
+
+* content: the content of the button
+* href: an optional link to set. If href is provided, then an "a" tag is generated, otherwise a "button"
+* size: can be "sm", "lg", "xl". If none is set, the default "base" size is used.
+* background: an optional background color to use that override the default
+* text_color: an optional text color to use that override the default
+* style: "fill" or "outline". If none is set "fill" is assumed
+* stretch: if passed to true, a full width button is generated
+* secondary: if set to true the button is of secondary style
+* subdued: if set to true, the button uses the subdued mode
+* type: when href is empty, can be either "button" or "submit" (default to button if none is set)
+* name: when the button is a real button, allow to set the name attribute that is submitted
+* icon: the name of an optional icon to render along the button
+* disabled: if set to true, the button is disabled
+* is: set the custom element bound to the element (if any)
+* form: the form ID that this button is linked to
+* external: if set to true and that a href is passed, it opens into a new window
+* aria_controls: the ID of the element controlled
+{%- endcomment -%}
+
+{% liquid
+  assign style = style | default: settings.button_style
+
+  capture class_attribute
+    echo 'button'
+
+    if size != blank and size != 'base'
+      echo ' button--' | append: size
+    endif
+
+    if style == 'outline'
+      echo ' button--outline'
+    endif
+
+    if secondary and disabled != true
+      echo ' button--secondary'
+    endif
+
+    if subdued and background == blank and text_color == blank
+      echo ' button--subdued'
+    endif
+
+    if stretch
+      echo ' w-full'
+    endif
+  endcapture
+%}
+
+{%- capture style_attribute -%}
+  {%- if background != blank and background != 'rgba(0,0,0,0)' -%}
+    --button-background: {{ background.rgb }} / var(--button-background-opacity, 1);
+
+    {%- if style != 'outline' -%}
+      --button-outline-color: {{ background.rgb }};
+    {%- endif -%}
+  {%- endif -%}
+
+  {%- if text_color != blank and text_color != 'rgba(0,0,0,0)' -%}
+    --button-text-color: {{ text_color.rgb }};
+
+    {%- if style == 'outline' -%}
+      --button-outline-color: {{ text_color.rgb }};
+    {%- endif -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- capture attributes -%}
+  {% if class_attribute != blank %}class="{{ class_attribute | strip_newlines | strip }} button--secondary"{% endif %}
+  {% if style_attribute != blank %}style="{{ style_attribute | strip_newlines | strip }}"{% endif %}
+  {% if aria_controls %}aria-controls="{{ aria_controls }}" aria-expanded="false"{% endif %}
+  {% if disabled %}{% if href %}role="link" aria-disabled="true"{% else %}disabled{% endif %}{% endif %}
+  {% if name %}name="{{ name }}"{% endif %}
+  {% if form %}form="{{ form }}"{% endif %}
+  {% if href %}href="{{ href }}"{% endif %}
+  {% if external and href != blank %}target="_blank"{% endif %}
+  {% if href == blank %}is="{{ is | default: 'custom-button' }}"{% endif %}
+{%- endcapture -%}
+
+{%- capture button_content -%}
+  {% if icon != blank %}
+    <div class="text-with-icon justify-center">
+      {%- render 'icon' with icon, width: 18, height: 18 -%}
+      {{- content -}}
+    </div>
+  {%- else -%}
+    {{- content -}}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- if href != blank -%}
+  <a {{ attributes }} {{ block.shopify_attributes }}>
+    {{- button_content -}} 
+    <span class="button-arrow">
+      <svg preserveAspectRatio="xMidYMid meet" role="presentation" viewBox="0 0 6 8" style="height: 8px; width: 6px;">
+        <path d="M2.286 3.154A6.07 6.07 0 011.004.464c0-.232.115-.464.42-.464.307 0 .403.143.67.41a19.69 19.69 0 002.623 2.334C5.33 3.17 6 3.474 6 3.99c0 .517-.67.838-1.283 1.247a19.373 19.373 0 00-2.622 2.334c-.21.214-.402.428-.67.428a.467.467 0 01-.32-.145.383.383 0 01-.1-.318 6.07 6.07 0 011.281-2.69c.402-.553.575-.66.575-.856 0-.196-.173-.285-.575-.837z"></path>
+      </svg>
+    </span>
+  </a>
+{%- else -%}
+  <button type="{{ type | default: 'button' }}" {{ attributes }} {{ block.shopify_attributes }}>
+    {{- button_content -}}
+    {% if total != blank %}
+      <span class="dot"> </span>
+      <span class="cart-total">{{ total }}</span>
+    {% endif %}
+  </button>
+{%- endif -%}

@@ -1,0 +1,212 @@
+{% for tag in product.tags %}
+{% if tag contains '_label_unisex' or tag contains '_label_men'%}
+    {% assign menClass = 'Green__colors' %}
+{% endif %}
+{% endfor %}
+<style>
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.top }}px;
+    padding-bottom: {{ section.settings.bottom }}px;
+    background: {{ section.settings.background }};
+  }
+
+  @media (max-width: 768px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_top }}px;
+      padding-bottom: {{ section.settings.mobile_bottom }}px;
+    }
+  }
+</style>
+
+
+
+<section id="reviews-grid-{{ section.id }}" class="section reviews-grid-parent {{ menClass }} section-{{ section.id }} custom-reviews-grid">
+  {% if section.settings.title != blank or section.settings.text != blank %}
+    <div class="container section-header text-center">
+      {% if section.settings.title != blank %}
+        <h2 class="h1 bold">{{ section.settings.title }}</h2>
+      {% endif %}
+      {% if section.settings.text != blank %}
+        <div class="rte h4">{{ section.settings.text }}</div>
+      {% endif %}
+    </div>
+  {% endif %}
+  <div class="reviews-grid_container">
+  <div class="swiper grid--slider{{ section.id }}">
+    <div class="swiper-wrapper">
+    {% for block in section.blocks %}
+      <div class="swiper-slide">
+      <div class="reviews-grid_wrapper">
+        <div class="reviews-grid_item">
+          <div class="review-image">
+            {% if block.settings.image_1 != blank %}
+                  {{
+                block.settings.image_1
+                | image_url: width: 1500
+                | image_tag: loading: 'lazy', sizes: sizes, widths: widths
+              }}
+            {% endif %}
+            <div class="review-star">
+              {% for i in (1..5) %}
+               {% render 'icon_star' %}
+              {% endfor %}
+            </div>
+          </div>
+          <div class="review-info">
+             {% if block.settings.review_head != blank %}
+              <span class="title">{{ block.settings.review_head }}</span>
+            {% endif %}
+            {% if block.settings.text_1 != blank %}
+              <div class="rte ">{{ block.settings.text_1 }}</div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="admin-name">
+              {% if block.settings.title_1 != blank %}
+                <span>
+                  {{ block.settings.title_1 }} 
+                  <span><img style="width: 15px;" src="https://cdn.shopify.com/s/files/1/0792/4518/1246/files/checked.png?v=1703412836"></span>
+                </span>
+              {% endif %}
+            </div>
+      </div>
+      </div>
+    {% endfor %}
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+  <div class="swiper-button-next"><span class="button-arrow">
+      <svg preserveAspectRatio="xMidYMid meet" role="presentation" viewBox="0 0 6 8" style="height: 8px; width: 6px;">
+        <path d="M2.286 3.154A6.07 6.07 0 011.004.464c0-.232.115-.464.42-.464.307 0 .403.143.67.41a19.69 19.69 0 002.623 2.334C5.33 3.17 6 3.474 6 3.99c0 .517-.67.838-1.283 1.247a19.373 19.373 0 00-2.622 2.334c-.21.214-.402.428-.67.428a.467.467 0 01-.32-.145.383.383 0 01-.1-.318 6.07 6.07 0 011.281-2.69c.402-.553.575-.66.575-.856 0-.196-.173-.285-.575-.837z"></path>
+      </svg>
+    </span>
+    </div>
+    <div class="swiper-button-prev">
+    <span class="button-arrow">
+      <svg preserveAspectRatio="xMidYMid meet" role="presentation" viewBox="0 0 6 8" style="height: 8px; width: 6px;">
+        <path d="M2.286 3.154A6.07 6.07 0 011.004.464c0-.232.115-.464.42-.464.307 0 .403.143.67.41a19.69 19.69 0 002.623 2.334C5.33 3.17 6 3.474 6 3.99c0 .517-.67.838-1.283 1.247a19.373 19.373 0 00-2.622 2.334c-.21.214-.402.428-.67.428a.467.467 0 01-.32-.145.383.383 0 01-.1-.318 6.07 6.07 0 011.281-2.69c.402-.553.575-.66.575-.856 0-.196-.173-.285-.575-.837z"></path>
+      </svg>
+    </span>
+    </div>
+  </div>
+</section>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+   new Swiper(".grid--slider{{ section.id }}", {
+    slidesPerView: 1,
+    spaceBetween: 15,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 2,
+        },
+        768: {
+          slidesPerView: 3,
+        },
+        1250: {
+          slidesPerView: 4,
+        },
+        },
+  });
+</script>
+  
+
+{% schema %}
+  {
+    "name": "Custom Reviews Grid",
+    "settings": [
+      {
+        "type": "inline_richtext",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text"
+      },
+      {
+        "type": "header",
+        "content": "Colors"
+      },
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background Color"
+      },
+      {
+        "type": "color",
+        "id": "color",
+        "label": "Text Color"
+      },
+      {
+        "type": "header",
+        "content": "Section Spacing"
+      },
+      {
+        "type": "number",
+        "id": "top",
+        "label": "Top Spacing"
+      },
+      {
+        "type": "number",
+        "id": "bottom",
+        "label": "Bottom Spacing"
+      },
+      {
+        "type": "number",
+        "id": "mobile_top",
+        "label": "Top Spacing (Mobile)"
+      },
+      {
+        "type": "number",
+        "id": "mobile_bottom",
+        "label": "Bottom Spacing (Mobile)"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "review-grid",
+        "name": "Reviews Column",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image_1",
+            "label": "Image 1"
+          },
+          {
+            "type": "text",
+            "id": "review_head",
+            "label": "Review Heading"
+          },
+          {
+            "type": "inline_richtext",
+            "id": "title_1",
+            "label": "Title 1"
+          },
+          {
+            "type": "richtext",
+            "id": "text_1",
+            "label": "Text 1"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Custom Reviews Grid"
+      }
+    ]
+  }
+{% endschema %}

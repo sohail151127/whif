@@ -1,0 +1,158 @@
+<style>
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.top }}px;
+    padding-bottom: {{ section.settings.bottom }}px;
+    background-color: {{ section.settings.background }};
+    color: rgb(var(--text-color)); 
+    --text-color: {{ section.settings.text_color.red }},{{ section.settings.text_color.green }},{{ section.settings.text_color.blue }};
+  }
+
+  @media (max-width: 768px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_top }}px;
+      padding-bottom: {{ section.settings.mobile_bottom }}px;
+    }
+  }
+</style>
+
+<section class="section-{{ section.id }} whif-main-page">
+  <div class="{% if section.settings.width == 'normal' %}page-width{% elsif section.settings.width == 'narrow' %}page-width-narrow{% endif %} text-{{ section.settings.alignment }}">
+    {% if section.settings.show_title %}
+      <h3 class="{{ section.settings.title_size }}">{{ page.title }}</h3>
+    {% endif %}
+    {% if section.settings.show_content %}
+      <div class="page-description">
+        {{ page.content }}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Whif Main Page",
+    "settings": [
+      {
+        "type": "select",
+        "id": "width",
+        "label": "Section width",
+        "options": [
+          {
+            "value": "normal",
+            "label": "Normal Page Width"
+          },
+          {
+            "value": "narrow",
+            "label": "Narrow Page Width"
+          },
+          {
+            "value": "full",
+            "label": "Full Width"
+          }
+        ],
+        "default": "narrow"
+      },
+      {
+        "type": "select",
+        "id": "alignment",
+        "label": "Text Align",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          }
+        ],
+        "default": "center"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_title",
+        "label": "Show Page Title"
+      },
+      {
+        "type": "select",
+        "id": "title_size",
+        "label": "Page Title Size",
+        "options": [
+          {
+            "value": "h1",
+            "label": "H1"
+          },
+          {
+            "value": "h2",
+            "label": "H2"
+          },
+          {
+            "value": "h3",
+            "label": "H3"
+          },
+          {
+            "value": "h4",
+            "label": "H4"
+          },
+          {
+            "value": "h5",
+            "label": "H5"
+          }
+        ],
+        "default": "h3"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_content",
+        "label": "Show Page Content"
+      },
+      {
+        "type": "header",
+        "content": "Colors"
+      },
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text"
+      },
+      {
+        "type": "header",
+        "content": "Section Padding"
+      },
+      {
+        "type": "number",
+        "id": "top",
+        "label": "Padding Top",
+        "default": 40
+      },
+      {
+        "type": "number",
+        "id": "bottom",
+        "label": "Padding Bottom",
+        "default": 40
+      },
+      {
+        "type": "number",
+        "id": "mobile_top",
+        "label": "Mobile Padding Top",
+        "default": 20
+      },
+      {
+        "type": "number",
+        "id": "mobile_bottom",
+        "label": "Mobile Padding Bottom",
+        "default": 20
+      }
+    ],
+    "presets": [
+      {
+        "name": "Whif Main Page"
+      }
+    ]
+  }
+{% endschema %}

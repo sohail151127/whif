@@ -1,0 +1,15 @@
+<div class="{{ class }} {% if image != blank %}media{% else %}placeholder{% endif %}" {% if image != blank %}style="padding-bottom: {{ 1 | divided_by: image.aspect_ratio | times: 100 }}%;"{% endif %}>
+  {%- if image != blank -%}
+    {%- assign widths = '165, 360, 535, 750, 1070, 1500' -%}
+    {%- capture sizes -%}
+      (min-width: 320px) 100vw
+    {%- endcapture -%}
+    {{
+      image
+      | image_url: width: 1500
+      | image_tag: loading: 'lazy', sizes: sizes, widths: widths
+    }}
+  {%- else -%}
+    {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+  {%- endif -%}
+</div>

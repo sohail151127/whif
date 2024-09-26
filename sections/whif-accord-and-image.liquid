@@ -1,0 +1,231 @@
+<style>
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.top }}px;
+    padding-bottom: {{ section.settings.bottom }}px;
+    background-color: {{ section.settings.background }};
+    color: rgb(var(--text-color)); 
+    --text-color: {{ section.settings.color.red }},{{ section.settings.color.green }},{{ section.settings.color.blue }};
+  }
+  .section-{{ section.id }} .button {
+    background: {{ section.settings.btn_bg }};
+    color: {{ section.settings.btn_color }};
+  }
+  .section-{{ section.id }} .button span {
+    background: {{ section.settings.btn_bg_2 }};
+  }
+  .section-{{ section.id }} .button span svg {
+    color: {{ section.settings.btn_color_2 }};
+  }
+
+  @media (max-width: 768px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_top }}px;
+      padding-bottom: {{ section.settings.mobile_bottom }}px;
+    }
+  }
+</style>
+{% liquid
+    if product.tags contains '_label_women'
+      assign button_class = 'button--primary'
+      assign button_class_2 = 'pink'
+    elsif product.tags contains '_label_men' or product.tags contains '_label_unisex'
+      assign button_class = 'button--secondary'
+      assign button_class_2 = 'green'
+    endif
+%}
+{% capture image %}
+   <div class="whif-image-container">
+    <div>
+      {% if section.settings.mobile_image != blank %}
+        <div class="small-hide">
+      {% endif %}
+          {% render 'lazy-image', image:section.settings.image, class:'hovered__item' %}
+      {% if section.settings.mobile_image != blank %}
+        </div>
+        <div class="medium-up-hide">
+          {% render 'lazy-image', image:section.settings.mobile_image, class:'hovered__item' %}
+        </div>
+      {% endif %}
+      {% if section.settings.image_badge != blank %}
+        <div class="whif-image_badge">
+          <h3 class="h3">{{ section.settings.image_badge }}</h3>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endcapture %}
+
+<section class="section-{{ section.id }} whif-text-and-image">
+  <div class="{% if section.settings.full == blank %}page-width {% endif %}whif-container-grid{% if section.settings.image_right != blank %} whif-grid-reverse{% endif %}">
+    {% if section.settings.image_right == blank %}
+      {{ image }}
+    {% endif %}
+    <div class="whif-content-container">
+      <div>
+        {% if section.settings.title != blank %}
+          <h3 class="{{ section.settings.title_size }}">{{ section.settings.title }}</h3>
+        {% endif %}
+        {% assign show_accordion = product.metafields.custom.show_accordion | default: false %}
+        {% unless show_accordion %}
+        {% else %}
+          {% assign titles = product.metafields.custom.accordion_title.value %}
+          {% assign contents = product.metafields.custom.accordion_content.value %}
+          {% for title in titles %}
+              {% assign accordion_content = contents[forloop.index0] %}
+              {% assign open = false %}
+              {% if forloop.index == 1 %}
+                {% assign open = true %}
+              {% endif %}
+              {%- render 'accordion', title: title, content: accordion_content, button_class_2: button_class_2, open: open -%}
+          {% endfor %}
+        {% endunless %}
+        {% if section.settings.link_text != blank %}
+          <a class="button hover__button" href="{{ section.settings.link }}">
+            <div>
+              {{ section.settings.link_text }}
+              <span class="button-arrow">
+                <svg preserveAspectRatio="xMidYMid meet" role="presentation" viewBox="0 0 6 8" style="height: 8px; width: 6px;">
+                  <path d="M2.286 3.154A6.07 6.07 0 011.004.464c0-.232.115-.464.42-.464.307 0 .403.143.67.41a19.69 19.69 0 002.623 2.334C5.33 3.17 6 3.474 6 3.99c0 .517-.67.838-1.283 1.247a19.373 19.373 0 00-2.622 2.334c-.21.214-.402.428-.67.428a.467.467 0 01-.32-.145.383.383 0 01-.1-.318 6.07 6.07 0 011.281-2.69c.402-.553.575-.66.575-.856 0-.196-.173-.285-.575-.837z"></path>
+                </svg>
+              </span>
+            </div>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+    {% if section.settings.image_right != blank %}
+      {{ image }}
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Whif Image And Accordion",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "full",
+        "label": "Section Full Width"
+      },
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background Color"
+      },
+      {
+        "type": "color",
+        "id": "color",
+        "label": "Text Color"
+      },
+      {
+        "type": "header",
+        "content": "Section Content"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_image",
+        "label": "Mobile Image"
+      },
+      {
+        "type": "checkbox",
+        "id": "image_right",
+        "label": "Image Right"
+      },
+      {
+        "type": "text",
+        "id": "image_badge",
+        "label": "Image Badge Text"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "select",
+        "id": "title_size",
+        "label": "Title Size",
+        "options": [
+          {
+            "value": "h2",
+            "label": "H2"
+          },
+          {
+            "value": "h3",
+            "label": "H3"
+          },
+          {
+            "value": "h4",
+            "label": "H4"
+          }
+        ],
+        "default": "h4"
+      },
+      {
+        "type": "text",
+        "id": "link_text",
+        "label": "Button Text"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Button URL"
+      },
+      {
+        "type": "color",
+        "id": "btn_bg",
+        "label": "Button Background Color"
+      },
+      {
+        "type": "color",
+        "id": "btn_color",
+        "label": "Button Text Color"
+      },
+      {
+        "type": "color",
+        "id": "btn_bg_2",
+        "label": "Button Arrow Background Color"
+      },
+      {
+        "type": "color",
+        "id": "btn_color_2",
+        "label": "Button Arrow Text Color"
+      },
+      {
+        "type": "header",
+        "content": "Section Padding"
+      },
+      {
+        "type": "number",
+        "id": "top",
+        "label": "Padding Top"
+      },
+      {
+        "type": "number",
+        "id": "bottom",
+        "label": "Padding Bottom"
+      },
+      {
+        "type": "number",
+        "id": "mobile_top",
+        "label": "Mobile Padding Top"
+      },
+      {
+        "type": "number",
+        "id": "mobile_bottom",
+        "label": "Mobile Padding Bottom"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Whif Image And Accordion"
+      }
+    ]
+  }
+{% endschema %}

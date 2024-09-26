@@ -1,0 +1,381 @@
+{%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+PRODUCT CARD COMPONENT
+----------------------------------------------------------------------------------------------------------------------
+This component is used in collection and featured collection to render a single product as a card
+
+********************************************
+Supported variables
+********************************************
+
+* product: the product to render
+* show_rating: show or not the rating. If nothing is set, the theme uses the default product card setting
+* show_vendor: show or not the vendor. If nothing is set, the theme uses the default product card setting
+* show_quick_buy: show or not the quick buy. If nothing is set, the theme uses the default product card setting
+* show_secondary_image: show or not the secondary image. If nothing is set, the theme uses the default product card setting
+* show_swatches: allow to force hiding swatches. If nothing is set, it will default to the default card strategy
+* stacked: indicate if the product is in stack mode
+* reveal: if set to true the item will be revealed in a stacked mode
+* background: the background to use for the product card (if none is passed then the one from the global setting is used)
+* text_color: the text color to use for the product card (if none is passed then the one from the global setting is used)
+* text_alignment: can be "center". If nothing is set, the theme uses the default product card setting
+{%- endcomment -%}
+{% assign isPreOrder = false %}
+{% assign isComing = false %}
+  {% for tag in product.tags %}
+    {% if tag contains 'back-in-stock' %}
+      {% capture label_buttons %}<span class="label__buttons-top">BACK IN STOCK 💥</span> {% endcapture %}
+    {% endif %} 
+  {% endfor %}
+  {% for tag in product.tags %}
+    {% if tag contains 'coming-soon' %}
+        {% assign isComing = true %}
+        {% capture label_buttons %}<span class="label__buttons-top">COMING SOON</span> {% endcapture %}
+    {% endif %} 
+  {% endfor %}
+  {% for tag in product.tags %}
+    {% if tag contains 'pre-order' %}
+      {% assign isPreOrder = true %}
+      {% capture label_buttons %}<span class="label__buttons-top">PRE-ORDER ✅</span>{% endcapture %}
+    {% endif %} 
+  {% endfor %}
+  {% for tag in product.tags %}
+    {% if tag contains 'best-seller' %}
+      {% capture label_buttons %}<span class="label__buttons-top">BEST SELLER 🔥</span> {% endcapture %}
+    {% endif %} 
+  {% endfor %}
+  {% for tag in product.tags %}
+    {% if tag contains 'low-in-stock' %}
+      {% capture label_buttons %}<span class="label__buttons-top">LOW IN STOCK 🏃</span>{% endcapture %}
+    {% endif %} 
+  {% endfor %}
+{%- assign show_rating = show_rating | default: settings.show_product_rating, allow_false: true -%}
+{%- assign show_vendor = show_vendor | default: settings.show_vendor, allow_false: true -%}
+{%- assign show_quick_buy = show_quick_buy | default: settings.show_quick_buy, allow_false: true -%}
+{%- assign show_secondary_image = show_secondary_image | default: settings.show_secondary_image, allow_false: true -%}
+{%- assign text_alignment = text_alignment | default: settings.product_info_alignment -%}
+
+{%- if stacked and section.settings.products_per_row_mobile == '2' -%}
+  {%- assign mobile_reduced = true -%}
+{%- endif -%}
+
+{%- assign section_background = section.settings.background_gradient | default: section.settings.background | default: settings.background -%}
+{%- assign card_background = background | default: settings.product_card_background -%}
+{%- assign card_text_color = text_color | default: settings.product_card_text_color -%}
+
+{%- if section_background != 'rgba(0,0,0,0)' and card_background != 'rgba(0,0,0,0)' and section_background != card_background -%}
+  {%- assign card_class = 'product-card ' | append: swiper_class -%}
+{%- else -%}
+  {%- assign card_class = 'product-card product-card--blends ' | append: swiper_class -%}
+{%- endif -%}
+
+{%- if show_secondary_image and product.media.size > 1 -%}
+  {%- assign card_class = card_class | append: 'product-card--show-secondary-media ' | append: swiper_class -%}
+{%- endif -%}
+{% style %}
+  {% assign info_color = product.metafields.custom.product_color_1.value %}
+  {% assign card_color = product.metafields.custom.product_color_2.value %}
+  
+/*  #product-{{ product.id }}.product-card {
+    position: relative;
+  }
+#product-{{ product.id }}.product-card::after { 
+  background-color: {{ card_color }} !important;
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    height: 75%;
+    border-radius: var(--rounded-sm);
+}
+#product-{{ product.id }}.product-card .bundle,
+#product-{{ product.id }}.product-card .bundle-add {
+  background: {{ info_color }};
+}
+#product-{{ product.id }}.product-card .whif-product-button .button div,
+#product-{{ product.id }}.product-card .text-subdued {
+  color: {{ info_color }};
+} 
+ #product-{{ product.id }}.product-card .price--and-buttons {
+  border-color: {{ info_color }};
+} */
+  {% endstyle %}
+<product-card id="product-{{ product.id }}" handle="{{ product.handle | escape }}" {% if reveal %}reveal-js{% endif %} {% render 'surface', class: card_class, text_color: card_text_color %}>
+  {%- comment -%}
+  --------------------------------------------------------------------------------------------------------------------
+  PRODUCT BADGES
+  --------------------------------------------------------------------------------------------------------------------
+  {%- endcomment -%}
+
+
+  {%- comment -%}
+  --------------------------------------------------------------------------------------------------------------------
+  PRODUCT MEDIA
+  --------------------------------------------------------------------------------------------------------------------
+  {%- endcomment -%}
+  {% if show_badges %}
+    {{ label_buttons }}
+  {% endif %}
+  <div class="card-variant-cont">
+  {%- if product.media.size > 0 -%}
+    <div class="product-card__figure">
+      {% for tag in product.tags %}
+        {% if tag contains '_label_women' %}
+          <div class="StyleCard__label">
+            <span class="StyleTag StyleTag--color-pink t-nano">
+              {{ tag | replace: '_label_','' | upcase }}
+            </span>
+          </div>
+        {% elsif tag contains '_label_men' %}
+          <div class="StyleCard__label">
+            <span class="StyleTag StyleTag--color-black t-nano">
+              {{ tag | replace: '_label_','' | upcase }}
+            </span>
+          </div>
+        {% elsif tag contains '_label_unisex' %}
+          <div class="StyleCard__label">
+            <span class="StyleTag StyleTag--color-green t-nano">
+              {{ tag | replace: '_label_','' | upcase }}
+            </span>
+          </div>
+        {% elsif tag contains '_label_' %}
+          <div class="StyleCard__label">
+            <span class="StyleTag StyleTag--color-red t-nano">
+              {{ tag | replace: '_label_','' | upcase }}
+            </span>
+          </div>
+        {% endif %}
+      {% endfor %}
+      <a href="{{ product.url }}" data-instant>
+        {%- capture sizes -%}
+          {%- if stacked -%}
+            (max-width: 699px) calc(100vw / {{ section.settings.products_per_row_mobile }} - 40px), (max-width: 1200px) calc(100vw / {{ 3 | at_most: section.settings.products_per_row_desktop }} - 64px), calc(min(100vw - 96px, {{ settings.page_width }}px) / {{ section.settings.products_per_row_desktop }} - (24px / {{ section.settings.products_per_row_desktop }} * {{ section.settings.products_per_row_desktop | minus: 1 }}))
+          {%- else -%}
+            100vw
+            {% comment %}
+            (max-width: 699px) 74vw, (max-width: 999px) 38vw, calc(min(100vw - 96px, {{ settings.page_width }}px) / {{ section.settings.products_per_row_desktop }} - (24px / {{ section.settings.products_per_row_desktop }} * {{ section.settings.products_per_row_desktop | minus: 1 }}))
+            {% endcomment %}
+          {%- endif -%}
+        {%- endcapture -%}
+
+        {%- capture main_image_classes -%}product-card__image product-card__image--primary {% if settings.product_image_aspect_ratio contains 'crop' %}object-fill-safe{% endif %} aspect-{{ settings.product_image_aspect_ratio | split: '_' | first }}{%- endcapture -%}
+          {% assign image_url = product.metafields.custom.product_card_image %}
+          {% if image_url != blank %}
+            {{- image_url | image_url: width: image_url.width | image_tag: loading: 'lazy', sizes: sizes, widths: '200,300,400,500,600,700,800,1000,1200,1400,1600,1800', class: main_image_classes -}}
+            {%- if show_secondary_image and product.media.size > 1 -%}
+              {%- assign next_media = product.media[image_url.position] | default: product.media[1] -%}
+              {{- next_media | image_url: width: next_media.width | image_tag: class: 'product-card__image product-card__image--secondary object-fill', loading: 'lazy', fetchpriority: 'low', sizes: sizes, widths: '200,300,400,500,600,700,800,1000,1200,1400,1600,1800' -}}
+            {%- endif -%}  
+          {% else %}  
+           {{- product.featured_media | image_url: width: product.featured_media.width | image_tag: loading: 'lazy', sizes: sizes, widths: '200,300,400,500,600,700,800,1000,1200,1400,1600,1800', class: main_image_classes -}}
+            {%- if show_secondary_image and product.media.size > 1 -%}
+              {%- assign next_media = product.media[product.featured_media.position] | default: product.media[1] -%}
+              {{- next_media | image_url: width: next_media.width | image_tag: class: 'product-card__image product-card__image--secondary object-fill', loading: 'lazy', fetchpriority: 'low', sizes: sizes, widths: '200,300,400,500,600,700,800,1000,1200,1400,1600,1800' -}}
+            {%- endif -%}
+          {% endif %}  
+        
+      </a>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%}
+  --------------------------------------------------------------------------------------------------------------------
+  PRODUCT INFO
+  --------------------------------------------------------------------------------------------------------------------
+  {%- endcomment -%}
+
+  {%- if show_quick_buy -%}
+    <div class="product-card__quick-buy">
+      {%- assign quick_add_label = 'ADD' -%}
+
+      {%- if product.variants.size >= 1 and product.selling_plan_groups.size == 0 -%}
+        {%- form 'product', product, is: 'product-form' -%}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          {% if product.variants.size > 1 %}
+            <div class="variant_container">
+            {% for variant in product.variants %}
+            <div class="variant-data variant-item {% if variant.id == product.selected_or_first_available_variant.id %}active{% endif %} {% unless variant.available %}sold-out disabled{% endunless %}" data-variant-id = "{{ variant.id }}">
+              <div class="loader">
+              </div>
+              <span class="variant-value">{{ variant.title }}</span>
+              <div class="overlay-with-price">
+             
+              {% if variant.title == '50ml x 2' or variant.title == '2 x 50ml' and variant.compare_at_price != blank %}
+                <span class="overlay save-text">Save {{ variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | money_without_currency | times:100.0 | remove : '.0' }}%</span>
+              {% endif %}
+               {% unless variant.available %}
+               <span class="overlay sold-out">Sold Out</span>
+              {% endunless %}
+               <div class="price-compare-price">
+                <span class="variant-price">
+                  {{ variant.price | money }}
+                </span>
+                 {% if variant.compare_at_price != blank %}
+                  <span class="compare-price">
+                    {{ variant.compare_at_price | money }}
+                  </span>
+                {% endif %}
+              </div> 
+             
+              </div>
+            </div>
+           {% endfor %}
+            </div>
+          {% if product.tags contains 'pre-order' or product.tags contains 'coming-soon' %}
+            <div class="whif-product-button{% if product.available %}{% else %} sold-out-button{% endif %}">
+              {%- render 'button-3', type: 'submit', content: quick_add_label, product: product,isPreOrder: isPreOrder , isComing : isComing -%}
+            </div>
+            {% else %}
+              {% unless product.available %}
+               <div class="whif-product-button{% if product.available %}{% else %} sold-out-button{% endif %}">
+                {%- render 'button-3', type: 'submit', content: quick_add_label, product: product,isPreOrder: isPreOrder , isComing : isComing -%}
+              </div>
+              {% else %}
+               <div class="custom-add whif-product-button {% if product.available %}{% else %} sold-out-button{% endif %}">
+               <div class="button">
+                 <div>ADD
+                   <span class="button-plus">
+                    <svg preserveAspectRatio="xMidYMid meet" role="presentation" viewBox="0 0 9 10" style="height:10px;width:9px;">
+                      <path d="M5.464 4.011h3.188c.251 0 .318.185.318.369.003.386-.053.77-.167 1.14-.101.301-.235.402-.688.402h-2.65v3.117c0 .268-.168.47-.89.47-.72 0-1.04-.118-1.04-.537v-3.05H.348c-.251 0-.318-.185-.318-.386.01-.38.067-.756.167-1.123.118-.301.235-.402.688-.402h2.65V.961c0-.268.168-.47.89-.47.72 0 1.04.118 1.04.52v3z"></path>
+                    </svg>
+                  </span>
+                
+                 </div>
+                </div>
+               </div>
+              <div class="whif-product-button{% if product.available %}{% else %} sold-out-button{% endif %}" style="display:none;">
+                  {%- render 'button-3', type: 'submit', content: quick_add_label, product: product,isPreOrder: isPreOrder , isComing : isComing -%}
+              </div>
+            {% endunless %}
+         
+          {% endif %}
+       
+         {% else %}
+            <div class="whif-product-button{% if product.available %}{% else %} sold-out-button{% endif %}">
+              {%- render 'button-3', type: 'submit', content: quick_add_label, product: product,isPreOrder: isPreOrder , isComing : isComing -%}
+            </div>
+            {% endif %}
+        {%- endform -%}
+      {%- else -%}
+        {%- capture quick_buy_id -%}quick-buy-{{ section.id }}-{{ product.id }}{%- endcapture -%}
+
+            <div class="pointer-fine:hidden">
+              <button type="button" aria-controls="{{ quick_buy_id }}" aria-expanded="false" aria-label="{{ quick_add_label | escape }}" is="custom-button" class="product-card__mobile-quick-buy-button">
+                {%- render 'icon' with 'quick-buy-cart' -%}
+              </button>
+            </div>
+           <div class="whif-product-button{% if product.available %}{% else %} sold-out-button{% endif %}">
+              {%- render 'button-3', type: 'submit', content: quick_add_label, product: product,isPreOrder: isPreOrder , isComing : isComing -%}
+            </div>
+            {% comment %} <div class="pointer-coarse:hidden">
+                {%- render 'button-3', content: quick_add_label, aria_controls: quick_buy_id -%}
+              </div>
+            {% endcomment %}
+         
+            <quick-buy-drawer id="{{ quick_buy_id }}" header-bordered open-from="bottom" handle="{{ product.handle }}" role="region" aria-live="polite" class="quick-buy-drawer drawer">
+              {%- comment -%}Quick buy content is filled on demand for performance reasons {%- endcomment -%}
+            </quick-buy-drawer>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+</div>
+  <div class="product-card__info {% if text_alignment == 'center' %}product-card__info--center{% endif %}">
+    <div class="v-stack gap-0 w-full text-center {% if text_alignment == 'center' %}justify-items-center{% endif %}">
+      {% if product != blank %} 
+         {% capture product_data_attribute %}data-oke-reviews-product-id="shopify-{{ product.id }}"{% endcapture %} 
+      
+      {% endif %} 
+    <div class="rating-with-tag">
+          <div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}">{% if product.metafields.loox.avg_rating != blank %}{{ product.metafields.loox.avg_rating }}/5{% endif %}</div>
+          <div class="new-tag">
+            {% for tag in product.tags %}
+            {% if tag contains 'new-product' %}
+                <div class="StyleCard__label">
+                  <span class="StyleTag StyleTag--color-blue t-nano">
+                    {{ tag | replace: '-product','' | upcase }}!
+                  </span>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+    </div>
+      <div class="title-and-badge-wrapper">
+        <span class="product-card__title">
+          <a href="{{ product.url }}" class="bold h4" data-instant>{{ product.title }}</a>
+        </span>  
+      </div>
+
+      {% if product.metafields.custom.card_text != blank %}
+        <p class="meta-card_text">Inspired by <b>{{ product.metafields.custom.card_text }}</b></p>
+      {% endif %} 
+      <div class="price-tag-container">
+        <p>{{ product.selected_or_first_available_variant.price | money }}</p>
+      </div>
+    </div>
+
+    {%- if show_rating and mobile_reduced or text_alignment == 'center' -%}
+      {%- capture rating_class -%}{% unless text_alignment == 'center' %}sm:hidden{% endunless %}{%- endcapture -%}
+      {%- render 'product-rating', product: product, class: rating_class, display_mode: settings.product_rating_mode -%}
+    {%- endif -%}
+
+    {%- if settings.product_color_display != 'hide' and show_swatches != false -%}
+      {%- assign color_label_list = 'general.label.color' | t | replace: ', ', ',' | downcase | split: ',' -%}
+
+      {%- for color_label in color_label_list -%}
+        {%- if product.options_by_name[color_label] != blank -%}
+          {%- assign product_option = product.options_by_name[color_label] -%}
+          {%- capture name -%}swatch-{{ section.id }}-{{ product.id }}-{{ product_option.position }}{%- endcapture -%}
+
+          <div class="product-card__aside">
+            {%- case settings.product_color_display -%}
+              {%- when 'count' -%}
+                <p class="product-card__color-count text-sm text-subdued">{{- 'product.general.available_colors_count' | t: count: product_option.values.size -}}</p>
+
+              {%- when 'swatch' -%}
+                <fieldset class="product-card__swatch-list h-stack {% if settings.color_swatch_style == 'rectangle' %}gap-2.5{% else %}gap-0.5{% endif %}" data-option-position="{{ product_option.position }}">
+                  {%- for option_value in product_option.values limit: 4 -%}
+                    {%- if forloop.first or product.selected_or_first_available_variant.matched and option_value == product_option.selected_value -%}
+                      {%- assign selected = true -%}
+                    {%- else -%}
+                      {% assign selected = false %}
+                    {%- endif -%}
+
+                    {%- render 'swatch' with 'color', value: option_value, name: name, size: 'sm', selected: selected -%}
+                  {%- endfor -%}
+
+                  {% if product_option.values.size > 4 %}
+                    <a href="{{ product.url }}" data-instant class="color-swatch__view-more {% if settings.color_swatch_style == 'round' %}rounded-full{% endif %} text-xxs text-subdued">+{{ product_option.values.size | minus: 4 }}</a>
+                  {% endif %}
+                </fieldset>
+
+              {%- when 'variant' -%}
+                <fieldset class="product-card__variant-list" data-option-position="{{ product_option.position }}">
+                  {%- for option_value in product_option.values limit: 4 -%}
+                    {%- assign variant_option = 'option' | append: product_option.position -%}
+                    {%- assign variant_for_value = product.variants | where: variant_option, option_value | first -%}
+
+                    {%- if forloop.first or variant_for_value.matched and option_value == product_option.selected_value -%}
+                      {%- assign selected = true -%}
+                    {%- else -%}
+                      {% assign selected = false %}
+                    {%- endif -%}
+
+                    {%- render 'swatch' with 'media', media: variant_for_value.featured_media, value: option_value, name: name, size: 'sm', selected: selected -%}
+                  {%- endfor -%}
+
+                  {%- if product_option.values.size > 4 -%}
+                    <a href="{{ product.url }}" data-instant class="media-swatch__view-more text-xs text-subdued">+{{ product_option.values.size | minus: 4 }}</a>
+                  {%- endif -%}
+                </fieldset>
+              {%- endcase -%}
+          </div>
+
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+
+</product-card>

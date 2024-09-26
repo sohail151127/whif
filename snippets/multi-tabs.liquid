@@ -1,0 +1,69 @@
+{% for tag in product.tags %}
+{% if tag contains '_label_women' %}
+    {% assign womenClass = 'Pink__colors' %}
+{% endif %}
+{% endfor %}
+
+<div class="tab-container">
+    <div class="tab {{ womenClass }}" onclick="showTabContent(1)" tabindex="1"><h3 class="h5">{{ block.settings.tab_1 }}</h3></div>
+    <div class="tab {{ womenClass }}" onclick="showTabContent(2)" tabindex="2"><h3 class="h5">{{ block.settings.tab_2 }}</h3></div>
+    <div class="tab {{ womenClass }}" onclick="showTabContent(3)" tabindex="3"><h3 class="h5">{{ block.settings.tab_3 }}</h3></div>
+</div>
+<div class="tab-content" id="tabContent1">
+    <p>{{ block.settings.tab_content_1 }}</p>
+    <p>{{ block.settings.liquid_content_1 }}</p>
+</div>
+<div class="tab-content" id="tabContent2">
+    <p>{{ block.settings.tab_content_2 }}</p>
+    {% if block.settings.liquid_content_2 == true %}
+        {% assign notes = product.metafields.custom.perfume_notes.value %}
+        <div class="tab-multi-icons-wraper">
+        {% for note in notes %}
+        <div class="tab-multi-item">
+        <div class="item-icon">
+        <span>
+        {% assign textParts = note | split: ' ' %}
+        {{ textParts[1] }}
+        </span></div>
+        {% assign textParts = note | split: ' ' %}
+        <span class="item-heading">
+          {{ textParts[0] }}
+        </span>
+        </div>           
+        {% endfor %}
+        </div>
+    {% endif %} 
+    
+</div>
+<div class="tab-content" id="tabContent3">
+    <p>{{ block.settings.tab_content_3 }}</p>
+    <p>{{ block.settings.liquid_content_3 }}</p>
+</div>
+
+<script>
+// Initially show the content of the first tab
+document.getElementById("tabContent1").style.display = "block";
+document.querySelector(".tab").classList.add("tab-selected"); // Add this line to apply the border to the first tab
+
+function showTabContent(tabNumber) {
+    // Remove border from all tabs
+    var tabs = document.querySelectorAll(".tab");
+    tabs.forEach(function (tab) {
+        tab.classList.remove("tab-selected");
+    });
+
+    // Add border to the selected tab
+    var selectedTab = document.querySelector(".tab:nth-child(" + tabNumber + ")");
+    selectedTab.classList.add("tab-selected");
+
+    // Hide all tab contents
+    var tabContents = document.getElementsByClassName("tab-content");
+    for (var i = 0; i < tabContents.length; i++) {
+        tabContents[i].style.display = "none";
+    }
+
+    // Show the selected tab content
+    var selectedTabContent = document.getElementById("tabContent" + tabNumber);
+    selectedTabContent.style.display = "block";
+}
+</script>

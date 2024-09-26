@@ -1,0 +1,25 @@
+<div class="custom-review-container">
+  <div class="custom-review-item">
+      <div class="review-section">
+        {% if review-image != 'blank' %}
+        <div class="review-image"><img src="{{ review-image | img_url:"master" }}"></div>
+        {% endif %}
+        <div class="review-text-content">{{ review-text }}</div>
+        <div class="review-name">{{ review-name }}</div>
+      </div>
+      <div class="review-section">
+         {% if review-image2 != 'blank' %}
+           <div class="review-image"><img src="{{ review-image2 | img_url:"master" }}"></div>
+         {% endif %}
+        <div class="review-text-content">{{ review-text2 }}</div>
+        <div class="review-name">{{ review-name2 }}</div>
+      </div>
+      <div class="review-section">
+        {% if review-image3 != 'blank' %}
+         <div class="review-image"><img src="{{ review-image3 | img_url:"master" }}"></div>
+        {% endif %}
+        <div class="review-text-content">{{ review-text3 }}</div>
+        <div class="review-name">{{ review-name3 }}</div>
+      </div>
+    </div>
+</div>

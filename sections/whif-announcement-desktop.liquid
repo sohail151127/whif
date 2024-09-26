@@ -1,0 +1,226 @@
+{% liquid
+    assign left =  section.settings.left_text
+    assign popup =  section.settings.show_popup
+    assign main_title = section.settings.main_title
+    assign offer_time = section.settings.offer_time
+%}
+
+
+{% style %}
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.top }}px;
+    padding-bottom: {{ section.settings.bottom }}px;
+  }
+
+  @media (max-width: 768px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_top }}px;
+      padding-bottom: {{ section.settings.mobile_bottom }}px;
+    }
+  }
+{% endstyle %}
+
+<section {% render 'surface', class: 'whif-announcement-bar small-hide', section: section, background_gradient: section.settings.background_gradient, background: section.settings.background, text_color: section.settings.text_color %}>
+  <div class="page-width whif-bar-grid section-{{ section.id }}">
+    {% if left != blank or popup != blank or section.settings.button != blank %}
+      <div class="whif-bar--item medium-up-hide">
+        {% if main_title != blank %}
+          <div class="whif-bar--item-center">
+            <p>{{ main_title }}</p>
+          </div>
+        {% endif %}
+        {% if left != blank %}
+          <div class="rte">
+            {{ left }}
+            {% if section.settings.button != blank %}
+              <a href="{{ section.settings.link }}" class="link{% if popup != blank %} open_popup{% endif %}">
+                {{ section.settings.button }}
+              </a>
+            {% endif %}
+          </div>
+        {% endif %}
+        
+      </div>
+    {% endif %}
+    {% if left != blank or popup != blank or section.settings.button != blank %}
+      <div class="whif-bar--item-left small-hide">
+        {% if left != blank %}
+          <p>{{ left }}</p>
+        {% endif %}
+        {% if section.settings.button != blank %}
+          <a href="{{ section.settings.link }}" class="link{% if popup != blank %} open_popup{% endif %}">
+            {{ section.settings.button }}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+    {% if main_title != blank %}
+      <div class="whif-bar--item-center small-hide" 
+        id="top-bar-desktop-shipping"
+        threshold="{{ settings.free_shipping_quantity_based_threshold }}" 
+        total-price="{{ cart.item_count }}"
+        reached-message="{{ 'cart.free_shipping_bar.limit_reached_html' | t | escape }}"
+        unreached-message="Add [quantity], get <b>10% OFF</b> + free AU shipping">
+        <p>Add {{ cart.item_count }} items, get <b>10% OFF</b> + free AU shipping</p>
+      </div>
+    {% endif %}
+    {% if offer_time != blank %}
+      <div class="whif-bar--item-right">
+        <span class="offer_text">Offer ends in </span>
+        <span class="offer_time">00h : 00m : 00s</span>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% if popup != blank %}
+  <div class="whif-announcement-popup">
+    <div class="main-popup--wrapper">
+      <div class="whif-popup-grid">
+        <div class="popup-image--container">
+          {% render 'lazy-image', image:section.settings.image %}
+        </div>
+        <div class="popup-text--container">
+          <span id="popup-close" title="Close Popup">close</span>
+          {% if section.settings.popup_title != blank %}
+            <h2 class="h2" style="color: {{ section.settings.title_color }}">{{ section.settings.popup_title }}</h2>
+          {% endif %}
+          {% if section.settings.popup_text != blank %}
+            <div class="rte" style="color: {{ section.settings.popup_text_color }}">{{ section.settings.popup_text }}</div>
+          {% endif %}
+          {% if section.settings.popup_button != blank %}
+            <a class="button button--primary" href="{{ section.settings.popup_button_link }}">{{ section.settings.popup_button }}</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+  
+{% schema %}
+  {
+    "name": "Announcement Bar Desktop",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Whif Announcement Content"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "left_text",
+        "label": "Left Text"
+      },
+      {
+        "type": "text",
+        "id": "button",
+        "label": "Link Text"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Link Text URL"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_popup",
+        "label": "Show Popup",
+        "info": "It Will Show Popup when the Link Text URl is empty and the Popup Setting is in the End"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "main_title",
+        "label": "Main Text"
+      },
+      {
+        "type": "text",
+        "id": "offer_time",
+        "label": "Offer Time Date",
+        "info": "It show that the offer time will end on this time from your current time"
+      },
+      {
+        "type": "header",
+        "content": "Colors",
+        "info": "Gradient replaces solid colors when set."
+      },
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background"
+      },
+      {
+        "type": "color_background",
+        "id": "background_gradient",
+        "label": "Background gradient"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text"
+      },
+      {
+        "type": "header",
+        "content": "Section Padding",
+        "info": "Section Top And Bottom Padding For Both Desktop And Mobile in Pixels"
+      },
+      {
+        "type": "number",
+        "id": "top",
+        "label": "Padding Top (Desktop)"
+      },
+      {
+        "type": "number",
+        "id": "bottom",
+        "label": "Padding Bottom (Desktop)"
+      },
+      {
+        "type": "number",
+        "id": "mobile_top",
+        "label": "Padding Top (Mobile)"
+      },
+      {
+        "type": "number",
+        "id": "mobile_bottom",
+        "label": "Padding Bottom (Mobile)"
+      },
+      {
+        "type": "header",
+        "content": "Popup Content"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "popup_title",
+        "label": "Popup Title"
+      },
+      {
+        "type": "color",
+        "id": "title_color",
+        "label": "Popup Title Color"
+      },
+      {
+        "type": "richtext",
+        "id": "popup_text",
+        "label": "Popup Text"
+      },
+      {
+        "type": "color",
+        "id": "popup_text_color",
+        "label": "Popup Text Color"
+      },
+      {
+        "type": "text",
+        "id": "popup_button",
+        "label": "Popup Buttton"
+      },
+      {
+        "type": "url",
+        "id": "popup_button_link",
+        "label": "Popup Buttton Link"
+      }
+    ]
+  }
+{% endschema %}

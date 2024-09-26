@@ -1,0 +1,20 @@
+{% assign isChecked = false %}
+{% for item in cart.items %}
+    {% if item.product.handle == 'priority-processing' %}
+        {% assign isChecked = true %}
+    {% endif %}
+{% endfor %}
+{% assign product = all_products['priority-processing'] %}
+{% if product != blank %}
+{% form 'product', product, id: "priority-processing" %}
+<div class="priority__processing">
+<label for="priority-processing">
+<input type="checkbox" name="priority-processing" class="checkbox" {% if isChecked %}checked{% endif %}
+onchange="(async function(){
+    await handlePriorityProcessing()
+})()" id="priority-processing" value="{{ product.selected_or_first_available_variant.id }}">
+<span>🔥 Add <strong>{{product.title}}</strong> For {{product.price | money }}</span>
+</label>
+</div>
+{% endform %}
+{% endif %}

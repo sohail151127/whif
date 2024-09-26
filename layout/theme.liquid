@@ -1,0 +1,356 @@
+{%- comment -%}
+------------------------------------------------------------------------------------------------------------------------
+NOTE TO DEVELOPERS: welcome to Impact theme! We hope that you will enjoy editing this theme as much as we did for
+  developing it. We have put a lot of work to make this theme as developer friendly as possible by offering you
+  hooks to integrate into critical parts of the theme. You will find the complete technical documentation (including
+  all events, dependencies...) in the "documentation.txt" file, located in the Assets folder.
+------------------------------------------------------------------------------------------------------------------------
+{%- endcomment -%}
+
+<!doctype html>
+
+<html class="no-js" lang="{{ request.locale.iso_code }}" dir="{% render 'direction' %}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="theme-color" content="{{ settings.header_background }}">
+
+    <title>{% if page_title == blank %}{{ shop.name }}{% else %}{{ page_title }}{% if current_page != 1 %} &ndash; {{ 'general.page' | t: page: current_page }}{% endif %}{% endif %}</title>
+
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+    
+ <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- if settings.favicon -%}
+      <link rel="shortcut icon" href="{{ settings.favicon | image_url: width: 96 }}">
+      <link rel="apple-touch-icon" href="{{ settings.favicon | image_url: width: 180 }}">
+    {%- endif -%}
+
+    {%- comment -%}Few prefetch to increase performance on commonly used third-parties{%- endcomment -%}
+    <link rel="preconnect" href="https://cdn.shopify.com">
+    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    <link rel="dns-prefetch" href="https://productreviews.shopifycdn.com">
+
+    {%- unless settings.heading_font.system? -%}
+      <link rel="preload" href="{{ settings.heading_font | font_url }}" as="font" type="font/woff2" crossorigin>
+    {%- endunless -%}
+
+    {%- unless settings.text_font.system? -%}
+      <link rel="preload" href="{{ settings.text_font | font_url }}" as="font" type="font/woff2" crossorigin>
+    {%- endunless -%}
+
+    {%- render 'social-meta-tags' -%}
+    {%- render 'microdata-schema' -%}
+    {%- render 'css-variables' -%}
+    {%- render 'js-variables' -%}
+
+    <style>
+      .loox-v2-carousel-app {
+        padding: 0 !important;
+      }
+      .loox-carousel-item {
+        display: grid;
+      }
+      .loox-carousel-testimonial-item-rating-holder {
+        order: 1;
+      }
+      .loox-carousel-testimonial-item-content-older {
+        margin: 0 0 10px;
+        height: fit-content;
+        order: 2;
+      }
+      .loox-carousel-author-name {
+        order: 3;
+      }
+      .loox-branding.is-center {
+        display: none;
+      }
+    </style>
+    
+    <script type="module" src="{{ 'vendor.min.js' | asset_url }}"></script>
+    <script type="module" src="{{ 'theme.js' | asset_url }}"></script>
+    <script type="module" src="{{ 'custom.js' | asset_url }}"></script>
+    <script type="module" src="{{ 'sections.js' | asset_url }}"></script>
+
+    {{ content_for_header }}
+
+    {{- 'theme.css' | asset_url | stylesheet_tag: preload: true -}}
+    {{- 'custom.css' | asset_url | stylesheet_tag: preload: true -}}
+    {{- 'style.css' | asset_url | stylesheet_tag: preload: true -}}
+    {% include 'yotpo-widgets-loader-script' %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" />
+</head>
+
+  {% if page.template_suffix == 'ingredients' 
+    or template.name == 'index' 
+    or page.template_suffix == 'about-us' 
+    or page.template_suffix == 'refer-a-friend'
+    or page.template_suffix == 'start-a-return'
+    %}
+    {% assign template_name = 'template-sticky-header' %}
+  {% endif %}
+  <body class="{% if settings.show_page_transition %}page-transition{% endif %} {{ template_name }} {% if settings.zoom_image_on_hover %}zoom-image--enabled{% endif %} template-{{ template.name }} {% if template.suffix == "bundle-product" %}bundle_product{% endif %}{% if template.suffix == "discovery-set" %}discovery-set-page{% endif %}{% if template.suffix == "discovery-lab" %}discovery-lab-page{% endif %} {% if template.suffix == "multiple-product-page" %} multiple-product-page {% endif %}">
+    {%- render 'shadow-dom-templates' -%}
+
+    <a href="#main" class="skip-to-content sr-only">{{ 'general.accessibility.skip_to_content' | t }}</a>
+
+    {%- if request.page_type != 'password' -%}
+      {%- sections 'header-group' -%}
+      {%- sections 'overlay-group' -%}
+
+      {%- if settings.cart_type == 'popover' -%}
+        <cart-notification-drawer open-from="bottom" class="quick-buy-drawer drawer"></cart-notification-drawer>
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- if request.page_type == 'customers/account' or request.page_type == 'customers/order' or request.page_type == 'customers/addresses' -%}
+      {%- section 'account-banner' -%}
+    {%- endif -%}
+
+    <main role="main" id="main" class="anchor">
+      {{ content_for_layout }}
+
+      {%- comment -%}
+      IMPLEMENTATION NOTE: due to the very complex logic of margin/padding collapsing in Impact, the footer group is
+      added into the main element to ensure that dynamic sections added into the footer group are properly laid out.
+      {%- endcomment -%}
+      {%- if request.page_type != 'password' -%}
+        {%- sections 'footer-group' -%}
+      {%- endif -%}
+
+      <script>
+        function countdownTimeStart() {
+
+        var countDownDate = new Date();
+        var countDownDateFinal = countDownDate.setHours(countDownDate.getHours() + 1);
+        if (localStorage.getItem('now') === null) {
+            	localStorage.setItem('now', countDownDateFinal)
+            } else {
+              countDownDateFinal = parseInt(localStorage.getItem('now'), 10)
+            }
+        var x = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = countDownDateFinal - now;
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            var timerNode = document.querySelectorAll(".offer_time")
+             timerNode.forEach(function(node){
+              node.innerHTML = `${hours}h : ${minutes}m : ${seconds}s`
+             })
+            if (distance < 0) {
+                clearInterval(x);
+                var timerNode = document.querySelectorAll(".offer_time")
+                timerNode.forEach(function(node){
+                  node.innerHTML = '00h : 00m : 00s'
+                })
+                localStorage.removeItem('now')
+            }
+        }, 1000);
+        }
+        countdownTimeStart()
+      </script>
+      <script>
+        var button = document.querySelectorAll('.hover__button')
+        button.forEach(itm => itm.addEventListener('mouseover' , function(e){
+          const target = e.target;
+            target.closest('.whif-container-grid').querySelector(".hovered__item").style.transform = "scale(1.01)",
+            target.closest('.whif-container-grid').querySelector(".hovered__item").style.transition = "0.35s"
+        }));
+        button.forEach(itm => itm.addEventListener('mouseleave' , function(e){
+          const target = e.target;
+            target.closest('.whif-container-grid').querySelector(".hovered__item").style.transform = "scale(1)",
+            target.closest('.whif-container-grid').querySelector(".hovered__item").style.transition = "0.35s"
+        }));
+      </script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const popup_open = document.querySelectorAll('.open_popup');
+          const popup_close = document.querySelector('#popup-close');
+          const main_popup = document.querySelector('.whif-announcement-popup');
+        
+          popup_open.forEach(itm => itm.addEventListener('click', function(e) {
+            e.preventDefault();
+            main_popup.classList.add('open-popup');
+          }));
+        
+          if (popup_close) {
+            popup_close.addEventListener('click', function(event) {
+              main_popup.classList.remove('open-popup');
+            });
+          }
+        });
+      </script>
+      
+    </main>
+    <style>
+      .c-okeReferralsApp {
+          width: 100% !important;
+          border: 0 !important;
+      }
+      .c-okeReferralsApp-page {
+          padding: 0 !important;
+      }
+      .c-headerText--centredOnMobile.c-headerText {
+        display: none;
+      }
+      .c-okeReferralsApp .c-poweredBy[data-v-a6cd5180],
+      .c-okeReferralsApp .c-shareButtons[data-v-1405641c],
+      .c-okeReferralsApp .c-referralSenderShare hr[data-v-1405641c],
+      .c-okeReferralsApp label[for="shareButtons"] {
+        display: none !important;
+      }
+    </style>
+  <script>
+  const selectors = {
+    elToObserve: ".product-banner-content",
+    stickyEl: ".product-sticky-bar",
+    stickyClass: "stick"
+  };
+  // Select the elements to observe and stick
+  const elementToObserve = document.querySelector(selectors.elToObserve);
+  const elementToStick = document.querySelector(selectors.stickyEl);
+      var button = document.querySelector('.page-button-wrapper')
+      document.addEventListener('DOMContentLoaded', function(e) {
+          document.addEventListener('scroll', function(e) {
+              let documentHeight = document.body.scrollHeight;
+              let currentScroll = window.scrollY + window.innerHeight;
+              // When the user is [modifier]px from the bottom, fire the event.
+              let modifier = 200; 
+              if(currentScroll + modifier > documentHeight) {
+                if (elementToStick !== null) {
+                  elementToStick.style.display = 'none';
+                  return
+                }
+                console.log(button)
+                if (window.innerWidth < 768 && button !== null) {
+                  button.style.display = 'none'
+                  return
+                }
+              }
+              if (elementToStick !== null) {
+                elementToStick.style.display = 'block';
+              }
+              if (window.innerWidth < 768 && button !== null) {
+                button.style.display = 'flex'
+              }
+          })
+      })
+    </script>
+    {% render 'priority-processing-script' %}
+    {% render 'after-pay-messaging' %}
+    {% if page.handle == 'faqs' %}
+      <style>
+        .accordion {
+          border-color: #dbdbd8;
+        }
+      </style>
+    {% endif %}
+    {% render 'free-gift-card' %}
+    <script type="module" src="{{ 'other-custom.js' | asset_url }}"></script>
+    
+   <script>
+     let product_price = "{{ product.selected_or_first_available_variant.price | money }}"
+     let finalPrice =  product_price.replace('$', '').split('.')[0];
+     let price = parseInt(finalPrice);
+     $('.custom-variant-picker .sr-only').change(function(){
+       // console.log('chnge');
+     let variant_Price =  $(this).data('price');
+       price = parseFloat(variant_Price.replace('$', ''));
+       progressBar(); 
+      
+     });
+     async function progressBar() {
+      const response = await fetch('/cart.js');
+      const cart = await response.json();
+      let cart_items = cart.items;
+      var specificItemId = 50101982855486; 
+      var itemPrice = null;
+      cart.items.forEach(function(item) {
+        if (item.id === specificItemId) {
+          itemPrice = item.price; 
+        }
+      });
+      let fixed_item_price = (itemPrice / 100).toFixed(2);
+      var limits = [100, 140, 180, 230];
+      var discounts = [0, 10, 15, 20];
+      var cartPrice = cart.original_total_price / 100;
+      // var crtPrice = cart.original_total_price / 100;
+       // console.log('crtPrice',crtPrice);
+      var cartTotal1 = cartPrice-fixed_item_price;
+         // console.log('cartTotal1',typeof cartTotal1)
+      // if (cart.cart_level_discount_applications.length > 0) {
+      //   cartTotal = cart.total_price / 100;
+      // } 
+       var cartTotal = cartTotal1 + price;
+      // console.log('product-cart-total',cartTotal);
+      var upperLimit = limits[(limits.length - 1)];
+      // console.log('upperLimit',upperLimit);
+      var progressTrackNode = document.querySelector('.custom_cart__discount_tiers-progress--track');
+      var successNode = document.querySelector('.custom_cart__discount_tiers-message--success');
+      var nextNode = document.querySelector('.custom_cart__discount_tiers-message--next');
+
+      successNode.classList.add('_hide');
+      nextNode.innerHTML = '';
+    discounts.forEach(function (discount, index) {
+      var limit = limits[index];
+       // console.log('limit',limit)
+      var nextIndex = (index + 1);
+      var nextLimit = limits[nextIndex];
+      // console.log('nextLimit',nextLimit)
+      var nextDiscount = discounts[index];
+      // console.log('nextDiscount',nextDiscount);
+      var limitToShow = (nextLimit - cartTotal).toFixed(2);
+       console.log(cartTotal , limits[limits.length - 1]);
+     if (cartTotal <= 100) {
+      successNode.classList.add('_hide');
+      nextNode.innerHTML = `Add this product to get <span>FREE SHIPPING!</span>`;
+    } else if (cartTotal > 100 && cartTotal < limits[limits.length - 1]) {
+      var nextIndex = limits.findIndex(limit => cartTotal < limit);
+      var nextLimit = limits[nextIndex];
+      var nextDiscount = discounts[nextIndex - 1];
+      if (nextDiscount > 0) {
+        nextNode.innerHTML = `Add this product to get <span>${nextDiscount}% OFF</span> your order + <span>FREE SHIPPING!</span>`;
+      } else {
+        nextNode.innerHTML = `Add this product to get <span>FREE SHIPPING!</span>`;
+      }
+    }
+     else if (cartTotal >= limits[limits.length - 1] && cartPrice <= 230 ){
+        var nextIndex = limits.findIndex(limit => cartPrice < limit);
+        var nextLimit = limits[nextIndex];
+        var nextDiscount = discounts[nextIndex];
+        if (nextDiscount > 0) {
+          nextNode.innerHTML = `Add this product to get <span>${nextDiscount}% OFF</span> your order + <span>FREE SHIPPING!</span>`;
+        }
+     }
+     
+     else if (cartTotal >= 230 && cartPrice >= 230 ) {
+      successNode.classList.remove('_hide');
+      successNode.innerHTML = `🎉 Congrats you unlocked <strong>${discounts[discounts.length - 1]}% OFF + FREE SHIPPING</strong>`;
+    }
+    });
+ 
+}
+ progressBar();
+ document.documentElement.addEventListener('variant:add', function(e) {
+  progressBar();
+});
+ document.documentElement.addEventListener('cart:change', function(e) {
+  progressBar();
+ });
+
+   </script>
+
+  </body>
+</html>

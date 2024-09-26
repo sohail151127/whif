@@ -1,0 +1,325 @@
+<style>
+  .section-{{ section.id }} {
+    padding: 0 10px;
+    padding-top: {{ section.settings.top }}px;
+    padding-bottom: {{ section.settings.bottom }}px;
+    background-color: {{ section.settings.background_1 }};
+  }
+  .section-{{ section.id }} .product-banner-container {
+    background-color: {{ section.settings.background }};
+  }
+  .product-banner-container .appstleRadioSellingPlanWrapper:before {
+    content: '{{ section.settings.content_1 }}';
+  }
+  .product-banner-container .appstleRadioSellingPlanWrapper:after {
+    content: '{{ section.settings.content_2 }}';
+  }
+  .product-banner-container .yotpo-widget-subscriptions-add-to-cart .yotpo-radio-subscription-container.yotpo-selected:before {
+    content: '{{ section.settings.content_1 }}';
+  }
+  .product-banner-container .yotpo-widget-subscriptions-add-to-cart .yotpo-radio-subscription-container.yotpo-selected:after {
+    content: '{{ section.settings.content_2 }}';
+  }
+
+  @media (max-width: 768px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_top }}px;
+      padding-bottom: {{ section.settings.mobile_bottom }}px;
+    }
+  }
+</style>
+
+{% liquid
+    if product.tags contains '_label_women'
+      assign button_class = 'button--primary'
+    elsif product.tags contains '_label_men' or product.tags contains '_label_unisex'
+      assign button_class = 'button--secondary'
+    endif
+%}
+
+<section class="section-{{ section.id }} product-page-banner {% unless product.template_suffix == 'subscription' %}product-page-banner__with-price{% endunless %}">
+  <div class="product-banner-image">
+    <div class="small-hide">
+      {% render 'lazy-image', image:product.metafields.custom.product_banner_image.value %}
+    </div>
+    <div class="medium-up-hide">
+      {% for tag in product.tags %}
+        {% if tag contains '_label_women' %}
+          <div class="StyleCard__label">
+            <span class="StyleTag StyleTag--color-pink t-nano">
+              {{ tag | replace: '_label_','' | upcase }}
+            </span>
+          </div>
+        {% elsif tag contains '_label_men' %}
+          <div class="StyleCard__label">
+            <span class="StyleTag StyleTag--color-black t-nano">
+              {{ tag | replace: '_label_','' | upcase }}
+            </span>
+          </div>
+        {% elsif tag contains '_label_unisex' %}
+          <div class="StyleCard__label">
+            <span class="StyleTag StyleTag--color-green t-nano">
+              {{ tag | replace: '_label_','' | upcase }}
+            </span>
+          </div>
+        {% elsif tag contains '_label_' %}
+          <div class="StyleCard__label">
+            <span class="StyleTag StyleTag--color-red t-nano">
+              {{ tag | replace: '_label_','' | upcase }}
+            </span>
+          </div>
+        {% endif %}
+      {% endfor %}
+      {% if section.settings.Image == blank %}
+        {% render 'lazy-image', image:product.featured_image %}
+      {% else %}
+        {% render 'lazy-image', image:section.settings.Image %}
+      {% endif %}
+    </div>
+    <div class="product-banner-container">
+      <div class="product-banner-content">
+        {% for tag in product.tags %}
+          {% if tag contains '_label_women' %}
+            <div class="StyleCard__label small-hide">
+              <span class="StyleTag StyleTag--color-pink t-nano">
+                {{ tag | replace: '_label_','' | upcase }}
+              </span>
+            </div>
+          {% elsif tag contains '_label_men' %}
+            <div class="StyleCard__label small-hide">
+              <span class="StyleTag StyleTag--color-black t-nano">
+                {{ tag | replace: '_label_','' | upcase }}
+              </span>
+            </div>
+          {% elsif tag contains '_label_unisex' %}
+            <div class="StyleCard__label small-hide">
+              <span class="StyleTag StyleTag--color-green t-nano">
+                {{ tag | replace: '_label_','' | upcase }}
+              </span>
+            </div>
+          {% elsif tag contains '_label_' %}
+            <div class="StyleCard__label small-hide">
+              <span class="StyleTag StyleTag--color-red t-nano">
+                {{ tag | replace: '_label_','' | upcase }}
+              </span>
+            </div>
+          {% endif %}
+        {% endfor %}
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'title' %}
+              {% if product.title != blank %}
+                <h2 class="{{ block.settings.size }}">{{ product.title | replace: '<BR>',' ' }}</h2>
+              {% endif %}
+
+            {% when '@app' %}
+              {%- render block -%}
+            
+            {% when 'product_text' %}
+              {% if block.settings.text != blank %}
+                <div class="rte">{{ block.settings.text }}</div>
+              {% endif %}
+            
+            {% when 'cart_button' %}
+
+              <style>
+                .section-{{ section.id }} .block-{{ block.id }} button {
+                  background-color: {{ block.settings.btn_background }};
+                  color: {{ block.settings.btn_color }};
+                }
+              </style>
+              <div class="block-{{ block.id }} product-banner__button">
+                {%- render 'buy-button-2', product: product, form_id: product_form_id, show_payment_button: block.settings.show_payment_button, button_size: 'lg' -%}
+                {% if block.settings.text != blank %}
+                  <div class="rte">
+                    {{ block.settings.text }}
+                  </div>
+                {% endif %}
+              </div>
+            
+            {% when 'info_tooltip' %}
+              <div class="rte product-small-info">
+                {{ block.settings.tooltip }}
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="15px" height="15px" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+                    <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+                      <path d="M2315 5109 c-597 -61 -1141 -318 -1563 -739 -1002 -1000 -1002 -2620 0 -3620 406 -405 901 -648 1493 -732 119 -17 512 -16 635 1 580 80 1089 330 1489 732 464 467 723 1061 748 1719 26 711 -242 1393 -749 1900 -393 394 -891 643 -1453 726 -122 18 -477 26 -600 13z m615 -378 c464 -84 859 -290 1185 -616 419 -419 645 -964 645 -1555 0 -591 -226 -1136 -645 -1555 -419 -419 -964 -645 -1555 -645 -590 0 -1137 227 -1555 645 -331 331 -536 730 -622 1210 -25 143 -25 547 0 690 86 480 291 879 622 1210 357 357 789 566 1310 635 123 16 484 5 615 -19z"/>
+                      <path d="M2427 3839 c-172 -14 -328 -81 -434 -185 -151 -148 -170 -337 -42 -416 101 -63 181 -45 254 56 86 121 148 157 283 164 212 12 342 -84 330 -242 -9 -110 -51 -167 -223 -306 -176 -142 -237 -225 -276 -378 -26 -104 -26 -280 0 -339 27 -59 66 -77 167 -77 145 0 194 46 194 184 0 170 46 254 210 391 262 216 381 441 350 661 -47 327 -375 524 -813 487z"/>
+                      <path d="M2405 1868 c-179 -66 -232 -290 -102 -426 102 -107 258 -106 362 1 158 163 56 423 -170 434 -33 1 -73 -3 -90 -9z"/>
+                    </g>
+                  </svg>
+                  {% if product.metafields.custom.small_info != blank %}
+                    <div class="product-info-hover">{{ product.metafields.custom.small_info }}</div>
+                  {% endif %}
+                </span>
+              </div>
+            {% when 'price' %}
+              {%- render 'price-list', product: product, variant: product.selected_or_first_available_variant, form_id: product_form_id -%}
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Product Banner Image",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background_1",
+        "label": "Section Background"
+      },
+      {
+        "type": "header",
+        "content": "Banner Content"
+      },
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Container Background"
+      },
+      {
+        "type": "image_picker",
+        "id": "Image",
+        "label": "Product Banner Image(Mobile)",
+        "info": "If this image is not Selected, then the product featured image will be selected"
+      },
+      {
+        "type": "header",
+        "content": "Suscription App Text"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "content_1",
+        "label": "Text 1",
+        "default": "✅ 10% discount on all recurring orders"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "content_2",
+        "label": "Text 2",
+        "default": "✅ Pause, adjust or cancle anytime"
+      },
+      {
+        "type": "header",
+        "content": "Section Padding"
+      },
+      {
+        "type": "number",
+        "id": "top",
+        "label": "Padding Top"
+      },
+      {
+        "type": "number",
+        "id": "bottom",
+        "label": "Padding Bottom"
+      },
+      {
+        "type": "number",
+        "id": "mobile_top",
+        "label": "Mobile Padding Top"
+      },
+      {
+        "type": "number",
+        "id": "mobile_bottom",
+        "label": "Mobile Padding Bottom"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "@app"
+      },
+      {
+        "type": "price",
+        "name": "Price",
+        "limit": 1
+      },
+      {
+        "type": "title",
+        "name": "Product Title",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "select",
+            "id": "size",
+            "label": "Banner Title Size",
+            "options": [
+              {
+                "value": "h1",
+                "label": "H1"
+              },
+              {
+                "value": "h2",
+                "label": "H2"
+              },
+              {
+                "value": "h3",
+                "label": "H3"
+              },
+              {
+                "value": "h4",
+                "label": "H4"
+              }
+            ],
+            "default": "h2"
+          }
+        ]
+      },
+      {
+        "type": "product_text",
+        "name": "Product Text",
+        "limit": 4,
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          }
+        ]
+      },
+      {
+        "type": "cart_button",
+        "name": "Cart Button",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "color",
+            "id": "btn_background",
+            "label": "Cart Button Background"
+          },
+          {
+            "type": "color",
+            "id": "btn_color",
+            "label": "Cart Button Color"
+          },
+          {
+            "type": "inline_richtext",
+            "id": "text",
+            "label": "Button Bottom Text",
+            "default": "DISPATCHING 20TH OF JUNE"
+          }
+        ]
+      },
+      {
+        "type": "info_tooltip",
+        "name": "Info ToolTip",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "inline_richtext",
+            "id": "tooltip",
+            "label": "Text",
+            "default": "🔥Try, then decide"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Product Banner Image"
+      }
+    ]
+  }
+{% endschema %}

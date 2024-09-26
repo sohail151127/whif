@@ -1,0 +1,377 @@
+{% assign bg = product.featured_media | img_url:'100x' %}
+{% for i in (1..4) %}
+  <div class="box__builder_popup-content">
+    <div class="product__box_builder-item__bottle">
+      <select id="select-perfume-{{ i }}" name="properties[Perfume-{{ i }}]" form="{{ form_id }}"
+         class="product__box_builder-item__bottle-select">
+        <option value="Select Perfume {{ i }}"
+          data-image="{{ product.featured_media | img_url:'100x' }}">Select Perfume {{ i }}</option>
+        {% for perfume in collections['all'].products %}
+          {% assign title = perfume.metafields.custom.pack_product_list_title | default: perfume.title %}
+          {% if i == 1 and perfume.handle == product.handle %}
+            {% assign bg = perfume.featured_image | img_url: '100x' %}
+          {% endif %}
+         {% if perfume.available %}
+          <option value="{{ title }}"  data-image="{{ perfume.featured_image | img_url: '100x' }}">{{ title }} (Inspired By: <b>{{ perfume.metafields.custom.card_text }}</b>)</option>
+         {% endif %}
+        {% endfor %}
+      </select>
+      <div class="product__box_builder-item__bottle--image"
+      {% if bg != blank %}style="background-image: url({{ bg }}); display: block;"{% endif %}></div>
+    </div>
+  </div>
+{% endfor %}
+<style>
+  .product__box_builder-item {
+    display: flex;
+    width: 100%;
+    min-height: 68px;
+    height: 68px;
+    padding: 0 25px;
+    margin-bottom: 10px;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+  }
+  .flashing__label {
+    max-width: fit-content;
+    padding: 3px 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: 26px;
+  }
+  .product__box_builder-item._checked {
+    border-color: #1d7f75;
+  }
+  .product__box_builder-item._checked
+  .product__box_builder-item--meta {
+    font-weight: 900;
+    font-family: 'GELICA-SEMIBOLD', sans-serif;
+  }
+  .product__box_builder-item[for="mix-3-pack"] {
+    background: #ffde4b;
+  }
+  .product__box_builder-item--wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  .product__box_builder-item--meta {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 16px;
+  }
+  .product__box_builder-item--price span {
+    font-family: 'GILROY-EXTRABOLD', sans-serif;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+  }
+  .product__box_builder-item--price span.per__bottle {
+    display: block;
+    font-weight: 100;
+    font-family: 'GILROY-REGULAR', sans-serif !important;
+    font-size: 13px;
+  }
+  .product__box_builder-item__bottle {
+    position: relative;
+  }
+  .product__box_builder-item__bottle--image {
+    display: none;
+    height: 30px;
+    width: 30px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    background-position: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(calc(-50%));
+    left: 8px;
+  }
+  .product__box_builder-item__bottle-list {
+    position: relative;
+  }
+
+  .box__builder_popup-close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+  }
+  .box__builder_popup-close svg circle {
+    opacity: 0;
+  }
+  .box__builder_popup {
+    background: #fff;
+    padding: 20px 40px;
+    max-width: 680px;
+    height: calc(100% - 40px);
+    margin: 20px 20px 0 auto;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: default;
+  }
+  .box__builder_popup-header {
+    text-align: center;
+  }
+  .box__builder_popup-header--items {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px 0;
+    border-bottom: 1px solid #ccc;
+    font-weight: 600;
+    font-size: 20px;
+  }
+  [data-close-popup-addToCart] {
+    font-weight: 600;
+  }
+    [data-popup-action] {
+      cursor: pointer;
+    }
+    [data-reset-selection]:not(.box__builder_popup-close) {
+      text-align: center;
+      max-width: fit-content;
+      border-bottom: 1px solid;
+      margin-right: auto;
+      margin-left: auto;
+      margin-top: 20px;
+    }
+  [data-popup-error] {
+    font-size: 12px;
+    font-weight: 700;
+    color: red;
+    margin-bottom: 5px;
+  }
+  .product__box_builder-item__bottle-select {
+    padding: 10px 20px 10px 45px;
+    border: 1px solid #ccc;
+    margin-bottom: 0px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    background-image: url(https://cdn.shopify.com/s/files/1/0792/4518/1246/files/image__5_-removebg-preview.png?v=1714893693)!important;
+    background-position: right 18px center!important;
+    background-size: 24px;
+    background-repeat: no-repeat!important;
+    width: 100%;
+    position: relative;
+    border-radius: 5px;
+    /* padding-left: 40px; */
+    cursor: pointer;
+  }
+  .product__box_builder-item__bottle-select:focus-visible {
+    outline-color: #1d7f75;
+  }
+  .product__box_builder-item__bottle-list-items.bottle__list-items_wrapper {
+    display: none;
+    position: absolute;
+    background: #fff;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    margin-top: -10px;
+    z-index: 1;
+    height: 200px;
+    overflow: auto;
+    box-shadow: 0 11px 13px -11px rgba(0,0,0,0.1);
+  }
+  .product__box_builder-item__bottle-list-items.bottle__list-items_wrapper._show {
+    display: block;
+  }
+  .product__box_builder-item__bottle-list-items {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  .product__box_builder-item__bottle-list-items.bottle__list-items_wrapper > div {
+    margin-bottom: 0;
+    border-bottom: 0;
+  }
+  .product__box_builder-item__bottle-list-items {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .product__box_builder-item__bottle-list-items img {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  @media (max-width: 768px) {
+  .product .StyleCard__label {
+      bottom: 50px;
+      right: auto;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  @media (max-width: 680px) {
+    .box__builder_popup {
+      height: calc(100% - 20px);
+      margin: 10px 10px 0 10px;
+      padding: 20px;
+    }
+  }
+  @media (max-width: 580px) {
+    .product__box_builder-item--meta,
+    .product__box_builder-item--price span,
+    .product__box_builder-item__bottle-list-items {
+      font-size: 18px;
+    }
+    .promo_text {
+      font-size: 14px;
+    }
+  }
+</style>
+<script>
+  (function(){
+    var wrappers = document.querySelectorAll('.product__box_builder-item')
+    var inputs = document.querySelectorAll('.product__box_builder-item input')
+    {% comment %}document.addEventListener('DOMContentLoaded', function(){
+      var priceNode = document.querySelector('#button-product-price')
+      var wrapper = document.querySelector('.product__box_builder-item._checked')
+      var input = wrapper.querySelector('input[type="radio"]')
+      var id = input.dataset.id
+      var form = document.querySelector('.product-info__buy-buttons form.shopify-product-form')
+      var idNode = form.querySelector('input[name="id"][type="hidden"]')
+      idNode.value = id
+      var price = wrapper.dataset.price
+      priceNode.innerHTML = price
+    }){% endcomment %}
+    inputs.forEach(function(input){
+      input.addEventListener('change', function(e){
+        var target = e.target
+        var id = target.dataset.id
+        var grandParent = target.closest('[class="product"]')
+        var form = grandParent.querySelector('.shopify-product-form')
+        var idNode = form.querySelector('input[name="id"][type="hidden"]')
+        var priceNode = document.querySelector('#button-product-price')
+        idNode.value = id
+        wrappers.forEach(function(wrapper) {
+          wrapper.classList.remove('_checked')
+        })
+        var parent = target.closest('.product__box_builder-item')
+        console.log(parent)
+        var isSingleItem = parent.getAttribute('for') === 'single-bottle'
+        console.log(isSingleItem)
+        var bottle = document.querySelector('.product__box_builder-item__bottles')
+        var selects = bottle.querySelectorAll('select')
+        selects.forEach(function(select, index){
+          select.setAttribute('name', `properties[Perfume-${(index + 1)}]`)
+        })
+        if(isSingleItem) {
+          selects.forEach(function(select){
+            select.removeAttribute('name')
+          })
+        }
+        var price = parent.dataset.price
+        priceNode.innerHTML = price
+        parent.classList.add('_checked')
+      })
+    })
+  })();
+  (function(){
+    function handleCheckSelectedValues() {
+      var allSelected = true
+      var selects = document.querySelectorAll('.product__box_builder-item__bottle-select')
+      for (let select of selects) {
+        if (select.value.includes('Select Perfume')) {
+          allSelected = false
+          break
+        }
+      }
+      return allSelected
+    }
+  /* Dispatch Form */
+    // var continueButton = document.querySelector('[data-close-popup-addToCart]')
+    // var error = document.querySelector('[data-popup-error]')
+    // continueButton.addEventListener('click', function(e){
+    //   e.preventDefault()
+    //   var hasAllValuesSelected = handleCheckSelectedValues()
+    //   if (!hasAllValuesSelected) {
+    //     error.innerHTML = 'Please select all 4 Perfumes'
+    //     return
+    //   }
+    //   var form = document.querySelector(`#{{form_id}}`)
+    //   form.dispatchEvent(new Event('submit', { bubbles: true }))
+    //   handleRemovePopup()
+    // })
+  })();
+  (function(){
+    var selects = document.querySelectorAll('.product__box_builder-item__bottle-select')
+     
+      selects.forEach(function(select){
+          select.addEventListener('change', function(e){
+            var target = e.target
+            var parent = target.closest('.product__box_builder-item__bottle')
+            var imageNode = parent.querySelector('.product__box_builder-item__bottle--image')
+            var image = target.selectedOptions[0].dataset.image
+            if (image !== '') {
+                imageNode.style.backgroundImage = `url(${image})`
+                imageNode.style.display = 'block'
+                return
+            } 
+            imageNode.style.display = 'none'
+          })
+      })
+  })();
+  {% comment %}(function(){
+    var lists = document.querySelectorAll('.product__box_builder-item__bottle-list-items[data-selected-value]')
+    lists.forEach(function(list){
+      list.addEventListener('click', function(e) {
+        e.preventDefault()
+        e.stopPropagation()
+        var target = e.target
+        var parent = target.closest('.product__box_builder-item__bottle')
+        var dropDownList = parent.querySelector('.product__box_builder-item__bottle-list-items.bottle__list-items_wrapper')
+        if (dropDownList.classList.contains('_show')) {
+          dropDownList.classList.remove('_show')
+          return
+        }
+        dropDownList.classList.add('_show')
+      })
+    })
+  })();{% endcomment %}
+  {%  comment %}(function(){
+    var listItems = document.querySelectorAll('.product__box_builder-item__bottle-list-items.bottle__list-items_wrapper > div')
+    listItems.forEach(function(listItem) {
+      listItem.addEventListener('click', function(e) {
+        e.preventDefault()
+        e.stopPropagation()
+        var target = e.target
+        var parent = target.closest('.product__box_builder-item__bottle')
+        var options = Array.from(parent.querySelectorAll('select option'))
+        var dataSelectedValue = parent.querySelector('.product__box_builder-item__bottle-list-items[data-selected-value]')
+        var wrapper = target.closest('.product__box_builder-item__bottle-list-items')
+        var html = wrapper.innerHTML
+        var value = wrapper.dataset.value
+        dataSelectedValue.innerHTML = html
+        dataSelectedValue.setAttribute('data-value', value)
+        options.forEach(function(option) {
+          option.removeAttribute('selected')
+        })
+        options.forEach(function(option) {
+          if (option.value === value) {
+            option.setAttribute('selected', 'selected')
+          }
+        })
+        var dropDownList = parent.querySelectorAll('.product__box_builder-item__bottle-list-items.bottle__list-items_wrapper')
+        dropDownList.forEach(function(listItem) {
+          listItem.classList.remove('_show')
+        })
+      })
+    })
+  })() {% endcomment %}
+</script>

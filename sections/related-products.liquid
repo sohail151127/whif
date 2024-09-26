@@ -1,0 +1,341 @@
+{%- render 'section-spacing-collapsing' -%}
+
+{%- comment -%}
+------------------------------------------------------------------------------------------------------------------------
+CSS
+------------------------------------------------------------------------------------------------------------------------
+{%- endcomment -%}
+
+<style>
+  #shopify-section-{{ section.id }} .product-list {
+    --product-list-gap: {% if section.settings.stack_products %}{% if section.settings.products_per_row_mobile == '1' %}var(--grid-gutter){% else %}var(--product-list-row-gap){% endif %} var(--spacing-2){% else %}var(--product-list-row-gap) var(--product-list-column-gap){% endif %};
+    --product-list-items-per-row: {{ section.settings.products_per_row_mobile | times: 1 }};
+    --product-list-carousel-item-width:  {{ 88 | divided_by: section.settings.products_per_row_mobile  }}%;
+    --product-list-grid: {% if section.settings.stack_products %}auto / repeat(var(--product-list-items-per-row), minmax(0, 1fr)){% else %}auto / auto-flow var(--product-list-carousel-item-width){% endif %};
+  }
+   @media screen and (min-width: 560px) {
+    #shopify-section-{{ section.id }} .product-list {
+      --product-list-gap: {% if section.settings.stack_products %}{% if section.settings.products_per_row_mobile == '1' %}var(--grid-gutter){% else %}var(--product-list-row-gap){% endif %} var(--spacing-2){% else %}var(--product-list-row-gap) var(--product-list-column-gap){% endif %};
+      --product-list-items-per-row: {{ section.settings.products_per_row_mobile | times: 1 }};
+      --product-list-carousel-item-width:  {{ 88 | divided_by: section.settings.products_per_row_mobile  }}%;
+      --product-list-grid: {% if section.settings.stack_products %}auto / repeat(var(--product-list-items-per-row), minmax(0, 1fr)){% else %}auto / auto-flow var(--product-list-carousel-item-width){% endif %};
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    #shopify-section-{{ section.id }} .product-list {
+      --product-list-gap: var(--product-list-row-gap) var(--product-list-column-gap);
+      {% comment %} --product-list-items-per-row: {{ 88 | divided_by: section.settings.products_per_row_mobile  }}%; {% endcomment %}
+      --product-list-carousel-item-width: 36vw;
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+    #shopify-section-{{ section.id }} .product-list {
+      --product-list-items-per-row: {{ section.settings.products_per_row_desktop }};
+      --product-list-carousel-item-width: calc(var(--container-inner-width) / {{ section.settings.products_per_row_desktop }} - (var(--product-list-column-gap) / {{ section.settings.products_per_row_desktop }} * {{ section.settings.products_per_row_desktop | minus: 1 }}));
+    }
+  }
+  @media screen and (max-width: 768px) {
+   #shopify-section-{{ section.id }} .prose h2 {
+      font-size: {{ section.settings.mobile_heading_size }}px;
+   }
+   }
+</style>
+
+{%- comment -%}
+------------------------------------------------------------------------------------------------------------------------
+LIQUID
+------------------------------------------------------------------------------------------------------------------------
+{%- endcomment -%}
+
+<style>
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.top }}px;
+    padding-bottom: {{ section.settings.bottom }}px;
+    background-color: {{ section.settings.background }};
+    color: rgb(var(--text-color)); 
+    --text-color: {{ section.settings.text_color.red }},{{ section.settings.text_color.green }},{{ section.settings.text_color.blue }};
+    overflow: hidden;
+  }
+
+  @media (max-width: 768px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_top }}px;
+      padding-bottom: {{ section.settings.mobile_bottom }}px;
+    }
+  }
+</style>
+
+{% liquid
+    if product.tags contains '_label_women'
+      assign button_class = 'button--primary'
+      comment
+        assign button_class_2 = 'light-blue' 
+      endcomment
+    elsif product.tags contains '_label_men' or product.tags contains '_label_unisex'
+      assign button_class = 'button--secondary'
+      comment 
+        assign button_class_2 = 'light-blue' 
+      endcomment
+    endif
+%}
+
+<div class="section-{{ section.id }} section section-full bg-custom">
+  <div class="section-stack related-products">
+    <div class="collection-header">
+      {%- render 'section-header-2', button_class: button_class, subheading: section.settings.subheading, heading: section.settings.title, heading_color: section.settings.heading_color, heading_gradient: section.settings.heading_gradient, content: section.settings.content, link_text: section.settings.link_text, link_url: section.settings.link_url -%}
+    </div>
+
+    <div class="{% if section.settings.show_progress_bar %}scrollable-with-controls{% else %}floating-controls-container{% endif %}">
+      {%- assign scroll_area_id = 'scroll-area-' | append: section.id -%}
+
+      {%- if section.settings.products.count > 0 -%}
+        <scroll-carousel selector="product-card" id="{{ scroll_area_id }}" class="scroll-area bleed {% if section.settings.products.count > section.settings.products_per_row_desktop %}is-scrollable{% endif %}">
+          <reveal-items selector=".product-list > *">
+            <product-list class="product-list">
+              {%- for product in section.settings.products, limit:section.settings.product_show -%}
+                {%- render 'product-card', product: product, stacked: section.settings.stack_products, background: section.settings.product_card_background, text_color: section.settings.product_card_text_color, show_badges: true -%}
+              {%- endfor -%}
+            </product-list>
+          </reveal-items>
+        </scroll-carousel>
+
+        {%- if section.settings.stack_products == false -%}
+          {%- if section.settings.show_progress_bar -%}
+            {%- assign default_progress = section.settings.products_per_row_desktop | times: 1.0 | divided_by: section.settings.products.count -%}
+            {%- render 'scrollbar', observes: scroll_area_id, default_progress: default_progress, show_buttons: true -%}
+          {%- else -%}
+            <div class="collection-slider-buttons">
+              <button is="prev-button" class="circle-button circle-button--sm circle-button--fill border group {{ button_class_2 }}" aria-controls="{{ scroll_area_id }}" disabled>
+                <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
+                {% render 'icon' with 'small-left-chevron'  %}
+              </button>
+  
+              <button is="next-button" class="circle-button circle-button--sm circle-button--fill border group {{ button_class_2 }}" aria-controls="{{ scroll_area_id }}">
+                <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
+                {% render 'icon' with 'small-right-chevron'  %}
+              </button>
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      {%- else -%}
+        <product-recommendations product="{{ product.id }}" limit="{{ section.settings.recommendations_count }}" intent="related" class="contents">
+          {%- if recommendations.performed and recommendations.products_count > 0 -%}
+            <scroll-carousel selector="product-card" id="{{ scroll_area_id }}" class="scroll-area bleed {% if section.settings.recommendations_count > section.settings.products_per_row_desktop %}is-scrollable{% endif %}">
+              <reveal-items selector=".product-list > *">
+                <product-list class="product-list">
+                  {%- for product in recommendations.products -%}
+                    {%- render 'product-card', product: product, stacked: section.settings.stack_products, background: section.settings.product_card_background, text_color: section.settings.product_card_text_color, show_badges: true -%}
+                  {%- endfor -%}
+                </product-list>
+              </reveal-items>
+            </scroll-carousel>
+
+            {%- if section.settings.stack_products == false -%}
+              {%- if section.settings.show_progress_bar -%}
+                {%- assign default_progress = section.settings.products_per_row_desktop | times: 1.0 | divided_by: section.settings.recommendations_count -%}
+                {%- render 'scrollbar', observes: scroll_area_id, default_progress: default_progress, show_buttons: true -%}
+              {%- else -%}
+                <button is="prev-button" class="circle-button circle-button--lg circle-button--fill border group" aria-controls="{{ scroll_area_id }}" disabled>
+                  <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
+                  <span class="animated-arrow animated-arrow--reverse"></span>
+                </button>
+
+                <button is="next-button" class="circle-button circle-button--lg circle-button--fill border group" aria-controls="{{ scroll_area_id }}">
+                  <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
+                  <span class="animated-arrow"></span>
+                </button>
+              {%- endif -%}
+            {%- endif -%}
+          {%- endif -%}
+        </product-recommendations>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Related products",
+  "class": "shopify-section--product-recommendations",
+  "tag": "section",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Dynamic recommendations change and improve with time. Create manual product recommendations using the Shopify Search & Discovery app. [Learn more](https://help.shopify.com/en/manual/online-store/search-and-discovery/product-recommendations)."
+    },
+    {
+      "type": "range",
+      "id": "recommendations_count",
+      "min": 2,
+      "max": 10,
+      "label": "Dynamic recommendations count",
+      "default": 6
+    },
+    {
+      "type": "product_list",
+      "id": "products",
+      "limit": 20,
+      "label": "Manual recommendations",
+      "info": "Replaces automatic recommendations when selected."
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "stack_products",
+      "label": "Stack products",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_progress_bar",
+      "label": "Show carousel progress bar",
+      "default": false
+    },
+    {
+      "type":"checkbox",
+      "id":"show_save",
+      "label":"Show Bundle Save"
+    },
+    {
+      "type":"text",
+      "id":"save_text",
+      "label":"Save Text"
+    },
+    {
+      "type":"text",
+      "id":"bundle_text",
+      "label":"Bundle Text"
+    },
+    {
+      "type":"url",
+      "id":"bundle_link",
+      "label":"Bundle Link"
+    },
+    {
+      "type": "select",
+      "id": "products_per_row_mobile",
+      "label": "Products per row (mobile)",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "range",
+      "id": "product_show",
+      "min": 2,
+      "max": 20,
+      "label": "Products To Show",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_desktop",
+      "min": 2,
+      "max": 5,
+      "label": "Products per row (desktop)",
+      "default": 3
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "You may also like"
+    },
+    {
+      "type":"number",
+      "id":"mobile_heading_size",
+      "label":"Mobile Heading Size"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL",
+      "info": "Default to collection URL."
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text",
+      "default": "View all"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_secondary",
+      "label": "Button Secondary",
+      "default": false
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type": "header",
+      "content": "Colors",
+      "info": "Gradient replaces solid colors when set."
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "number",
+      "id": "top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "bottom",
+      "label": "Padding Bottom"
+    },
+    {
+      "type": "number",
+      "id": "mobile_top",
+      "label": "Mobile Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "mobile_bottom",
+      "label": "Mobile Padding Bottom"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Related products"
+    }
+  ]
+}
+{% endschema %}

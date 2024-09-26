@@ -1,0 +1,333 @@
+{%- render 'section-spacing-collapsing' -%}
+
+{%- assign text_position = section.settings.text_position -%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --section-stack-intro: {% if text_position == 'center' %}66.6667%{% else %}50%{% endif %};
+    --section-stack-main: 50%;
+  }
+</style>
+<style>
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.top }}px;
+    padding-bottom: {{ section.settings.bottom }}px;
+    background-color: {{ section.settings.background }};
+    color: rgb(var(--text-color)); 
+    --text-color: {{ section.settings.text_color.red }},{{ section.settings.text_color.green }},{{ section.settings.text_color.blue }};
+  }
+  .section-{{ section.id }} .rte,
+  .section-{{ section.id }} h3 {
+    color: {{ section.settings.color }}
+  }
+
+  @media (max-width: 768px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_top }}px;
+      padding-bottom: {{ section.settings.mobile_bottom }}px;
+    }
+  }
+</style>
+
+{% liquid
+    if product.tags contains '_label_women'
+      assign button_class = 'button--primary'
+      assign button_class_2 = 'pink'
+    elsif product.tags contains '_label_men' or product.tags contains '_label_unisex'
+      assign button_class = 'button--secondary'
+      assign button_class_2 = 'green'
+    endif
+%}
+
+<div class="section section-accordian-content section-full section-{{ section.id }}">
+  <div class="section-stack {% if section.settings.width == 'normal' %}page-width {% elsif section.settings.width == 'narrow' %}page-width-narrow {% endif %}{% if text_position != 'center' %}section-stack--horizontal{% else %}section-stack--center{% endif %} {% if text_position == 'end' %}section-stack--reverse{% endif %}">
+    {%- capture content -%}
+      {%- if section.settings.subheading != blank -%}
+        <p class="bold">{{ section.settings.subheading | escape }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.title != blank -%}
+        <h2 class="h2">
+          {%- render 'styled-text', content: section.settings.title, text_color: section.settings.heading_color, gradient: section.settings.heading_gradient -%}
+        </h2>
+      {%- endif -%}
+
+      {{- section.settings.content -}}
+
+      {%- if section.settings.button_text != blank -%}
+        {% render 'button', content: section.settings.button_text, href: section.settings.button_url, size: 'xl', background: section.settings.button_background, text_color: section.settings.button_text_color %}
+      {%- endif -%}
+    {%- endcapture -%}
+
+    {%- if content != blank -%}
+      <div class="section-stack__intro">
+        <div class="prose {% if text_position == 'center' %}text-center{% endif %}">
+          {{- content -}}
+        </div>
+      </div>
+    {%- endif -%}
+<div class="accordian--wrapper">
+    {%- if section.blocks.size > 0 -%}
+      <div class="section-stack">
+        <div {% render 'surface', class: 'accordion-box rounded', background: section.settings.accordion_background, text_color: section.settings.accordion_text_color, background_fallback: 'bg-secondary' %}>
+          {%- for block in section.blocks -%}
+            {%- if block.settings.title != blank and block.settings.content != blank -%}
+              {%- capture accordion_content -%}
+                <div class="prose">{{ block.settings.content }}</div>
+              {%- endcapture -%}
+
+              {%- render 'accordion', title: block.settings.title, title_size: block.settings.title_size, content: accordion_content, block: block, button_class_2: button_class_2 -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+    {% if section.settings.text != blank %}
+      <div class="rte accordian-bottom-text text-left">
+        {{ section.settings.text }}
+      </div>
+    {% endif %}
+</div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Accordion content",
+  "class": "shopify-section--accordion-content",
+  "tag": "section",
+  "disabled_on": {
+    "templates": ["password"],
+    "groups": ["header", "custom.overlay"]
+  },
+  "blocks": [
+    {
+      "name": "Item",
+      "type": "item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Write content to help your customers to better understand your products or policies.</p>"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Section width",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal Page Width"
+        },
+        {
+          "value": "narrow",
+          "label": "Narrow Page Width"
+        },
+        {
+          "value": "full",
+          "label": "Full Width"
+        }
+      ],
+      "default": "narrow"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "text_position",
+      "label": "Text position",
+      "options": [
+        {
+          "value": "start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "Right"
+        }
+      ],
+      "default": "start"
+    },
+    {
+      "type": "header",
+      "content": "Block Settings"
+    },
+    {
+      "type": "select",
+      "id": "title_size",
+      "label": "Accordian Title Size",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "h5",
+          "label": "H5"
+        }
+      ],
+      "default": "h3"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Bottom Text"
+    },
+    {
+      "type": "header",
+      "content": "Colors",
+      "info": "Gradient replaces solid colors when set."
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Background gradient"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color"
+    },
+    {
+      "type": "color_background",
+      "id": "heading_gradient",
+      "label": "Heading gradient"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text"
+    },
+    {
+      "type": "color",
+      "id": "accordion_background",
+      "label": "Accordion background"
+    },
+    {
+      "type": "color",
+      "id": "accordion_text_color",
+      "label": "Accordion text"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "number",
+      "id": "top",
+      "label": "Padding Top",
+      "default": 40
+    },
+    {
+      "type": "number",
+      "id": "bottom",
+      "label": "Padding Bottom",
+      "default": 40
+    },
+    {
+      "type": "number",
+      "id": "mobile_top",
+      "label": "Mobile Padding Top",
+      "default": 20
+    },
+    {
+      "type": "number",
+      "id": "mobile_bottom",
+      "label": "Mobile Padding Bottom",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Accordion content",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "title": "Question 1"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "title": "Question 2"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "title": "Question 3"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

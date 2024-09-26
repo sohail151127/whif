@@ -1,0 +1,17 @@
+{% if product.metafields.custom.fragrance_name != blank %}
+  <div class="tabs custom-product-tabs">
+    {% if product.metafields.custom.fragrance_name != blank %}<h5>{{ heading }}</h5>{% endif %}
+    <ul id="tabs-nav">
+      {% for ingredient in product.metafields.custom.fragrance_name.value %}
+       <li><a href="#tab-{{ forloop.index }}">{{ ingredient }}</a></li>
+      {% endfor %}
+    </ul>
+    <div id="tabs-content">
+      {% for ingredientContent in product.metafields.custom.fragrance_content.value %}
+       <div id="tab-{{ forloop.index }}" class="tab-content">
+        {{ ingredientContent }}
+      </div>
+      {% endfor %}
+   </div> 
+  </div> 
+{% endif %}

@@ -1,0 +1,78 @@
+   <div class="slider-box">
+        <img src="{{ bar_gif | img_url:"master" }}">
+
+      <!-- <!-- <div class="slider-data"> 
+        <div class="slide-one slide">
+          <div class="row">
+            <div class="left-data">
+              <h3>{{ bar_head }}</h3>
+              <p>{{ bar_content }}</p>
+            </div>
+            <div class="right-data">
+              <ul id="list" class="discount_list">
+                <li>
+                <span>{{ bar_first_discount }}</span> {{ bar_first_get }}
+                 </li>
+                <li><span>{{ bar_second_discount }}</span> {{ bar_second_get }}</li>
+                <li><span>{{ bar_third_discount }}</span> {{ bar_third_get }}</li>
+                <li><span>{{ bar_forth_discount }}</span> {{ bar_forth_get }}</li>
+             </ul>
+            </div>
+          </div>
+        </div>
+        <div class="slide-another slide">
+          <div class="last_slide_items">
+          <div><span>{{ bar_first_discount }}</span> {{ bar_first_get }}</div>
+          <div><span>{{ bar_second_discount }}</span> {{ bar_second_get }}</div>
+          <div><span>{{ bar_third_discount }}</span> {{ bar_third_get }}</div>
+          <div><span>{{ bar_forth_discount }}</span> {{ bar_forth_get }}</div>
+          </div>
+          <div class="automate_last_slide">{{ bar_content }}</div>
+        </div>
+      </div> -->
+
+    </div>
+   
+  <!-- <script>
+      $(document).ready(function () {
+        jQuery('.slide-one').addClass('visible');
+        var n = jQuery('li').length;
+      });
+      $(document).ready(function () {
+        let interval = 2000; 
+        let currentIndex = 0;
+        let items = $('#list li');
+        let totalItems = items.length;
+        function switchClass() {
+          items.removeClass('highlight'); // Remove the class from all items
+          $(items[currentIndex]).addClass('highlight'); // Add the class to the current item
+
+          currentIndex++; // Move to the next item
+          if (currentIndex >= totalItems) {
+            // Stop if the last item is reached
+            clearInterval(intervalId);
+            setTimeout(function () {
+              jQuery('.slide-another').addClass('visible');
+              jQuery('.slide-one').removeClass('visible');
+            }, 2000);
+            setTimeout(function () {
+              jQuery('.slide-one').addClass('visible');
+              jQuery('.slide-another').removeClass('visible');
+            }, 6000);
+          }
+        }
+
+        // Initially add the class to the first item
+        $(items[currentIndex]).addClass('highlight');
+
+        // Set interval to switch the class
+        let intervalId = setInterval(switchClass, interval);
+
+        // Ensure the list items get highlighted again after a certain time
+        setInterval(function () {
+          currentIndex = 0; // Reset the index to 0
+          switchClass(); // Call switchClass to start the highlighting process again
+          intervalId = setInterval(switchClass, interval); // Restart the interval
+        }, 12000);
+      });
+    </script> -->

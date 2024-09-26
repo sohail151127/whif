@@ -1,0 +1,82 @@
+<div class="section {{ section.settings.add_class }}">
+	<div class="custom-slider">
+		<div class="column small-11 small-centered">
+		 <div class="slider slider-nav">
+            {% for block in section.blocks %} 
+				<div class="custom-logo">
+                  <div class="custom-logo-img">
+                      <img src="{{ block.settings.logo |img_url:"master" }}">
+                  </div>
+                </div>
+          {% endfor %} 
+			</div>
+			<div class="slider slider-single custom-slider-content">
+              {% for block in section.blocks %} 
+				<div class="slider-content">
+                   <div class="title">{{ block.settings.additional_heading }}</div>
+                   <div class="text">{{ block.settings.additional_content }}</div>
+                </div>
+		      {% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+{% schema %}
+{
+  "name": "Multi Logo",
+  "class": "shopify-multi-logo",
+ "settings": [
+    {
+      "type": "text",
+      "id": "add_class",
+      "label": "add class"
+    },
+ ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+          
+        },
+       {
+        "type": "richtext",
+        "label": "Addtional Bottom Heading",
+        "id": "additional_heading"
+      },
+    {
+      "type": "richtext",
+      "id": "additional_content",
+      "label": "Additional Bottom Content"
+    }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Multi Logo",
+      "blocks": [
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,285 @@
+<style>
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.top }}px;
+    padding-bottom: {{ section.settings.bottom }}px;
+    background-color: {{ section.settings.background }};
+    color: rgb(var(--text-color));
+    --text-color: {{ section.settings.color.red }},{{ section.settings.color.green }},{{ section.settings.color.blue }};
+  }
+
+  @media (max-width: 768px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_top }}px;
+      padding-bottom: {{ section.settings.mobile_bottom }}px;
+    }
+  }
+</style>
+
+<section class="section-{{ section.id }} whif-richtext">
+  <div class="page-width">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'title' %}
+          <style>
+            .section-{{ section.id }} .whif-title-and-image h2 {
+              position: relative;
+              width: fit-content;
+              margin: 0 auto;
+            }
+            .section-{{ section.id }} .whif-title-and-image h2 span {
+              position: relative;
+              z-index: 2;
+            }
+            .section-{{ section.id }} .whif-title-and-image h2:after {
+              position: absolute;
+              content: '';
+              width: 242px;
+              height: 242px;
+              right: 90%;
+              top: -75px;
+              background-image: url('{{ block.settings.image | image_url: master }}');
+              background-size: contain;
+              background-repeat: no-repeat;
+              background-position: center;
+              {% if section.settings.image_below_text %}
+                z-index: 1;
+              {% else %}
+                z-index: 2;
+              {% endif %}
+            }
+
+            @media (max-width: 768px) {
+              .section-{{ section.id }} .whif-title-and-image h2:after {
+                width: 163px;
+                height: 163px;
+                top: -50px;
+                left: -65px;
+                right: auto;
+                background-image: url('{{ block.settings.image_mobile | image_url: master }}');
+              }
+            }
+          </style>
+          <div class="whif-title-and-image">
+            <h2 class="{{ block.settings.title_size }} small-hide">
+              <span>{{ block.settings.title }}</span>
+            </h2>
+            <h2 class="{{ block.settings.title_size_2 }} medium-up-hide">
+              <span>{{ block.settings.title_2 }}</span>
+            </h2>
+          </div>
+    
+        {% when 'text' %}
+          <div class="whif-text">
+            {{ block.settings.text }}
+          </div>
+
+        {% when 'button' %}
+          <style>
+            .section-{{ section.id }} .button-arrow {
+              background: {{ block.settings.background_1 }};
+            }
+            .section-{{ section.id }} .button-arrow svg {
+              fill: {{ block.settings.color_2 }};
+            }
+          </style>
+          <a href="{{ block.settings.link }}" class="button" style="color: {{ block.settings.color }}; background: {{ block.settings.background }};">
+            <div>
+              {{ block.settings.link_text }}
+              <span class="button-arrow">
+                <svg preserveAspectRatio="xMidYMid meet" role="presentation" viewBox="0 0 6 8" style="height: 8px; width: 6px;">
+                  <path d="M2.286 3.154A6.07 6.07 0 011.004.464c0-.232.115-.464.42-.464.307 0 .403.143.67.41a19.69 19.69 0 002.623 2.334C5.33 3.17 6 3.474 6 3.99c0 .517-.67.838-1.283 1.247a19.373 19.373 0 00-2.622 2.334c-.21.214-.402.428-.67.428a.467.467 0 01-.32-.145.383.383 0 01-.1-.318 6.07 6.07 0 011.281-2.69c.402-.553.575-.66.575-.856 0-.196-.173-.285-.575-.837z"></path>
+                </svg>
+              </span>
+            </div>
+          </a>
+      {% endcase %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Whif Richtext",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background Color"
+      },
+      {
+        "type": "color",
+        "id": "color",
+        "label": "Text Color"
+      },
+      {
+        "type": "checkbox",
+        "id": "image_below_text",
+        "label": "Image Below Heading",
+        "info": "If it is unchecked the image will came over the text"
+      },
+      {
+        "type": "header",
+        "content": "Section Padding"
+      },
+      {
+        "type": "number",
+        "id": "top",
+        "label": "Padding Top"
+      },
+      {
+        "type": "number",
+        "id": "bottom",
+        "label": "Padding Bottom"
+      },
+      {
+        "type": "number",
+        "id": "mobile_top",
+        "label": "Mobile Padding Top"
+      },
+      {
+        "type": "number",
+        "id": "mobile_bottom",
+        "label": "Mobile Padding Bottom"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "button",
+        "limit": 1,
+        "name": "Button",
+        "settings": [
+          {
+            "type": "text",
+            "id": "link_text",
+            "label": "Button Text"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Button URL"
+          },
+          {
+            "type": "color",
+            "id": "background",
+            "label": "Button Background"
+          },
+          {
+            "type": "color",
+            "id": "color",
+            "label": "Button Color"
+          },
+          {
+            "type": "color",
+            "id": "background_1",
+            "label": "Button SVG Background"
+          },
+          {
+            "type": "color",
+            "id": "color_2",
+            "label": "Button SVG Color"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "limit": 1,
+        "name": "Text",
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          }
+        ]
+      },
+      {
+        "type": "title",
+        "limit": 1,
+        "name": "Title",
+        "settings": [
+          {
+            "type": "inline_richtext",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "select",
+            "id": "title_size",
+            "label": "Title Size",
+            "options": [
+              {
+                "value": "h0",
+                "label": "H0"
+              },
+              {
+                "value": "h1",
+                "label": "H1"
+              },
+              {
+                "value": "h2",
+                "label": "H2"
+              },
+              {
+                "value": "h3",
+                "label": "H3"
+              },
+              {
+                "value": "h4",
+                "label": "H4"
+              }
+            ],
+            "default": "h4"
+          },
+          {
+            "type": "inline_richtext",
+            "id": "title_2",
+            "label": "Mobile Title"
+          },
+          {
+            "type": "select",
+            "id": "title_size_2",
+            "label": "Mobile Title Size",
+            "options": [
+              {
+                "value": "h0",
+                "label": "H0"
+              },
+              {
+                "value": "h1",
+                "label": "H1"
+              },
+              {
+                "value": "h2",
+                "label": "H2"
+              },
+              {
+                "value": "h3",
+                "label": "H3"
+              },
+              {
+                "value": "h4",
+                "label": "H4"
+              }
+            ],
+            "default": "h4"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },          
+          {
+            "type": "image_picker",
+            "id": "image_mobile",
+            "label": "Image Mobile"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Whif Richtext"
+      }
+    ]
+  }
+{% endschema %}

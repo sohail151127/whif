@@ -1,0 +1,144 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+{% style %}
+ .section-{{ section.id }} {
+    padding-top: {{ section.settings.top }}px;
+    padding-bottom: {{ section.settings.bottom }}px;
+    background-color: {{ section.settings.background }};
+    color: rgb(var(--text-color)); 
+    --text-color: {{ section.settings.color.red }},{{ section.settings.color.green }},{{ section.settings.color.blue }};
+  }
+
+  @media (max-width: 768px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_top }}px;
+      padding-bottom: {{ section.settings.mobile_bottom }}px;
+    }
+  }
+{% endstyle %}
+
+
+<div class="section-{{ section.id }} scrolling-text--parent">
+  <div class="swiper-container swiper--top swiper--{{ section.id }}">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        <div class="swiper-slide">
+          <h2 class="{{ section.settings.title_size }}">{{ block.settings.text }}</h2>
+        </div>
+        {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+  new Swiper('.swiper--{{ section.id }}', {
+    spaceBetween: -2,
+    centeredSlides: true,
+    speed: {{ section.settings.speed | times: 1000 }},
+      autoplay: {
+      delay: 0,
+     },
+    loop: true,
+    slidesPerView:'auto',
+    
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Footer Scrolling Text",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background Color"
+      },
+      {
+        "type": "color",
+        "id": "color",
+        "label": "Text Color"
+      },
+      {
+        "type": "select",
+        "id": "title_size",
+        "label": "Title Size",
+        "options": [
+          {
+            "value": "h0",
+            "label": "H0"
+          },
+          {
+            "value": "h1",
+            "label": "H1"
+          },
+          {
+            "value": "h2",
+            "label": "H2"
+          },
+          {
+            "value": "h3",
+            "label": "H3"
+          },
+          {
+            "value": "h4",
+            "label": "H4"
+          }
+        ],
+        "default": "h2"
+      },
+      {
+        "type": "range",
+        "id": "speed",
+        "label": "Scroll Speed",
+        "min": 0,
+        "max": 30,
+        "step": 0.5,
+        "unit": "s",
+        "default": 5
+      },
+      {
+        "type": "header",
+        "content": "Section Padding"
+      },
+      {
+        "type": "number",
+        "id": "top",
+        "label": "Padding Top"
+      },
+      {
+        "type": "number",
+        "id": "bottom",
+        "label": "Padding Bottom"
+      },
+      {
+        "type": "number",
+        "id": "mobile_top",
+        "label": "Mobile Padding Top"
+      },
+      {
+        "type": "number",
+        "id": "mobile_bottom",
+        "label": "Mobile Padding Bottom"
+      }
+    ],
+    "blocks": [
+      {
+        "type":"text",
+        "name":"Scroll Text",
+        "settings": [
+          {
+            "type":"text",
+            "id":"text",
+            "label":"Link Text"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name":"Footer scrolling text"
+      }
+    ]
+  }
+{% endschema %}

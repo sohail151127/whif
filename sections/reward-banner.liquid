@@ -1,0 +1,161 @@
+<style>
+  .section-{{ section.id }} {
+    padding: 0 10px;
+    padding-top: {{ section.settings.top }}px;
+    padding-bottom: {{ section.settings.bottom }}px;
+    background-color: {{ section.settings.background_1 }};
+  }
+  .section-{{ section.id }} .reward-banner-container {
+    background-color: {{ section.settings.background }};
+  }
+
+  @media (max-width: 768px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_top }}px;
+      padding-bottom: {{ section.settings.mobile_bottom }}px;
+    }
+  }
+</style>
+
+<section class="section-{{ section.id }} section-reward-banner">
+  <div class="reward-banner-wrapper">
+    <div class="sticky{% if section.settings.mobile_image != blank %} small-hide{% endif %}">
+      {% render 'lazy-image', image:section.settings.image %}
+    </div>
+    {% if section.settings.mobile_image != blank %}
+      <div class="medium-up-hide sticky">
+        {% render 'lazy-image', image:section.settings.mobile_image %}
+      </div>
+    {% endif %}
+    <div class="reward-banner-container">
+      <div class="reward-banner-content">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'title' %}
+              <h2 class="{{ block.settings.size }}">{{ block.settings.title }}</h2>
+
+            {% when 'text' %}
+              <div class="rte">{{ block.settings.text }}</div>
+
+            {% when '@app' %}
+              {%- render block -%}
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Reward Banner",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background_1",
+        "label": "Section Background"
+      },
+      {
+        "type": "header",
+        "content": "Banner Content"
+      },
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Container Background"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Reward Banner Image(Desktop)"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_image",
+        "label": "Reward Banner Image(Mobile)"
+      },
+      {
+        "type": "header",
+        "content": "Section Padding"
+      },
+      {
+        "type": "number",
+        "id": "top",
+        "label": "Padding Top"
+      },
+      {
+        "type": "number",
+        "id": "bottom",
+        "label": "Padding Bottom"
+      },
+      {
+        "type": "number",
+        "id": "mobile_top",
+        "label": "Mobile Padding Top"
+      },
+      {
+        "type": "number",
+        "id": "mobile_bottom",
+        "label": "Mobile Padding Bottom"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "@app"
+      },
+      {
+        "type": "title",
+        "name": "Title",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "select",
+            "id": "size",
+            "label": "Banner Title Size",
+            "options": [
+              {
+                "value": "h1",
+                "label": "H1"
+              },
+              {
+                "value": "h2",
+                "label": "H2"
+              },
+              {
+                "value": "h3",
+                "label": "H3"
+              },
+              {
+                "value": "h4",
+                "label": "H4"
+              }
+            ],
+            "default": "h2"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "name": "Text",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Reward Banner"
+      }
+    ]
+  }
+{% endschema %}

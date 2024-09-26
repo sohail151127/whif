@@ -1,0 +1,147 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+{% liquid
+    assign left =  section.settings.left_text
+    assign main_title = section.settings.main_title
+    assign offer_time = section.settings.offer_time
+%}
+
+
+{% style %}
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.top }}px;
+    padding-bottom: {{ section.settings.bottom }}px;
+    padding-right: 40px;
+    max-width: 100% !important;
+  }
+  
+  @media (max-width: 768px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_top }}px;
+      padding-bottom: {{ section.settings.mobile_bottom }}px;
+      padding-right: 20px;
+    }
+  }
+{% endstyle %}
+
+<section {% render 'surface', class: 'whif-announcement-bar', section: section, background_gradient: section.settings.background_gradient, background: section.settings.background, text_color: section.settings.text_color %}>
+  <div class="page-width whif-bar-grid section-{{ section.id }} scrolling-text--parent">
+    <div class="swiper-container swiper--top swiper--{{ section.id }}">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          <div class="swiper-slide">
+            <span class="rte">{{ block.settings.text }}</span>
+          </div>
+          {% endfor %}
+      </div>
+    </div>
+    {% if offer_time != blank %}
+      <div class="whif-bar--item-right">
+        <span class="offer_text">Offer ends in </span>
+        <span class="offer_time">00h : 00m : 00s</span>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+
+<script>
+  new Swiper('.swiper--{{ section.id }}', {
+    spaceBetween: -2,
+    centeredSlides: true,
+    speed: {{ section.settings.speed | times: 1000 }},
+      autoplay: {
+      delay: 0,
+     },
+    loop: true,
+    slidesPerView:'auto',
+    
+  });
+</script>
+  
+{% schema %}
+  {
+    "name": "Announcement Bar Mobile",
+    "settings": [
+      {
+        "type": "range",
+        "id": "speed",
+        "label": "Scroll Speed",
+        "min": 0,
+        "max": 30,
+        "step": 0.5,
+        "unit": "s",
+        "default": 5
+      },
+      {
+        "type": "text",
+        "id": "offer_time",
+        "label": "Offer Time Date",
+        "info": "It show that the offer time will end on this time from your current time"
+      },
+      {
+        "type": "header",
+        "content": "Colors",
+        "info": "Gradient replaces solid colors when set."
+      },
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background"
+      },
+      {
+        "type": "color_background",
+        "id": "background_gradient",
+        "label": "Background gradient"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text"
+      },
+      {
+        "type": "header",
+        "content": "Section Padding",
+        "info": "Section Top And Bottom Padding For Both Desktop And Mobile in Pixels"
+      },
+      {
+        "type": "number",
+        "id": "top",
+        "label": "Padding Top (Desktop)"
+      },
+      {
+        "type": "number",
+        "id": "bottom",
+        "label": "Padding Bottom (Desktop)"
+      },
+      {
+        "type": "number",
+        "id": "mobile_top",
+        "label": "Padding Top (Mobile)"
+      },
+      {
+        "type": "number",
+        "id": "mobile_bottom",
+        "label": "Padding Bottom (Mobile)"
+      },
+      {
+        "type": "header",
+        "content": "Popup Content"
+      }
+    ],
+    "blocks": [
+      {
+        "type":"text",
+        "name":"Scroll Text",
+        "settings": [
+          {
+            "type":"inline_richtext",
+            "id":"text",
+            "label":"Link Text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,469 @@
+
+{%- if section.blocks.size > 0 -%}
+  <style>
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.top }}px;
+      padding-bottom: {{ section.settings.bottom }}px;
+      background: {{ section.settings.background }};
+      color: rgb(var(--text-color));
+      --text-color: {{ section.settings.text_color.red }},{{ section.settings.text_color.green }},{{ section.settings.text_color.blue }};
+    }
+    {% if section.settings.full_width == blank %}
+      .section-{{ section.id }} .section-stack {
+        max-width: {{ section.settings.max }}px;
+        margin: 0 auto;
+      }
+    {% endif %}
+   @media (min-width: 768px){
+   .mobile.heading,
+    .mobile-tag{
+       display: none;
+    }
+   }
+    @media (max-width: 768px) {
+      .section-{{ section.id }} {
+        padding-top: {{ section.settings.mobile_top }}px;
+        padding-bottom: {{ section.settings.mobile_bottom }}px;
+      }
+      .desktop.heading{
+         display: none;
+      }
+      .custom-multi-column .multi-column__item{
+        flex-basis: 18% !important;
+      }
+      .custom-multi-column .multi-column__item .heading{
+        padding: 4px 12px !important;
+      }
+      .new-whif-multi-column-parent .prose p{
+        display: none;
+      }
+      .new-whif-multi-column-parent .whif-multicolumn-wrapper{
+        gap: 0px !important;
+        width: 100%;
+      }
+      .mobile._active .mobile-tag{
+        display: flex;
+        column-gap: 2px;
+      }
+      .mobile-tag{
+        display: none;
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: black;
+        font-size: 12px;
+        {% comment %} font-family: "GELICA-MEDIUM", sans-serif; {% endcomment %}
+      }
+    }
+    /* .section-{{ section.id }} {
+      --multi-column-grid: {% if section.settings.stack_on_mobile %}none{% else %}auto / auto-flow 73vw{% endif %};
+      --multi-column-list-gap: {% if section.settings.gap == 'small' %}var(--grid-gutter){% elsif section.settings.gap == 'medium' %}var(--spacing-12){% elsif section.settings.gap == 'large' %}var(--spacing-20){% else %}var(--spacing-28){% endif %};
+    } */
+    .section-{{ section.id }} .whif-multicolumn-wrapper {
+      display: grid;
+      grid-template-columns: repeat({{section.settings.column_size}}, 1fr);
+      gap: 10px;
+      max-width: 860px;
+      margin: 0 auto;
+      align-items: end;
+    }
+
+    @media (max-width: 900px) {
+      .section-{{ section.id }} .whif-multicolumn-wrapper {
+        justify-content: center;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .section-{{ section.id }} .multi-column__item {
+        flex: 0 1 calc(33% - 12px);
+      }
+    }
+    @media (max-width: 700px) {
+      .section-{{ section.id }} .section-stack {
+        max-width: 450px; 
+      }
+      .section-{{ section.id }} .whif-multicolumn-wrapper {
+        gap: 20px;
+      }
+      {% if section.settings.mobile_column_size == '2' %}
+        .section-{{ section.id }} .multi-column__item {
+          flex: 0 1 calc(50% - 20px);
+        }
+      {% else %}
+        .section-{{ section.id }} .multi-column__item {
+          flex: 0 1 100%;
+        }
+      {% endif %}
+    }
+  .section-{{ section.id }} .image--replace--text {
+    background: {{ section.settings.replace_background }};
+  }
+  .section-{{ section.id }} .multi-column .v-stack.gap-1.text-center .heading {
+  border-color: {{ section.settings.border_color }};
+  background: {{ section.settings.heading_background }};
+}
+    .custom-multi-column{
+      position: sticky !important;
+      top: 0px;
+      z-index: 2;
+    }
+    .custom-multi-column .section-stack{
+      gap: 15px;
+    }
+  </style>
+
+    <div class="section new-whif-multi-column-parent section-{{ section.id }} section-full">
+      <div class="section-stack">
+        <section-header class="section-header {% if section.settings.text_alignment != blank %}justify-{{ section.settings.text_alignment | escape }} justify-items-{{ section.settings.text_alignment | escape }} text-{{ section.settings.text_alignment | escape }}{% endif %}">
+          {%- if section.settings.subheading != blank or section.settings.title != blank or content != blank -%}
+            <div class="prose">
+              {%- if section.settings.subheading != blank -%}
+                <p class="bold">{{- section.settings.subheading | escape -}}</p>
+              {%- endif -%}
+      
+              {%- if section.settings.title != blank -%}
+                <h2 class="h2">
+                  {{ section.settings.title | newline_to_br }}
+                </h2>
+              {%- endif -%}
+      
+              {{- content -}}
+            </div>
+          {%- endif -%}
+        </section-header>
+        <!-- {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, content: section.settings.content, text_alignment: section.settings.text_alignment -%} -->
+  
+        <div class="multi-column whif-multicolumn-wrapper" data-global-limit="{{ section.blocks[0].settings.max_quantity}}">
+          {%- for block in section.blocks -%}
+            <div class="multi-column__item justify-{{ section.settings.text_alignment }}" data-max-discount={{ block.settings.max_discount }}
+              data-quantity="{{ block.settings.max_quantity }}" {{ block.shopify_attributes }}>
+              {%- if block.settings.video != blank -%}
+                <video-media autoplay style="--aspect-ratio: {{ block.settings.video.aspect_ratio }}">
+                  {{ block.settings.video | video_tag: playsinline: true, muted: true, loop: true, preload: 'metadata', class: 'rounded' }}
+                </video-media>
+              {%- elsif block.settings.image != blank -%}
+                {%- capture sizes -%}(max-width: 699px) calc(73vw - 40px), (max-width: 999px) calc(38vw - 64px), calc(min({{ settings.page_width }}px, 100vw) / {{ block.settings.column_size }}){%- endcapture -%}
+                {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: loading: 'lazy', sizes: sizes, widths: '300,400,500,600,800,1000,1200,1400,1600,1800', class: 'rounded' -}}
+              {%- elsif block.settings.image_text != blank -%}
+                <div class="image--replace--text" style="font-size: {{ section.settings.font_size }}px;">{{ block.settings.image_text }}</div>
+              {%- endif -%}
+  
+              {%- if block.settings.title != blank or block.settings.content != blank or block.settings.link_text != blank -%}
+                <div class="v-stack gap-1 text-{{ section.settings.text_alignment }}">
+                  {%- if block.settings.title != blank -%}
+                    {% comment %} {{ block.settings.heading_tag }} {% endcomment %}
+                   <a {% if block.settings.heading_link != blank %}href="{{ block.settings.heading_link }}"{% endif %}
+                    class="desktop heading{% if forloop.index == 1 %} _active{% endif %}">
+                    {{ block.settings.title | escape }}
+                   </a>
+                    <a {% if block.settings.heading_link != blank %}href="{{ block.settings.heading_link }}"{% endif %}
+                    class="mobile heading{% if forloop.index == 1 %} _active{% endif %}">
+                      {% assign percentage = block.settings.content %}
+                   {{ block.settings.max_quantity }}<span class="mobile-tag">{{ percentage }}{{ block.settings.number-offer-text }}</span>
+                   </a>
+            
+                  {%- endif -%}
+  
+                  {%- if block.settings.content != blank or block.settings.link_text != blank -%}
+                    <div class="prose">
+                      {{- block.settings.content -}}
+  
+                      {%- if block.settings.link_text != blank -%}
+                        <div>
+                          {%- if block.settings.link_style == 'link' -%}
+                            <a href="{{ block.settings.link_url }}" class="link">{{ block.settings.link_text | escape }}</a>
+                          {%- else -%}
+                            {%- render 'button', href: block.settings.link_url, content: block.settings.link_text, size: 'lg' -%}
+                          {%- endif -%}
+                        </div>
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "New Whif Multi-column",
+  "class": "shopify-section--multi-column custom-multi-column",
+  "tag": "section",
+  "disabled_on": {
+    "templates": ["password"],
+    "groups": ["header", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": true
+    },
+    {
+      "type": "number",
+      "id": "max",
+      "label": "Max Cntainer width",
+      "info": "It will be applied when Full Width is unchecked"
+    },
+    {
+      "type": "checkbox",
+      "id": "stack_on_mobile",
+      "label": "Stack on mobile",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "Right"
+        }
+      ],
+      "default": "start"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "About"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured content"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<p>Organize content into multiple columns to share useful information to your customers about your products, values...</p>"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Image Replacement Text Size",
+      "default": 25,
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Columns"
+    },
+    {
+      "type": "select",
+      "id": "column_size",
+      "label": "Desktop Columns",
+      "options": [
+        {
+          "value": "5",
+          "label": "5"
+        },
+        {
+          "value": "4",
+          "label": "4"
+        },
+        {
+          "value": "3",
+          "label": "3"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        },
+        {
+          "value": "1",
+          "label": "1"
+        }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "select",
+      "id": "mobile_column_size",
+      "label": "Mobile Columns",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "header",
+      "content": "Colors",
+      "info": "Gradient replaces solid colors when set."
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color"
+    },
+    {
+      "type": "color",
+      "id": "heading_background",
+      "label": "Heading Background"
+    },
+    {
+      "type": "color",
+      "id": "replace_background",
+      "label": "caption 1 Background"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "number",
+      "id": "top",
+      "label": "Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "bottom",
+      "label": "Padding Bottom"
+    },
+    {
+      "type": "number",
+      "id": "mobile_top",
+      "label": "Mobile Padding Top"
+    },
+    {
+      "type": "number",
+      "id": "mobile_bottom",
+      "label": "Mobile Padding Bottom"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "image_text",
+          "label": "Image Replacement Text"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Column title"
+        },
+        {
+          "type": "text",
+          "id": "number-offer-text",
+          "label": "Offer text"
+        },
+        {
+          "type": "number",
+          "id": "max_quantity",
+          "label": "Maximum Quantity"
+        },
+        {
+          "type": "number",
+          "id": "max_discount",
+          "label": "Maximum Discount"
+        },
+        {
+          "type":"url",
+          "id":"heading_link",
+          "label":"Heading Link"
+        },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "label": "Heading style",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            },
+            {
+              "value": "h4",
+              "label": "H4"
+            },
+            {
+              "value": "h5",
+              "label": "H5"
+            },
+            {
+              "value": "h6",
+              "label": "H6"
+            }
+          ],
+          "default": "h4"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "New Whif Multi-column",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {}
+        },
+        {
+          "type": "item",
+          "settings": {}
+        },
+        {
+          "type": "item",
+          "settings": {}
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

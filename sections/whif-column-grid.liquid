@@ -1,0 +1,213 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+<style>
+  .section-{{ section.id }} {
+    padding-top: {{ section.settings.top }}px;
+    padding-bottom: {{ section.settings.bottom }}px;
+    background-color: {{ section.settings.background }};
+  }
+  .section-{{ section.id }} .whif-grid_container {
+    color: rgb(var(--text-color)); 
+    --text-color: {{ section.settings.color.red }},{{ section.settings.color.green }},{{ section.settings.color.blue }};
+    background: {{ section.settings.background_2 }};
+  }
+
+  @media (max-width: 768px) {
+    .section-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_top }}px;
+      padding-bottom: {{ section.settings.mobile_bottom }}px;
+    }
+  }
+</style>
+
+<section class="section-{{ section.id }} whif-column-grid">
+  <div class="page-width small-hide">
+    <div class="swiper swiper-{{ section.id }}">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          <div class="swiper-slide">
+            <div class="whif-grid_container">
+              <div class="whif-container_image">
+                {% render 'lazy-image', image:block.settings.image %}
+              </div>
+              <a href="{{ block.settings.link }}"> </a>
+              <div class="whif-container_content">
+                {% if block.settings.title != blank %}
+                  <h4 class="h4">{{ block.settings.title }}</h4>
+                {% endif %}
+                {% if block.settings.text %}
+                  <p>{{ block.settings.text }}</p>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="page-width medium-up-hide">
+    <div class="swiper swiper-2-{{ section.id }}">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          <div class="swiper-slide">
+            <div class="whif-grid_container">
+              <div class="whif-container_image">
+                {% render 'lazy-image', image:block.settings.image %}
+              </div>
+              <a href="{{ block.settings.link }}"> </a>
+              <div class="whif-container_content">
+                {% if block.settings.title != blank %}
+                  <h4 class="h4">{{ block.settings.title }}</h4>
+                {% endif %}
+                {% if block.settings.text %}
+                  <p>{{ block.settings.text }}</p>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  var newSwiper = new Swiper(".swiper-{{ section.id }}", {
+    slidesPerView: 3.5,
+    spaceBetween: 16,
+    grabCursor: true,
+    breakpoints: {
+      900: {
+        slidesPerView: 4,
+      },
+      1200: {
+        slidesPerView: {{ section.settings.desktop_columns }},
+      },
+    },
+  });
+</script>
+<script>
+  var mobileSwiper = new Swiper(".swiper-2-{{ section.id }}", {
+    slidesPerView: {{ section.settings.mobile_columns }},
+    spaceBetween: 16,
+    grabCursor: true,
+    centeredSlides: true,
+    pagination: {
+      el: ".section-{{ section.id }} .swiper-pagination",
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 4,
+        spaceBetween: 10,
+      },
+    },
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Whif Column Grid",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background Color"
+      },
+      {
+        "type": "header",
+        "content": "Block Container"
+      },
+      {
+        "type": "color",
+        "id": "background_2",
+        "label": "Background Color"
+      },
+      {
+        "type": "color",
+        "id": "color",
+        "label": "Text Color"
+      },
+      {
+        "type": "header",
+        "content": "Columns"
+      },
+      {
+        "type": "range",
+        "id": "desktop_columns",
+        "label": "Desktop Columns",
+        "min": 1,
+        "max": 10,
+        "default": 8,
+        "step": 0.5
+      },
+      {
+        "type": "range",
+        "id": "mobile_columns",
+        "label": "Mobile Columns",
+        "min": 1,
+        "max": 5,
+        "default": 5,
+        "step": 0.5
+      },
+      {
+        "type": "header",
+        "content": "Section Padding"
+      },
+      {
+        "type": "number",
+        "id": "top",
+        "label": "Padding Top"
+      },
+      {
+        "type": "number",
+        "id": "bottom",
+        "label": "Padding Bottom"
+      },
+      {
+        "type": "number",
+        "id": "mobile_top",
+        "label": "Mobile Padding Top"
+      },
+      {
+        "type": "number",
+        "id": "mobile_bottom",
+        "label": "Mobile Padding Bottom"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "slide",
+        "name": "Slide",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          },
+          {
+            "type": "inline_richtext",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "text",
+            "id": "text",
+            "label": "Text"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Whif Column Grid"
+      }
+    ]
+  }
+{% endschema %}
