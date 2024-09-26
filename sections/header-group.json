@@ -25,7 +25,6 @@
       "block_order": [
         "1657c77c-7ab2-443d-95e1-337f122fab3b"
       ],
-      "disabled": true,
       "settings": {
         "enable_sticky": false,
         "show_arrows": true,
@@ -58,7 +57,6 @@
       "block_order": [
         "89fd3b46-d859-49b7-87da-47d9d4bca9cf"
       ],
-      "disabled": true,
       "settings": {
         "enable_sticky": false,
         "hide_on_scroll": true,
@@ -89,7 +87,6 @@
     },
     "custom_progress_bar_pzYdqM": {
       "type": "custom-progress-bar",
-      "disabled": true,
       "settings": {
       }
     }

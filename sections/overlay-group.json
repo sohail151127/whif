@@ -13,7 +13,6 @@
   "sections": {
     "privacy-banner": {
       "type": "privacy-banner",
-      "disabled": true,
       "settings": {
         "privacy_bar_title": "Cookie policy",
         "privacy_bar_content": "<p>We use cookies and similar technologies to provide the best experience on our website. Refer to our Privacy Policy for more information.</p>"
@@ -21,7 +20,6 @@
     },
     "cart-drawer": {
       "type": "cart-drawer",
-      "disabled": true,
       "settings": {
         "show_cart_note": false,
         "show_shipping_text": false,
@@ -42,7 +40,6 @@
     },
     "search-drawer": {
       "type": "search-drawer",
-      "disabled": true,
       "settings": {
         "full_width": false,
         "show_article_category": true,
