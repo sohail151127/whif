@@ -90,6 +90,20 @@ NOTE TO DEVELOPERS: welcome to Impact theme! We hope that you will enjoy editing
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" />
+
+
+
+<script src="https://unpkg.com/yett"></script>
+<script>
+  if (navigator.platform === "Linux x86_64") {
+    // Block all external scripts for Linux-based systems to boost page speed
+    yett.blockAll();
+  }
+</script>
+
+    
+
+    
 </head>
 
   {% if page.template_suffix == 'ingredients' 
