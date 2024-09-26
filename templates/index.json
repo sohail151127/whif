@@ -112,7 +112,6 @@
       "block_order": [
         "slide-1"
       ],
-      "disabled": true,
       "custom_css": [
         ".button-arrow {background: #fedf5f;}",
         ".button-arrow path {fill: #fff;}",
