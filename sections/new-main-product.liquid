@@ -59,13 +59,28 @@
 </style>
 
 <div {% render 'section-properties', tight: true %}>
+
+{% unless product.handle == 'shipping-protection' %}
+
   <div class="new-main-product-parent product">
+
+    
     {%- if product.media.size > 0 -%}
       {%- render 'product-gallery', product: product -%}
     {%- endif -%}
 
     {%- render 'product-info', product: product, update_url: true -%}
   </div>
+
+{% else %}
+
+<script>
+  window.location.href = '/';
+</script>
+
+{% endunless %}
+
+  
 </div>
 
 {%- assign buy_buttons_block = section.blocks | where: 'type', 'buy_buttons' | first -%}
@@ -147,6 +162,9 @@ quick buy information in a template, that will be extracted in JS, but ensure it
         {%- endcase -%}
     {%- endfor -%}
   </div>
+
+
+
 </template>
 
 {% schema %}

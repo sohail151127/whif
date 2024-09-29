@@ -1,3 +1,4 @@
+
 {% include 'yotpo-subs-product-page-widget' %}
 {%- render 'section-spacing-collapsing' -%}
 
@@ -101,6 +102,8 @@ is however only possible by rendering the whole product page, and extracting the
 quick buy information in a template, that will be extracted in JS, but ensure it is not visible in the main product page
 {%- endcomment -%}
 <template id="quick-buy-content">
+
+
   {%- capture product_form_id -%}quick-buy-form-{{ product.id }}-{{ section.id }}{%- endcapture -%}
 
   <div class="quick-buy-drawer__variant text-start h-stack gap-6" slot="header">
@@ -136,6 +139,7 @@ quick buy information in a template, that will be extracted in JS, but ensure it
     {%- endfor -%}
   </div>
 </template>
+
 
 {% schema %}
 {
