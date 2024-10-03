@@ -5,7 +5,7 @@
             {% for block in section.blocks %} 
 				<div class="custom-logo">
                   <div class="custom-logo-img">
-                      <img src="{{ block.settings.logo |img_url:"master" }}">
+                      <img src="{{ block.settings.logo |img_url:"master" }}" width="" height="" loading="lazy">
                   </div>
                 </div>
           {% endfor %} 
