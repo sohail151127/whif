@@ -92,9 +92,18 @@ LIQUID
           {%- capture sizes -%}{% if section.settings.full_width %}100vw{% else %}min({{ settings.page_width }}px, 100vw){% endif %}{%- endcapture -%}
 
           {%- if block.settings.image != blank -%}
+
+
+
+            
             {%- capture loading_strategy -%}{% if forloop.first %}eager{% else %}lazy{% endif %}{%- endcapture -%}
             {%- capture fetch_priority -%}{% if forloop.first %}high{% else %}low{% endif %}{%- endcapture -%}
 
+
+
+
+
+            
             {%- if block.settings.mobile_image == blank -%}
               {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: loading: loading_strategy, fetchpriority: fetch_priority, sizes: sizes, widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200' -}}
             {%- else -%}
@@ -378,6 +387,12 @@ LIQUID
       "type": "color_background",
       "id": "background_gradient",
       "label": "Background gradient"
+    },
+    {
+      "type": "checkbox",
+      "id": "loading-lazy",
+      "label": "Loading lazy",
+      "default":true
     }
   ],
   "blocks": [
