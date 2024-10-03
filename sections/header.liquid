@@ -260,7 +260,7 @@ height-observer {
             {%- capture sizes -%}{{ section.settings.logo_max_width }}px{%- endcapture -%}
             {%- capture widths -%}{{ section.settings.logo_max_width | times: 2 | at_most: section.settings.logo.width }}, {{ section.settings.logo_max_width | times: 3 | at_most: section.settings.logo.width }}{%- endcapture -%}
             <span class="sr-only">{{ shop.name }}</span>
-            {{- section.settings.logo | image_url: width: section.settings.logo.width | image_tag: sizes: sizes, widths: widths, class: 'header__logo-image' -}}
+            {{- section.settings.logo | image_url: width: section.settings.logo.width | image_tag: sizes: sizes, loading: 'eager', widths: widths, class: 'header__logo-image' -}}
   
             {%- if section.settings.transparent_logo -%}
               {{- section.settings.transparent_logo | image_url: width: section.settings.transparent_logo.width | image_tag: sizes: sizes, widths: widths, class: 'header__logo-image header__logo-image--transparent' -}}
