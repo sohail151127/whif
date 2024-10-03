@@ -53,7 +53,7 @@ LIQUID
 {%- endcomment -%}
 
 <div {% render 'section-properties' %}>
-  <div class="section-stack main-collection-list" style="border:2px solid red;">
+  <div class="section-stack main-collection-list">
     {%- assign link_url = section.settings.link_url | default: section.settings.collection.url -%}
     {% assign text_alignment = 'center' %}
     {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, text_alignment: text_alignment, heading_color: section.settings.heading_color, heading_gradient: section.settings.heading_gradient, content: section.settings.content -%}
