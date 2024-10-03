@@ -96,8 +96,8 @@ LIQUID
 
 {% if section.settings.loading-lazy %}
             
-            {%- capture loading_strategy -%}{% if forloop.first %}eager{% else %}lazy{% endif %}{%- endcapture -%}
-            {%- capture fetch_priority -%}{% if forloop.first %}high{% else %}low{% endif %}{%- endcapture -%}
+            {%- capture loading_strategy -%}{% if forloop.first %}lazy{% else %}lazy{% endif %}{%- endcapture -%}
+            {%- capture fetch_priority -%}{% if forloop.first %}low{% else %}low{% endif %}{%- endcapture -%}
 
 {% else %}
 
