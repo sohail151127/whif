@@ -1102,7 +1102,7 @@ var BaseCarousel = class extends HTMLElement {
   _preloadImages() {
     [this.previousSlide, this.nextSlide].forEach((item) => {
       if (item) {
-        Array.from(item.querySelectorAll('img[loading="lazy"]')).forEach((img) => img.setAttribute("loading", "eager"));
+        Array.from(item.querySelectorAll('img[loading="lazy"]')).forEach((img) => img.setAttribute("loading", "lazy"));
       }
     });
   }
