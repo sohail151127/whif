@@ -33,7 +33,7 @@
                   {% if section.settings.lazy-loading == false  %}  
                   {% render 'lazy-image', image: image imgLazy: false %}
                   {% else %}
-                  {% render 'lazy-image', image: image %}
+                  {% render 'lazy-image', image: image imgLazy: true %}
                   {% endif %}
 
                     
