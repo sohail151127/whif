@@ -62,6 +62,7 @@
 
 
 <script>
+document.addEventListener('DOMContentLoaded', function () {
   var collectionSlider = new Swiper(".swiper-{{ section.id }}", {
     slidesPerView: {{ section.settings.mobile_columns }},
     spaceBetween: 15,
@@ -80,6 +81,8 @@
       },
     },
   });
+});
+
 </script>
 
 {% schema %}
