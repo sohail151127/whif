@@ -29,7 +29,14 @@
                   <a href="{{ block.settings.link | default: collection.link }}">
                 {% endif %}
                   {% assign image = block.settings.image | default: collection.featured_image %}
+
+                  {% if section.settings.lazy-loading == false  %}  
                   {% render 'lazy-image', image: image imgLazy: false %}
+                  {% else %}
+                  {% render 'lazy-image', image: image %}
+                  {% endif %}
+
+                    
                 {% if block.settings.link != blank or collection != blank %}
                   </a>
                 {% endif %}
