@@ -339,7 +339,7 @@ var MegaMenuDisclosure = class extends DropdownDisclosure {
    * When the toggle is hovered we preload the mega-menu images to improve perceived performance
    */
   _preloadImages() {
-    Array.from(this.querySelectorAll('img[loading="lazy"]')).forEach((image) => image.setAttribute("loading", "lazy"));
+    Array.from(this.querySelectorAll('img[loading="lazy"]')).forEach((image) => image.setAttribute("loading", "eager"));
   }
 };
 var MegaMenuPromoCarousel = class extends EffectCarousel2 {
