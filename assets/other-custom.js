@@ -1,4 +1,7 @@
-/*Home page section slider*/
+/* ======================= Home page section slider (As seen in) ===================  */
+
+
+$(document).ready(function() {
 
 $('.slider-single').slick({
  	slidesToShow: 1,
@@ -63,7 +66,9 @@ $('.slider-single').slick({
  	$('.slider-single').slick('slickGoTo', goToSingleSlide);
  });
 
+});
 
+  
 
 /* -----------Progress bar ---------------    */
   async function headerProgressBar() {
