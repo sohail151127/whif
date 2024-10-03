@@ -273,7 +273,7 @@ NOTE TO DEVELOPERS: welcome to Impact theme! We hope that you will enjoy editing
       </style>
     {% endif %}
     {% render 'free-gift-card' %}
-    <script type="module" src="{{ 'other-custom.js' | asset_url }}"></script>
+    <script type="module" src="{{ 'other-custom.js' | asset_url }}" defer></script>
     
    <script>
      let product_price = "{{ product.selected_or_first_available_variant.price | money }}"
