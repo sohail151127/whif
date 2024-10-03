@@ -87,7 +87,7 @@ LIQUID
 
     {%- for block in section.blocks -%}
       {%- capture slide -%}
-        <div style="border:2px solid red;" class="content-over-media content-over-media--{{ section.settings.image_size }} {% unless section.settings.full_width %}rounded{% endunless %}" style="--content-over-media-content-max-width: {{ block.settings.content_max_width }}px; --content-over-media-overlay: {{ block.settings.overlay_color.rgb }} / {{ block.settings.overlay_opacity | divided_by: 100.0 }}">
+        <div class="content-over-media content-over-media--{{ section.settings.image_size }} {% unless section.settings.full_width %}rounded{% endunless %}" style="--content-over-media-content-max-width: {{ block.settings.content_max_width }}px; --content-over-media-overlay: {{ block.settings.overlay_color.rgb }} / {{ block.settings.overlay_opacity | divided_by: 100.0 }}">
           {%- comment -%}---------------- MEDIA ----------------{%- endcomment -%}
           {%- capture sizes -%}{% if section.settings.full_width %}100vw{% else %}min({{ settings.page_width }}px, 100vw){% endif %}{%- endcapture -%}
 
