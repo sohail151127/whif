@@ -263,7 +263,7 @@ height-observer {
             {{- section.settings.logo | image_url: width: section.settings.logo.width | image_tag: sizes: sizes, loading: 'eager', widths: widths, class: 'header__logo-image' -}}
   
             {%- if section.settings.transparent_logo -%}
-              {{- section.settings.transparent_logo | image_url: width: section.settings.transparent_logo.width | image_tag: sizes: sizes, widths: widths, class: 'header__logo-image header__logo-image--transparent' -}}
+              {{- section.settings.transparent_logo | image_url: width: section.settings.transparent_logo.width | image_tag: loading: 'eager', sizes: sizes, widths: widths, class: 'header__logo-image header__logo-image--transparent' -}}
             {%- endif -%}
           {%- else -%}
             <span class="header__logo-text h4">{{ shop.name }}</span>
