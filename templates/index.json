@@ -76,7 +76,7 @@
         "padding_bottom": 10,
         "padding_top_mobile": 10,
         "padding_bottom_mobile": 10,
-        "lazy-loading": false
+        "lazy-loading": true
       }
     },
     "slideshow": {
