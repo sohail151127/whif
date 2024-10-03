@@ -18,10 +18,10 @@
 
 <section class="section-{{ section.id }}-padding collection-list-slider {{ section.settings.section_display }}">
   <div class="page-width">
-    <div class="swiper swiper-{{ section.id }}">
+    <div class="swiper-s swiper-{{ section.id }}">
       <div class="swiper-wrapper">
         {% for block in section.blocks %}
-          <div class="swiper-slide-s">
+          <div class="swiper-slide">
             <div class="collection-list-slider__item text-center">
               {% assign collection = collections[block.settings.collection] %}
               <div class="collection-list-slider__image{% if section.settings.image_round %} image__round{% endif %}">
