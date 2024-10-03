@@ -21,7 +21,7 @@ Supported variables
 {%- endcomment -%}
 
 {%- if preload -%}
-  {%- assign loading = 'eager' -%}
+  {%- assign loading = 'lazy' -%}
   {%- assign fetchpriority = 'high' -%}
 {%- else -%}
   {%- assign loading = 'lazy' -%}
