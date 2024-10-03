@@ -2,7 +2,7 @@
  * This file contains some integration with the native Shopify Reviews app to style it in the context of the theme.
  */
 
-import {Delegate} from "//whif.com.au/cdn/shop/t/29/assets/vendor.min.js?v=101728284033374364961716265432";
+import {Delegate} from "//whif.com.au/cdn/shop/t/46/assets/vendor.min.js?v=101728284033374364961727699798";
 
 const _transformForm = (spr) => {
   const labels = Array.from(spr.querySelectorAll('.spr-form-label')),

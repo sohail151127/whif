@@ -22,8 +22,8 @@ var __privateMethod = (obj, member, method) => {
 };
 
 // js/sections/announcement-bar.js
-import { timeline } from "//whif.com.au/cdn/shop/t/29/assets/vendor.min.js?v=101728284033374364961716265432";
-import { EffectCarousel } from "//whif.com.au/cdn/shop/t/29/assets/theme.js?v=22716993188682250271725344719";
+import { timeline } from "//whif.com.au/cdn/shop/t/46/assets/vendor.min.js?v=101728284033374364961727699798";
+import { EffectCarousel } from "//whif.com.au/cdn/shop/t/46/assets/theme.js?v=36728821362113566001727700373";
 var AnnouncementBar = class extends EffectCarousel {
   _transitionTo(fromSlide, toSlide) {
     timeline([
@@ -80,7 +80,7 @@ if (!window.customElements.get("split-cursor")) {
 }
 
 // js/sections/collection-list.js
-import { timeline as timeline2, inView } from "//whif.com.au/cdn/shop/t/29/assets/vendor.min.js?v=101728284033374364961716265432";
+import { timeline as timeline2, inView } from "//whif.com.au/cdn/shop/t/46/assets/vendor.min.js?v=101728284033374364961727699798";
 var CollectionList = class extends HTMLElement {
   connectedCallback() {
     if (window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
@@ -101,7 +101,7 @@ if (!window.customElements.get("collection-list")) {
 }
 
 // js/sections/customer-login.js
-import { Delegate } from "//whif.com.au/cdn/shop/t/29/assets/vendor.min.js?v=101728284033374364961716265432";
+import { Delegate } from "//whif.com.au/cdn/shop/t/46/assets/vendor.min.js?v=101728284033374364961727699798";
 var AccountLogin = class extends HTMLElement {
   connectedCallback() {
     this.recoverForm = this.querySelector("#recover");
@@ -124,8 +124,8 @@ if (!window.customElements.get("account-login")) {
 }
 
 // js/sections/header.js
-import { animate, timeline as timeline3, stagger, Delegate as Delegate2 } from "//whif.com.au/cdn/shop/t/29/assets/vendor.min.js?v=101728284033374364961716265432";
-import { AnimatedDetails, EffectCarousel as EffectCarousel2, Drawer, throttle } from "//whif.com.au/cdn/shop/t/29/assets/theme.js?v=22716993188682250271725344719";
+import { animate, timeline as timeline3, stagger, Delegate as Delegate2 } from "//whif.com.au/cdn/shop/t/46/assets/vendor.min.js?v=101728284033374364961727699798";
+import { AnimatedDetails, EffectCarousel as EffectCarousel2, Drawer, throttle } from "//whif.com.au/cdn/shop/t/46/assets/theme.js?v=36728821362113566001727700373";
 var reduceMenuAnimation = JSON.parse("false");
 var StoreHeader = class extends HTMLElement {
   connectedCallback() {
@@ -477,7 +477,7 @@ if (!window.customElements.get("navigation-drawer")) {
 }
 
 // js/sections/feature-chart.js
-import { animate as motionAnimate, scroll } from "//whif.com.au/cdn/shop/t/29/assets/vendor.min.js?v=101728284033374364961716265432";
+import { animate as motionAnimate, scroll } from "//whif.com.au/cdn/shop/t/46/assets/vendor.min.js?v=101728284033374364961727699798";
 var FeatureChart = class extends HTMLElement {
   connectedCallback() {
     this.viewButtonElement = this.querySelector('[data-action="toggle-rows"]');
@@ -543,8 +543,8 @@ if (!window.customElements.get("feature-chart")) {
 }
 
 // js/sections/image-banner.js
-import { scroll as scroll2, timeline as timeline4, animate as animate2, inView as inView2 } from "//whif.com.au/cdn/shop/t/29/assets/vendor.min.js?v=101728284033374364961716265432";
-import { imageLoaded, getHeadingKeyframe } from "//whif.com.au/cdn/shop/t/29/assets/theme.js?v=22716993188682250271725344719";
+import { scroll as scroll2, timeline as timeline4, animate as animate2, inView as inView2 } from "//whif.com.au/cdn/shop/t/46/assets/vendor.min.js?v=101728284033374364961727699798";
+import { imageLoaded, getHeadingKeyframe } from "//whif.com.au/cdn/shop/t/46/assets/theme.js?v=36728821362113566001727700373";
 var ImageBanner = class extends HTMLElement {
   connectedCallback() {
     if (this.parallax && window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
@@ -578,7 +578,7 @@ if (!window.customElements.get("image-banner")) {
 }
 
 // js/sections/image-link-blocks.js
-import { ScrollArea } from "//whif.com.au/cdn/shop/t/29/assets/theme.js?v=22716993188682250271725344719";
+import { ScrollArea } from "//whif.com.au/cdn/shop/t/46/assets/theme.js?v=36728821362113566001727700373";
 var ImageLinkBlocks = class extends HTMLElement {
   connectedCallback() {
     this.items = Array.from(this.children);
@@ -598,8 +598,8 @@ if (!window.customElements.get("image-link-blocks")) {
 }
 
 // js/sections/images-with-text-scrolling.js
-import { animate as animate3, timeline as timeline5, inView as inView3 } from "//whif.com.au/cdn/shop/t/29/assets/vendor.min.js?v=101728284033374364961716265432";
-import { getHeadingKeyframe as getHeadingKeyframe2, throttle as throttle2 } from "//whif.com.au/cdn/shop/t/29/assets/theme.js?v=22716993188682250271725344719";
+import { animate as animate3, timeline as timeline5, inView as inView3 } from "//whif.com.au/cdn/shop/t/46/assets/vendor.min.js?v=101728284033374364961727699798";
+import { getHeadingKeyframe as getHeadingKeyframe2, throttle as throttle2 } from "//whif.com.au/cdn/shop/t/46/assets/theme.js?v=36728821362113566001727700373";
 var ImagesWithTextScrolling = class extends HTMLElement {
   connectedCallback() {
     inView3(this, this._reveal.bind(this));
@@ -663,7 +663,7 @@ if (!window.customElements.get("images-with-text-scrolling")) {
 }
 
 // js/sections/impact-text.js
-import { animate as animate4, inView as inView4 } from "//whif.com.au/cdn/shop/t/29/assets/vendor.min.js?v=101728284033374364961716265432";
+import { animate as animate4, inView as inView4 } from "//whif.com.au/cdn/shop/t/46/assets/vendor.min.js?v=101728284033374364961727699798";
 var ImpactText = class extends HTMLElement {
   connectedCallback() {
     if (!window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
@@ -704,7 +704,7 @@ if (!window.customElements.get("impact-text")) {
 }
 
 // js/sections/media-grid.js
-import { timeline as timeline6, inView as inView5 } from "//whif.com.au/cdn/shop/t/29/assets/vendor.min.js?v=101728284033374364961716265432";
+import { timeline as timeline6, inView as inView5 } from "//whif.com.au/cdn/shop/t/46/assets/vendor.min.js?v=101728284033374364961727699798";
 var MediaGrid = class extends HTMLElement {
   connectedCallback() {
     this.items = Array.from(this.children);
@@ -725,8 +725,8 @@ if (!window.customElements.get("media-grid")) {
 }
 
 // js/sections/media-with-text.js
-import { animate as animate5, timeline as timeline7, inView as inView6 } from "//whif.com.au/cdn/shop/t/29/assets/vendor.min.js?v=101728284033374364961716265432";
-import { imageLoaded as imageLoaded2 } from "//whif.com.au/cdn/shop/t/29/assets/theme.js?v=22716993188682250271725344719";
+import { animate as animate5, timeline as timeline7, inView as inView6 } from "//whif.com.au/cdn/shop/t/46/assets/vendor.min.js?v=101728284033374364961727699798";
+import { imageLoaded as imageLoaded2 } from "//whif.com.au/cdn/shop/t/46/assets/theme.js?v=36728821362113566001727700373";
 var reduceMotion = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
 var MediaWithText = class extends HTMLElement {
   connectedCallback() {
@@ -752,8 +752,8 @@ if (!window.customElements.get("media-with-text")) {
 }
 
 // js/sections/multiple-images-with-text.js
-import { timeline as timeline8, animate as animate6, stagger as stagger2, inView as inView7 } from "//whif.com.au/cdn/shop/t/29/assets/vendor.min.js?v=101728284033374364961716265432";
-import { EffectCarousel as EffectCarousel3, imageLoaded as imageLoaded3, getHeadingKeyframe as getHeadingKeyframe3 } from "//whif.com.au/cdn/shop/t/29/assets/theme.js?v=22716993188682250271725344719";
+import { timeline as timeline8, animate as animate6, stagger as stagger2, inView as inView7 } from "//whif.com.au/cdn/shop/t/46/assets/vendor.min.js?v=101728284033374364961727699798";
+import { EffectCarousel as EffectCarousel3, imageLoaded as imageLoaded3, getHeadingKeyframe as getHeadingKeyframe3 } from "//whif.com.au/cdn/shop/t/46/assets/theme.js?v=36728821362113566001727700373";
 var MultipleImagesWithText = class extends HTMLElement {
   constructor() {
     super();
@@ -854,7 +854,7 @@ if (!window.customElements.get("multiple-images-with-text-content-list")) {
 }
 
 // js/sections/newsletter-popup.js
-import { Drawer as Drawer2 } from "//whif.com.au/cdn/shop/t/29/assets/theme.js?v=22716993188682250271725344719";
+import { Drawer as Drawer2 } from "//whif.com.au/cdn/shop/t/46/assets/theme.js?v=36728821362113566001727700373";
 var NewsletterPopup = class extends Drawer2 {
   connectedCallback() {
     super.connectedCallback();
@@ -892,8 +892,8 @@ if (!window.customElements.get("newsletter-popup")) {
 }
 
 // js/sections/press.js
-import { timeline as timeline9, animate as animate7, inView as inView8 } from "//whif.com.au/cdn/shop/t/29/assets/vendor.min.js?v=101728284033374364961716265432";
-import { EffectCarousel as EffectCarousel4 } from "//whif.com.au/cdn/shop/t/29/assets/theme.js?v=22716993188682250271725344719";
+import { timeline as timeline9, animate as animate7, inView as inView8 } from "//whif.com.au/cdn/shop/t/46/assets/vendor.min.js?v=101728284033374364961727699798";
+import { EffectCarousel as EffectCarousel4 } from "//whif.com.au/cdn/shop/t/46/assets/theme.js?v=36728821362113566001727700373";
 var reduceMotion2 = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
 var PressCarousel = class extends EffectCarousel4 {
   constructor() {
@@ -954,7 +954,7 @@ if (!window.customElements.get("product-recommendations")) {
 }
 
 // js/sections/recently-viewed-products.js
-import { extractSectionId } from "//whif.com.au/cdn/shop/t/29/assets/theme.js?v=22716993188682250271725344719";
+import { extractSectionId } from "//whif.com.au/cdn/shop/t/46/assets/theme.js?v=36728821362113566001727700373";
 var _isLoaded, _searchQueryString, searchQueryString_get, _loadProducts, loadProducts_fn;
 var RecentlyViewedProducts = class extends HTMLElement {
   constructor() {
@@ -999,7 +999,7 @@ if (!window.customElements.get("recently-viewed-products")) {
 }
 
 // js/sections/revealed-image-on-scroll.js
-import { scroll as scroll3, timeline as timeline10, ScrollOffset, inView as inView9 } from "//whif.com.au/cdn/shop/t/29/assets/vendor.min.js?v=101728284033374364961716265432";
+import { scroll as scroll3, timeline as timeline10, ScrollOffset, inView as inView9 } from "//whif.com.au/cdn/shop/t/46/assets/vendor.min.js?v=101728284033374364961727699798";
 var RevealedImage = class extends HTMLElement {
   connectedCallback() {
     const scrollTracker = this.querySelector(".revealed-image__scroll-tracker"), scroller = this.querySelector(".revealed-image__scroller");
@@ -1045,8 +1045,8 @@ if (!window.customElements.get("shop-the-look-dots")) {
 }
 
 // js/sections/slideshow.js
-import { animate as motionAnimate2, timeline as timeline11, inView as inView10 } from "//whif.com.au/cdn/shop/t/29/assets/vendor.min.js?v=101728284033374364961716265432";
-import { EffectCarousel as EffectCarousel5, imageLoaded as imageLoaded4, getHeadingKeyframe as getHeadingKeyframe4 } from "//whif.com.au/cdn/shop/t/29/assets/theme.js?v=22716993188682250271725344719";
+import { animate as motionAnimate2, timeline as timeline11, inView as inView10 } from "//whif.com.au/cdn/shop/t/46/assets/vendor.min.js?v=101728284033374364961727699798";
+import { EffectCarousel as EffectCarousel5, imageLoaded as imageLoaded4, getHeadingKeyframe as getHeadingKeyframe4 } from "//whif.com.au/cdn/shop/t/46/assets/theme.js?v=36728821362113566001727700373";
 var Slideshow = class extends HTMLElement {
   constructor() {
     super();

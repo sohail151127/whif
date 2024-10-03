@@ -102,6 +102,9 @@ Supported variables
   border-color: {{ info_color }};
 } */
   {% endstyle %}
+
+{% unless product.handle == "shipping-protection" %}
+  
 <product-card id="product-{{ product.id }}" handle="{{ product.handle | escape }}" {% if reveal %}reveal-js{% endif %} {% render 'surface', class: card_class, text_color: card_text_color %}>
   {%- comment -%}
   --------------------------------------------------------------------------------------------------------------------
@@ -379,3 +382,11 @@ Supported variables
   </div>
 
 </product-card>
+
+
+{% endunless %}
+
+
+
+
+

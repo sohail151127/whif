@@ -71,7 +71,7 @@ $('.slider-single').slick({
       const cart = await response.json();
       // console.log(cart);   
       let cart_items = cart.items;
-      var specificItemId = 50101982855486; 
+      var specificItemId = 50459722744126; 
       var itemPrice = null;
       cart.items.forEach(function(item) {
         if (item.id === specificItemId) {
@@ -142,7 +142,7 @@ headerProgressBar();
       const cart = await response.json();
        console.log(cart);    
        let cart_items = cart.items;
-      var specificItemId = 50101982855486; 
+      var specificItemId = 50459722744126; 
       var itemPrice = null;
       cart.items.forEach(function(item) {
         if (item.id === specificItemId) {
@@ -346,25 +346,42 @@ async function clearCart() {
     $('.count-bubble').addClass('opacity-0').css('opacity', '0');
 }
 
-async function getCart(){
-  let testItem =  await fetch('/cart.js');
+async function getCart() {
+  let testItem = await fetch('/cart.js');
   let cart = await testItem.json();
   let cart_count = cart.item_count;
-  let protectionItemId = '50101982855486';
-  let checkProtection = cart.items.some(item => item.id == protectionItemId);
-  let alreadyInCart = cart.items.some(item => item.id == protectionItemId);
-  console.log(checkProtection);
-  if (checkProtection && cart_count == 1) {
-  await clearCart();
-  await headerProgressBar();
-  } else {
-    if (!alreadyInCart) {
-     addCart()
-    } else {
-      console.log('Product already in cart, not adding again');
+  let protectionItemId = '50459722744126';  // Your protection product ID
+
+  // Check if the protection product is already in the cart
+  let protectionItem = cart.items.find(item => item.id == protectionItemId);
+
+  if (protectionItem) {
+    // If the protection product is in the cart, ensure it has a quantity of 1
+    if (protectionItem.quantity > 1) {
+      await $.ajax({
+        type: 'POST',
+        url: '/cart/change.js',
+        data: {
+          quantity: 1,
+          id: protectionItemId
+        },
+        dataType: 'json'
+      });
     }
+    console.log('Protection product is already in the cart');
+  } else {
+    // If the protection product is not in the cart, add it
+    console.log('Adding protection product to the cart');
+    await addCart();
+  }
+
+  if (cart_count == 1 && protectionItem) {
+    // If only the protection product is in the cart, clear the cart
+    await clearCart();
+    await headerProgressBar();
   }
 }
+
 
 async function updateCheckout() {
   let cart = await $.ajax({
@@ -380,18 +397,19 @@ async function updateCheckout() {
 
 window.onload = async function() {
   // Ensure the checkbox is checked on page load
-  setTimeout(function() {
-    // console.log("Setting checkbox to checked");
+  setTimeout(async function() {
     $('.protection_toggle').prop("checked", true);
     if ($('.protection_toggle').is(':checked')) {
-      console.log('checked');
-      getCart();
-      updateCheckout();
+      console.log('Protection toggle is checked');
+      await getCart();  // Ensure the cart is handled properly
+      await updateCheckout();
     } else {
-      changeCart();
+      await changeCart();
     }
   }, 100);
-}
+};
+
+
  $(document).on('click', '.protection_toggle', async function() {
     if ($(this).is(':checked')) {
       // console.log('Checkbox clicked and checked');
@@ -420,7 +438,7 @@ document.addEventListener("cart:change", (event) => {
  let totleCartItem = fetchCarts.item_count;
   // console.log('totle',totle);
   // console.log('fetchCarts',fetchCarts);
-    let protectionItemId = '50101982855486';
+    let protectionItemId = '50459722744126';
     let checkPro = fetchCarts.items.some(item => item.id == protectionItemId);
      // console.log(checkPro);
     if (checkPro && totleCartItem == 1) {

@@ -1,6 +1,6 @@
 .country-flags {
-  background: -webkit-image-set(url("//whif.com.au/cdn/shop/t/29/assets/country-flags.png?v=37230036826556269641716265432") 1x, url("//whif.com.au/cdn/shop/t/29/assets/country-flags-2x.png?v=119388446682176363021716265432") 2x) no-repeat top left;
-  background: image-set(url("//whif.com.au/cdn/shop/t/29/assets/country-flags.png?v=37230036826556269641716265432") 1x, url("//whif.com.au/cdn/shop/t/29/assets/country-flags-2x.png?v=119388446682176363021716265432") 2x) no-repeat top left;
+  background: -webkit-image-set(url("//whif.com.au/cdn/shop/t/46/assets/country-flags.png?v=37230036826556269641727699798") 1x, url("//whif.com.au/cdn/shop/t/46/assets/country-flags-2x.png?v=119388446682176363021727699798") 2x) no-repeat top left;
+  background: image-set(url("//whif.com.au/cdn/shop/t/46/assets/country-flags.png?v=37230036826556269641727699798") 1x, url("//whif.com.au/cdn/shop/t/46/assets/country-flags-2x.png?v=119388446682176363021727699798") 2x) no-repeat top left;
   width: 20px;
   height: 20px;
   flex-shrink: 0;
