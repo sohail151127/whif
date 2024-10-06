@@ -210,6 +210,7 @@
         "text_hVEt9R",
         "text_3XQtiy"
       ],
+      "disabled": true,
       "custom_css": [
         ".scrolling-text--parent h2 {font-family: \"GILROY-BOLD\", sans-serif;}"
       ],
