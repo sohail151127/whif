@@ -32,6 +32,8 @@
 </div>
 
 <script>
+
+document.addEventListener("DOMContentLoaded", function(){
   new Swiper('.swiper--{{ section.id }}', {
     spaceBetween: -2,
     centeredSlides: true,
@@ -43,6 +45,7 @@
     slidesPerView:'auto',
     
   });
+});
 </script>
 
 {% schema %}
