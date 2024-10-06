@@ -21,10 +21,51 @@
   }
 {% endstyle %}
 
+<style>
+  .s-swiper-container {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.s-swiper-wrapper {
+  display: flex;
+  gap: 10px; /* Adjust spacing between slides */
+  animation: slide-animation {{ section.settings.speed }}s linear infinite;
+}
+
+.s-swiper-slide {
+  flex-shrink: 0;
+  width: auto; /* Ensures slides take their natural width */
+  padding: 0 20px; /* Optional: Adds spacing around the text */
+}
+
+@keyframes slide-animation {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Duplicate the content to make it loop */
+.swiper-wrapper::after {
+  content: '';
+  display: block;
+  width: 100%;
+}
+
+/* Reverse direction for RTL languages if needed */
+html[dir="rtl"] .swiper-wrapper {
+  animation-direction: reverse;
+}
+</style>
+
 
 <div class="section-{{ section.id }} scrolling-text--parent">
-  <div class="swiper-container swiper--top swiper--{{ section.id }}">
-    <div class="swiper-wrapper">
+  <div class="s-swiper-container swiper--top swiper--{{ section.id }}">
+    <div class="s-swiper-wrapper">
       {% for block in section.blocks %}
         <div class="swiper-slide">
           <h2 class="{{ section.settings.title_size }}">{{ block.settings.text }}</h2>
