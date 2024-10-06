@@ -131,7 +131,7 @@
         "cycle_speed": 6,
         "background": "#f9f9f6",
         "background_gradient": "radial-gradient(rgba(255, 0, 0, 0), rgba(242, 242, 242, 1) 100%)",
-        "loading-lazy": true
+        "loading-lazy": false
       }
     },
     "scrolling_text_VhhxeR": {
