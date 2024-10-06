@@ -1,5 +1,8 @@
+{% comment %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+{% endcomment %}
+
 
 {% style %}
  .section-{{ section.id }} {
@@ -31,8 +34,9 @@
   </div>
 </div>
 
-<script>
 
+{% comment %}
+<script>
 document.addEventListener("DOMContentLoaded", function(){
   new Swiper('.swiper--{{ section.id }}', {
     spaceBetween: -2,
@@ -47,6 +51,9 @@ document.addEventListener("DOMContentLoaded", function(){
   });
 });
 </script>
+{% endcomment %}
+
+
 
 {% schema %}
   {
