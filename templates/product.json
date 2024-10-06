@@ -303,7 +303,7 @@
         "background": "#000000",
         "color": "#ffffff",
         "title_size": "h4",
-        "speed": 5,
+        "speed": 20,
         "top": 5,
         "bottom": 5,
         "mobile_top": 5,
