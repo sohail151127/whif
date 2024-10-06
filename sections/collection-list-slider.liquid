@@ -29,7 +29,14 @@
                   <a href="{{ block.settings.link | default: collection.link }}">
                 {% endif %}
                   {% assign image = block.settings.image | default: collection.featured_image %}
-                  {% render 'lazy-image', image: image %}
+
+                  {% if section.settings.lazy-loading == false  %}  
+                  {% render 'lazy-image', image: image imgLazy: false %}
+                  {% else %}
+                  {% render 'lazy-image', image: image imgLazy: true %}
+                  {% endif %}
+
+                    
                 {% if block.settings.link != blank or collection != blank %}
                   </a>
                 {% endif %}
@@ -55,6 +62,7 @@
 
 
 <script>
+document.addEventListener('DOMContentLoaded', function () {
   var collectionSlider = new Swiper(".swiper-{{ section.id }}", {
     slidesPerView: {{ section.settings.mobile_columns }},
     spaceBetween: 15,
@@ -73,6 +81,8 @@
       },
     },
   });
+});
+
 </script>
 
 {% schema %}
@@ -199,6 +209,12 @@
         "unit": "px",
         "label": "Padding Bottom Mobile",
         "default": 36
+      },
+      {
+        "type": "checkbox",
+        "id": "lazy-loading",
+        "label": "Lazy loading",
+        "default": true
       }
     ],
     "blocks": [

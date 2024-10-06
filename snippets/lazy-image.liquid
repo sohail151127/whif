@@ -4,11 +4,27 @@
     {%- capture sizes -%}
       (min-width: 320px) 100vw
     {%- endcapture -%}
+
+    {% if imgLazy == false %}
+    
+    {{
+      image
+      | image_url: width: 1500
+      | image_tag: loading: 'eager', sizes: sizes, widths: widths
+    }}
+
+    {% else %}
+      
     {{
       image
       | image_url: width: 1500
       | image_tag: loading: 'lazy', sizes: sizes, widths: widths
     }}
+
+    {% endif %}
+
+
+    
   {%- else -%}
     {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
   {%- endif -%}
