@@ -15,21 +15,74 @@
   }
 {% endstyle %}
 
+<style>
+.k-swiper-container {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.k-swiper-wrapper {
+  display: flex;
+  gap: 10px; /* Adjust the gap between slides if needed */
+  animation: slide-animation {{ section.settings.speed }}s linear infinite;
+}
+
+.k-swiper-slide {
+  flex-shrink: 0;
+  width: auto; /* Slides take their natural width */
+  padding: 0 20px; /* Optional: Add space around the text */
+}
+
+@keyframes slide-animation {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Duplicate the content to make the scrolling infinite */
+.k-swiper-wrapper::after {
+  content: '';
+  display: block;
+  width: 100%;
+}
+
+/* Reverse direction for RTL languages if needed */
+html[dir="rtl"] .k-swiper-wrapper {
+  animation-direction: reverse;
+}
+</style>
+
 
 <div class="section-{{ section.id }} scrolling-text--parent">
-  <div class="swiper-container swiper--top swiper--{{ section.id }}">
-    <div class="swiper-wrapper">
+  <div class="k-swiper-container swiper--top swiper--{{ section.id }}">
+    <div class="k-swiper-wrapper">
+      
       {% for block in section.blocks %}
-        <div class="swiper-slide">
+        <div class="k-swiper-slide">
           <h2 class="{{ section.settings.title_size }}">{{ block.settings.text }}</h2>
         </div>
         {% endfor %}
+
+      <!-- Duplicate the content to ensure smooth infinite scrolling -->
+      {% for block in section.blocks %}
+        <div class="k-swiper-slide">
+          <h2 class="{{ section.settings.title_size }}">{{ block.settings.text }}</h2>
+        </div>
+      {% endfor %}
+
+      
     </div>
   </div>
 </div>
 
 <script>
 
+
+{% comment %}  
 document.addEventListener('DOMContentLoaded', function(){
   
   new Swiper('.swiper--{{ section.id }}', {
@@ -46,6 +99,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
 });
 </script>
+{% endcomment %}
+
 
 {% schema %}
   {
