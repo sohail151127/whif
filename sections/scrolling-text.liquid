@@ -51,9 +51,9 @@
 }
 
 /* Reverse direction for RTL languages if needed */
-/* html[dir="rtl"] .k-swiper-wrapper {
+html[dir="rtl"] .k-swiper-wrapper {
   animation-direction: reverse;
-} */
+}
 </style>
 
 
@@ -79,10 +79,9 @@
   </div>
 </div>
 
-<script>
-
 
 {% comment %}  
+<script>
 document.addEventListener('DOMContentLoaded', function(){
   
   new Swiper('.swiper--{{ section.id }}', {
