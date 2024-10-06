@@ -16,25 +16,25 @@
 {% endstyle %}
 
 <style>
-.k-swiper-container {
+#shopify-section-{{ section.id }} .k-swiper-container {
   overflow: hidden;
   display: flex;
   justify-content: center;
 }
 
-.k-swiper-wrapper {
+#shopify-section-{{ section.id }} .k-swiper-wrapper {
   display: flex;
   gap: 10px; /* Adjust the gap between slides if needed */
-  animation: slide-animation {{ section.settings.speed }}s linear infinite;
+  animation: k-slide-animation {{ section.settings.speed }}s linear infinite;
 }
 
-.k-swiper-slide {
+#shopify-section-{{ section.id }} .k-swiper-slide {
   flex-shrink: 0;
   width: auto; /* Slides take their natural width */
   padding: 0 20px; /* Optional: Add space around the text */
 }
 
-@keyframes slide-animation {
+@keyframes k-slide-animation {
   0% {
     transform: translateX(0%);
   }
@@ -44,7 +44,7 @@
 }
 
 /* Duplicate the content to make the scrolling infinite */
-.k-swiper-wrapper::after {
+#shopify-section-{{ section.id }} .k-swiper-wrapper::after {
   content: '';
   display: block;
   width: 100%;
