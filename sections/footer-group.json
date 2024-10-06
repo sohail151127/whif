@@ -1,1 +1,149 @@
-{"type":"footer","name":"Footer group","sections":{"footer":{"type":"footer","blocks":{"newsletter":{"type":"newsletter","settings":{"image_width":150,"heading_size":"h3","title":"","content":"<p>Be the first to get Whif news 🗞️, latest products 💐 and freshest scents👃🏾<\/p>","content_2":"<p>By submitting your email, you agree to our Terms & Conditions and Privacy Policy.<\/p>"}},"links_7cXzCG":{"type":"links","settings":{"menu":"support","show_menu_title":true}},"dc488d18-9573-47cf-99dd-c6b9de45772c":{"type":"links","settings":{"menu":"policies","show_menu_title":true}},"0734ff00-4131-47ab-aef2-43520f49083a":{"type":"links","settings":{"menu":"footer","show_menu_title":true}},"links":{"type":"links","settings":{"menu":"shop","show_menu_title":true}}},"block_order":["newsletter","links_7cXzCG","dc488d18-9573-47cf-99dd-c6b9de45772c","0734ff00-4131-47ab-aef2-43520f49083a","links"],"settings":{"show_social_media":true,"show_payment_icons":false,"show_country_selector":true,"show_country_flag":true,"show_country_name":true,"show_locale_selector":false,"top":60,"bottom":30,"mobile_top":30,"mobile_bottom":10}},"d30a60e6-f60a-4e2d-8a70-3958c7a9e737":{"type":"footer-scrolling-text","blocks":{"850d8ebc-02fe-4546-8828-6cf7a925d900":{"type":"text","settings":{"text":"Cruelty-free"}},"f720f3c3-f041-402c-8873-fd7a0880118a":{"type":"text","settings":{"text":"Clean formulas"}},"56dc7905-b389-4533-8ac6-2cf84d4238dc":{"type":"text","settings":{"text":"Extrait de Parfum"}}},"block_order":["850d8ebc-02fe-4546-8828-6cf7a925d900","f720f3c3-f041-402c-8873-fd7a0880118a","56dc7905-b389-4533-8ac6-2cf84d4238dc"],"settings":{"background":"#ffde4b","color":"#000000","title_size":"h0","speed":8,"top":20,"bottom":20,"mobile_top":10,"mobile_bottom":10}},"4496a7bc-52e2-4e6c-94ef-f5e24ea1109e":{"type":"footer-asides-bottom","settings":{"background":"#ffde4b","color":"#000000","text":"","menu":"footer-bottom-menu","top":20,"bottom":40,"mobile_top":10,"mobile_bottom":20}},"button":{"type":"index-sticky-button","settings":{"show":false,"show_on_home":true,"subheading":"<strong>Buy 3 or more and<\/strong>","heading":"Save up to 20%!","image":"shopify:\/\/shop_images\/Untitled_design_89.png","link":"shopify:\/\/collections\/all","background":"#fe208d","text_color":"#ffffff","bg_button":"#ffb74a","color_button":"#000000"}}},"order":["footer","d30a60e6-f60a-4e2d-8a70-3958c7a9e737","4496a7bc-52e2-4e6c-94ef-f5e24ea1109e","button"]}
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {
+            "image_width": 150,
+            "heading_size": "h3",
+            "title": "",
+            "content": "<p>Be the first to get Whif news 🗞️, latest products 💐 and freshest scents👃🏾</p>",
+            "content_2": "<p>By submitting your email, you agree to our Terms & Conditions and Privacy Policy.</p>"
+          }
+        },
+        "links_7cXzCG": {
+          "type": "links",
+          "settings": {
+            "menu": "support",
+            "show_menu_title": true
+          }
+        },
+        "dc488d18-9573-47cf-99dd-c6b9de45772c": {
+          "type": "links",
+          "settings": {
+            "menu": "policies",
+            "show_menu_title": true
+          }
+        },
+        "0734ff00-4131-47ab-aef2-43520f49083a": {
+          "type": "links",
+          "settings": {
+            "menu": "footer",
+            "show_menu_title": true
+          }
+        },
+        "links": {
+          "type": "links",
+          "settings": {
+            "menu": "shop",
+            "show_menu_title": true
+          }
+        }
+      },
+      "block_order": [
+        "newsletter",
+        "links_7cXzCG",
+        "dc488d18-9573-47cf-99dd-c6b9de45772c",
+        "0734ff00-4131-47ab-aef2-43520f49083a",
+        "links"
+      ],
+      "settings": {
+        "show_social_media": true,
+        "show_payment_icons": false,
+        "show_country_selector": true,
+        "show_country_flag": true,
+        "show_country_name": true,
+        "show_locale_selector": false,
+        "top": 60,
+        "bottom": 30,
+        "mobile_top": 30,
+        "mobile_bottom": 10
+      }
+    },
+    "d30a60e6-f60a-4e2d-8a70-3958c7a9e737": {
+      "type": "footer-scrolling-text",
+      "blocks": {
+        "850d8ebc-02fe-4546-8828-6cf7a925d900": {
+          "type": "text",
+          "settings": {
+            "text": "Cruelty-free"
+          }
+        },
+        "f720f3c3-f041-402c-8873-fd7a0880118a": {
+          "type": "text",
+          "settings": {
+            "text": "Clean formulas"
+          }
+        },
+        "56dc7905-b389-4533-8ac6-2cf84d4238dc": {
+          "type": "text",
+          "settings": {
+            "text": "Extrait de Parfum"
+          }
+        }
+      },
+      "block_order": [
+        "850d8ebc-02fe-4546-8828-6cf7a925d900",
+        "f720f3c3-f041-402c-8873-fd7a0880118a",
+        "56dc7905-b389-4533-8ac6-2cf84d4238dc"
+      ],
+      "settings": {
+        "background": "#ffde4b",
+        "color": "#000000",
+        "title_size": "h0",
+        "speed": 10,
+        "top": 20,
+        "bottom": 20,
+        "mobile_top": 10,
+        "mobile_bottom": 10
+      }
+    },
+    "4496a7bc-52e2-4e6c-94ef-f5e24ea1109e": {
+      "type": "footer-asides-bottom",
+      "settings": {
+        "background": "#ffde4b",
+        "color": "#000000",
+        "text": "",
+        "menu": "footer-bottom-menu",
+        "top": 20,
+        "bottom": 40,
+        "mobile_top": 10,
+        "mobile_bottom": 20
+      }
+    },
+    "button": {
+      "type": "index-sticky-button",
+      "settings": {
+        "show": false,
+        "show_on_home": true,
+        "subheading": "<strong>Buy 3 or more and</strong>",
+        "heading": "Save up to 20%!",
+        "image": "shopify://shop_images/Untitled_design_89.png",
+        "link": "shopify://collections/all",
+        "background": "#fe208d",
+        "text_color": "#ffffff",
+        "bg_button": "#ffb74a",
+        "color_button": "#000000"
+      }
+    }
+  },
+  "order": [
+    "footer",
+    "d30a60e6-f60a-4e2d-8a70-3958c7a9e737",
+    "4496a7bc-52e2-4e6c-94ef-f5e24ea1109e",
+    "button"
+  ]
+}
