@@ -66,11 +66,20 @@ html[dir="rtl"] .swiper-wrapper {
 <div class="section-{{ section.id }} scrolling-text--parent">
   <div class="s-swiper-container swiper--top swiper--{{ section.id }}">
     <div class="s-swiper-wrapper">
+      
       {% for block in section.blocks %}
         <div class="s-swiper-slide">
           <h2 class="{{ section.settings.title_size }}">{{ block.settings.text }}</h2>
         </div>
         {% endfor %}
+      
+      <!-- Duplicate the content to ensure smooth infinite scrolling -->
+      {% for block in section.blocks %}
+        <div class="s-swiper-slide">
+          <h2 class="{{ section.settings.title_size }}">{{ block.settings.text }}</h2>
+        </div>
+      {% endfor %}
+      
     </div>
   </div>
 </div>
