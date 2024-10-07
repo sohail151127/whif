@@ -93,12 +93,33 @@
           "settings": {
             "text": "Extrait de Parfum"
           }
+        },
+        "text_efNcCd": {
+          "type": "text",
+          "settings": {
+            "text": "Cruelty-free"
+          }
+        },
+        "text_VUBzaW": {
+          "type": "text",
+          "settings": {
+            "text": "Clean formulas"
+          }
+        },
+        "text_jaTVeh": {
+          "type": "text",
+          "settings": {
+            "text": "Extrait de Parfum"
+          }
         }
       },
       "block_order": [
         "850d8ebc-02fe-4546-8828-6cf7a925d900",
         "f720f3c3-f041-402c-8873-fd7a0880118a",
-        "56dc7905-b389-4533-8ac6-2cf84d4238dc"
+        "56dc7905-b389-4533-8ac6-2cf84d4238dc",
+        "text_efNcCd",
+        "text_VUBzaW",
+        "text_jaTVeh"
       ],
       "settings": {
         "background": "#ffde4b",
