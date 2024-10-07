@@ -288,13 +288,41 @@
           "settings": {
             "text": "🐶 CRUELTY-FREE FORMULAS"
           }
+        },
+        "text_9cHTCV": {
+          "type": "text",
+          "settings": {
+            "text": "🧪 PARABEN & PHTHALATE FREE"
+          }
+        },
+        "text_D8taMz": {
+          "type": "text",
+          "settings": {
+            "text": "🌱 VEGAN"
+          }
+        },
+        "text_j794DY": {
+          "type": "text",
+          "settings": {
+            "text": "✅ LONG LASTING"
+          }
+        },
+        "text_cPUwFR": {
+          "type": "text",
+          "settings": {
+            "text": "🐶 CRUELTY-FREE FORMULAS"
+          }
         }
       },
       "block_order": [
         "cc94acfe-cee9-4c8b-aa91-cd773ef5b938",
         "4e93f068-e413-4426-addc-6eeaa336970c",
         "8f77963d-8795-4703-a794-519f63f0f740",
-        "d962822b-aee0-4517-8da6-6c11009ac7d2"
+        "d962822b-aee0-4517-8da6-6c11009ac7d2",
+        "text_9cHTCV",
+        "text_D8taMz",
+        "text_j794DY",
+        "text_cPUwFR"
       ],
       "custom_css": [
         ".h4 {font-family: unset; /* font-weight: 400; */ letter-spacing: 1px;}"
