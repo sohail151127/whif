@@ -15,7 +15,7 @@
 </style>
 
 
-{{ template.name }}
+{{ template.suffix }}
 {%- capture product_form_id -%}product-form-{{ product.id }}-{{ section.id }}{%- endcapture -%}
 {% assign isPreOrder = false %}
   {% for tag in product.tags %}
