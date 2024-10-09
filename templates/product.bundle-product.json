@@ -45,7 +45,7 @@
         "set_of_bundle_product_6fzWwQ": {
           "type": "set_of_bundle_product",
           "settings": {
-            "set_bundle_head": "This bundle includes:",
+            "set_bundle_head": "SAVE $40 with this BUNDLE!",
             "custom_metafield": "{{ product.metafields.custom.set_product_or_bundle_product | metafield_tag }}"
           }
         },
