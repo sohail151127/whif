@@ -653,18 +653,6 @@
         "mobile_top": 5,
         "mobile_bottom": 5
       }
-    },
-    "custom_liquid_RpGP3Q": {
-      "type": "custom-liquid",
-      "settings": {
-        "full_width": true,
-        "remove_vertical_spacing": false,
-        "remove_horizontal_spacing": false,
-        "liquid": "{%- assign bundle_products_gids = product.metafields.custom.create_a_bundle -%}\n{%- assign bundle_products = bundle_products_gids | replace: '[\"gid://shopify/Product/', '' | replace: '\"]', '' | replace: '\",', ',' | split: ',' -%}\n\n{%- if bundle_products != blank -%}\n  <div class=\"bundle-items\">\n    <h3>Included in this Bundle:</h3>\n    <ul>\n      {%- for product_id in bundle_products -%}\n        {%- assign product = all_products[product_id] -%}\n        {%- if product != blank -%}\n          <li>\n            <a href=\"{{ product.url }}\">{{ product.title }}</a>\n            <img src=\"{{ product.featured_image | img_url: 'medium' }}\" alt=\"{{ product.title }}\">\n          </li>\n        {%- endif -%}\n      {%- endfor -%}\n    </ul>\n  </div>\n{%- endif -%}",
-        "background": "",
-        "background_gradient": "",
-        "text_color": ""
-      }
     }
   },
   "order": [
@@ -679,7 +667,6 @@
     "1cb6bd88-e603-4135-abef-bc075ba6fbfc",
     "related-products",
     "16940820063986346d",
-    "3327c621-70f4-4983-98b5-927d9e533527",
-    "custom_liquid_RpGP3Q"
+    "3327c621-70f4-4983-98b5-927d9e533527"
   ]
 }
