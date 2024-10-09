@@ -1,1 +1,672 @@
-{"sections":{"b36f8dd0-8bcd-4fee-883e-0efce149d609":{"type":"new-main-product","blocks":{"review_stars_Rb46Qf":{"type":"review-stars","settings":{}},"5cdb68c6-4cf6-4ad7-954a-e7f18de85f6b":{"type":"title","settings":{"heading_tag":"h2"}},"eabf0c51-23e3-4215-8852-a9e97b2a362b":{"type":"text","settings":{"addClass":"","text":"<p>50ml Extrait de Parfum<\/p>"}},"separator_VABzeY":{"type":"separator","settings":{"addClass":""}},"price_tnXK7T":{"type":"price","settings":{"show_taxes_notice":false}},"set_of_bundle_product_6fzWwQ":{"type":"set_of_bundle_product","settings":{"set_bundle_head":"This bundle includes:","custom_metafield":"{{ product.metafields.custom.set_product_or_bundle_product | metafield_tag }}"}},"liquid_tVUXkB":{"type":"liquid","disabled":true,"settings":{"liquid":"{{product.metafields.custom.set_product_or_bundle_product | metafield_tag }}"}},"limited_offer_CJaWKr":{"type":"limited_offer","settings":{"offer_head":"Limited offer:"}},"text_mexhDP":{"type":"text","settings":{"addClass":"","text":"{{ product.metafields.custom.product_review_text | metafield_tag }}"}},"variant_picker_DpnqCj":{"type":"variant_picker","settings":{"hide_sold_out_variants":false,"stack_blocks":true,"selector_mode":"block","color_mode":"color","size_chart_page":""}},"text_tQp89K":{"type":"text","disabled":true,"settings":{"addClass":"custom-delay","text":"<p><strong>Shipping delays<\/strong> - Sent 4-6 business days<\/p>"}},"8205315e-0530-4fa5-84ad-749db38db0e7":{"type":"buy_buttons_price","settings":{"show_payment_button":false,"show_gift_card_recipient":false,"link_text":"BUNDLE & SAVE","text_overlay":"UP TO 25% OFF🔥","link":"shopify:\/\/collections\/bundle-collection","atc_button_background":"#1b34a3","atc_button_text_color":"#f9f9f6","payment_button_background":"","payment_button_text_color":"","show_taxes_notice":false}},"progress_bar_McJTCX":{"type":"progress_bar","settings":{}},"scroll_progress_bar_KFmPK9":{"type":"scroll_progress_bar","settings":{"bar-img":"shopify:\/\/shop_images\/SPEND_AND_SAVE_2.gif"}},"icon_with_text_wEgzkQ":{"type":"icon_with_text","settings":{"image1":"shopify:\/\/shop_images\/211754_heart_icon_f07d6d21-a6b5-450b-b1aa-0d0f4e7b454a.png","icon1":"<p>10,000+ HAPPY CUSTOMERS<\/p>","image2":"shopify:\/\/shop_images\/animal-foot.png","icon2":"<p>NO ANIMAL INGREDIENTS<\/p>","image3":"shopify:\/\/shop_images\/france.png","icon3":"<p>MADE IN FRANCE<\/p>","image4":"shopify:\/\/shop_images\/no-gmo.png","icon4":"<p>PARABEN & PHTHALATE FREE<\/p>"}},"separator_NQtdm4":{"type":"separator","settings":{"addClass":""}},"collapsible_text_CYGaTB":{"type":"collapsible_text","settings":{"title":"Description","liquid":"{{ product.description }}","content":""}},"collapsible_text_akpGHc":{"type":"collapsible_text","settings":{"title":"Notes & Ingredients","liquid":"<p style=\"margin: 0 0 10px; !important\"><b>Notes:<\/b><\/p>\n        {% assign notes = product.metafields.custom.perfume_notes.value %}\n        <div style=\"margin: 0 0 20px !important;\">\n        {% for note in notes %}\n        {% assign textParts = note | split: ' ' %}\n        <span class=\"item-heading\">\n          {{ textParts[0] }}\n{% if forloop.last %}{% else %},{% endif %}\n        <\/span>       \n        {% endfor %}\n        <\/div>","content":"<p><\/p><p><strong>Ingredients:<\/strong><\/p>{{ product.metafields.custom.product_ingredients | metafield_tag }}"}},"collapsible_text_RgY4Bg":{"type":"collapsible_text","settings":{"title":"Fragrance Storage & Care","liquid":"","content":"{{ product.metafields.custom.fragrance_storage_care | metafield_tag }}"}}},"block_order":["review_stars_Rb46Qf","5cdb68c6-4cf6-4ad7-954a-e7f18de85f6b","eabf0c51-23e3-4215-8852-a9e97b2a362b","separator_VABzeY","price_tnXK7T","set_of_bundle_product_6fzWwQ","liquid_tVUXkB","limited_offer_CJaWKr","text_mexhDP","variant_picker_DpnqCj","text_tQp89K","8205315e-0530-4fa5-84ad-749db38db0e7","progress_bar_McJTCX","scroll_progress_bar_KFmPK9","icon_with_text_wEgzkQ","separator_NQtdm4","collapsible_text_CYGaTB","collapsible_text_akpGHc","collapsible_text_RgY4Bg"],"custom_css":[".section-full {padding-top: 20px; padding-bottom: 40px;}",".title-container {margin-bottom: 7px;}",".title-container + .product-info__text {margin: 7px 0;}",".title-container + .product-info__text + .loox-rating {margin-top: 7px;}"],"settings":{"full_width":true,"show_fixed_add_to_cart":true,"cart_scroll_background":"#ffffff","content_1":"✅ 10% discount on all recurring orders","content_2":"✅ Pause, adjust or cancle anytime","desktop_media_width":55,"desktop_media_layout":"carousel_thumbnails_left","mobile_media_size":"contained","mobile_carousel_control":"floating_dots","enable_video_autoplay":false,"enable_video_looping":true,"enable_image_zoom":false,"max_image_zoom_level":3,"background":"","background_gradient":"","text_color":"","input_background":"rgba(0,0,0,0)","input_text_color":"","icon1":"","icon2":"","icon3":"","icon4":"","review-text":"","review-name":"","review-text2":"","review-name2":"","review-text3":"","review-name3":""}},"main":{"type":"main-product","disabled":true,"settings":{"full_width":true,"show_fixed_add_to_cart":true,"content_1":"✅ 10% discount on all recurring orders","content_2":"✅ Pause, adjust or cancle anytime","desktop_media_width":55,"desktop_media_layout":"carousel_thumbnails_left","mobile_media_size":"expanded","mobile_carousel_control":"floating_dots","enable_video_autoplay":false,"enable_video_looping":true,"enable_image_zoom":true,"max_image_zoom_level":3,"background":"","background_gradient":"","text_color":"","input_background":"rgba(0,0,0,0)","input_text_color":""}},"d7bce613-4cb2-4e2b-8037-55d1a0b0e797":{"type":"footer-scrolling-text","blocks":{"cc94acfe-cee9-4c8b-aa91-cd773ef5b938":{"type":"text","settings":{"text":"🧪 PARABEN & PHTHALATE FREE"}},"4e93f068-e413-4426-addc-6eeaa336970c":{"type":"text","settings":{"text":"🌱 VEGAN"}},"8f77963d-8795-4703-a794-519f63f0f740":{"type":"text","settings":{"text":"✅ LONG LASTING"}},"d962822b-aee0-4517-8da6-6c11009ac7d2":{"type":"text","settings":{"text":"🐶 CRUELTY-FREE FORMULAS"}}},"block_order":["cc94acfe-cee9-4c8b-aa91-cd773ef5b938","4e93f068-e413-4426-addc-6eeaa336970c","8f77963d-8795-4703-a794-519f63f0f740","d962822b-aee0-4517-8da6-6c11009ac7d2"],"custom_css":[".h4 {font-family: unset; \/* font-weight: 400; *\/ letter-spacing: 1px;}"],"settings":{"background":"#000000","color":"#ffffff","title_size":"h4","speed":5,"top":5,"bottom":5,"mobile_top":5,"mobile_bottom":5}},"rich_text_b974cm":{"type":"rich-text","blocks":{"heading_iNVnta":{"type":"heading","settings":{"text":"As Seen In 🗞️","heading_tag":"h1","text_color":"","gradient":""}}},"block_order":["heading_iNVnta"],"settings":{"addclass":"","section_display":"all","full_width":true,"content_width":"small","text_position":"center","background":"","text_color":"","background_2":""}},"custom_logo_list_6HWh4x":{"type":"custom-logo-list","blocks":{"logo_fTbbhT":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/Untitled_500_x_320_px.png","additional_heading":"<h2>\"It's liquid gold! This scent is literal heaven\"<\/h2>","additional_content":"<p>Mamamia<\/p>"}},"logo_YzFKNq":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/Untitled_500_x_320_px_1.png","additional_heading":"<h2>\"Luxe scents that smell like your favourite designer perfumes!\"<\/h2>","additional_content":"<p>Woman's Day<\/p>"}},"logo_VXwMLb":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/Untitled_500_x_320_px_2.png","additional_heading":"<h2>\"One of the brands doing it best is Whif.\"<\/h2>","additional_content":"<p>GQ<\/p>"}}},"block_order":["logo_fTbbhT","logo_YzFKNq","logo_VXwMLb"],"settings":{"add_class":"custom-logo-section"}},"64938ff2-1fc2-4a18-af4a-d673bde4ef3e":{"type":"custom-reviews","blocks":{"e60b099d-edab-4e9a-8118-53cfa6a90d7b":{"type":"review-grid","settings":{"review_head":"","title_1":"Kim P.","text_1":"<p>My first purchase and wow! Beautiful deep long lasting fragrance and I got so many compliments wearing it. Will definitely be exploring the range.<\/p>"}},"d2f5a9bd-6d83-4576-b6eb-cdc211d3286b":{"type":"review-grid","settings":{"review_head":"","title_1":"Ellie P.","text_1":"<p>This smells amazing and it's staying power lasts all day!<br\/>Smells just like it is meant to. You will not be disappointed. Buy this now.<\/p>"}},"cef27882-6aa6-4ca2-94b6-5a0b5a9f853d":{"type":"review-grid","settings":{"review_head":"","title_1":"Shannon K.","text_1":"<p>Absolutely amazeballs!! <br\/>Lasts all day, sprays beautiful and evenly, cute packaging.<br\/>Will definitely be adding more to my growing collection. ❤️<\/p>"}},"847020e7-5b93-424b-a92c-7c803b84b398":{"type":"review-grid","settings":{"review_head":"","title_1":"Matt L.","text_1":"<p>This is an iconic fragrance and I’m glad I don’t need to pay $300 for it anymore!!<\/p>"}},"2ce306de-234a-4f29-b4a4-6364042f01bc":{"type":"review-grid","settings":{"review_head":"","title_1":"Terri M.","text_1":"<p>I was sceptical but once I received it and that first spray I wouldn’t be able to tell the difference between this and the original. Long lasting too.<\/p>"}},"580663ac-d9c8-4ecd-a0f6-aa480b2a826f":{"type":"review-grid","settings":{"review_head":"","title_1":"Bonnie H.","text_1":"<p>These perfumes are amazing! They have great longevity & smell divine! Only bad thing is on initial spray the can be quite harsh, but the dry down is beautiful! I love them thank you Whif &lt;3<\/p>"}},"bebe5bbe-40f9-4e9b-873b-848409195e0a":{"type":"review-grid","settings":{"review_head":"","title_1":"Amy J.","text_1":"<p>I am a perfume lover, and I can not leave the house without it. I am very glad I found whif as I can purchase my go tos for a fraction of the price. The scent is spot on, and no one can tell the different! I highly recommend!<\/p>"}}},"block_order":["e60b099d-edab-4e9a-8118-53cfa6a90d7b","d2f5a9bd-6d83-4576-b6eb-cdc211d3286b","cef27882-6aa6-4ca2-94b6-5a0b5a9f853d","847020e7-5b93-424b-a92c-7c803b84b398","2ce306de-234a-4f29-b4a4-6364042f01bc","580663ac-d9c8-4ecd-a0f6-aa480b2a826f","bebe5bbe-40f9-4e9b-873b-848409195e0a"],"disabled":true,"settings":{"title":"","text":"","background":"","color":"","top":50,"bottom":20,"mobile_top":30,"mobile_bottom":20}},"whif_text_and_image_LfbCGm":{"type":"whif-text-and-image","blocks":{"heading_nzGcMq":{"type":"heading","settings":{"title":"Cruelty-free","title_size":"h1"}},"text_cwYnff":{"type":"text","settings":{"text":"<p>At Whif, we are committed to creating high-quality, luxurious fragrances that are 100% cruelty-free. We believe that beauty should never come at the expense of our furry friends, which is why all our products are vegan and made without any animal testing. Enjoy your favorite scents with the peace of mind that they are ethically produced, from start to finish.<\/p>"}}},"block_order":["heading_nzGcMq","text_cwYnff"],"custom_css":[".whif-text-and-image {padding-top: 20px; padding-bottom: 40px;}",".whif-text-and-image .whif-content-container h3 {margin-bottom: 10px;}",".whif-text-and-image .whif-content-container .rte {margin-top: 10px;}",".whif-text-and-image .whif-content-container .rte p {font-size: 20px;}",".whif-text-and-image .whif-image-container .media,.whif-text-and-image .whif-image-container .media img {border-radius: 30px;}","@media (max-width: 768px) {.whif-text-and-image {padding-top: 10px; padding-bottom: 20px; }}"],"settings":{"section_display":"all","full":false,"background":"#f9f9f6","color":"#000000","image":"shopify:\/\/shop_images\/Untitled_design_29_e0085e1d-fbc7-429e-84b3-a29e235b280c.jpg","image_right":false,"image_badge":"","icon_image_width":30,"btn_bg":"","btn_color":"","btn_bg_2":"","btn_color_2":""}},"whif_text_and_image_Aq8HU9":{"type":"whif-text-and-image","blocks":{"heading_QgDe4E":{"type":"heading","settings":{"title":"Crafted in Grasse, France","title_size":"h1"}},"text_TQTJFB":{"type":"text","settings":{"text":"<p>We take pride in crafting our perfumes in Grasse, France, the world-renowned capital of fragrance. Each scent is meticulously blended using the finest ingredients, honoring the rich tradition of French perfumery. When you choose Whif, you're experiencing the artistry and heritage of Grasse in every bottle.<\/p>"}}},"block_order":["heading_QgDe4E","text_TQTJFB"],"custom_css":[".whif-text-and-image {padding-top: 20px; padding-bottom: 40px;}",".whif-text-and-image .whif-content-container h3 {margin-bottom: 10px;}",".whif-text-and-image .whif-content-container .rte {margin-top: 10px;}",".whif-text-and-image .whif-content-container .rte p {font-size: 20px;}",".whif-text-and-image .whif-image-container .media,.whif-text-and-image .whif-image-container .media img {border-radius: 30px;}","@media (max-width: 768px) {.whif-text-and-image {padding-top: 0px; padding-bottom: 20px; }}"],"settings":{"section_display":"all","full":false,"background":"#f9f9f6","color":"#000000","image":"shopify:\/\/shop_images\/Untitled_design_-_2024-08-21T070026.748.png","image_right":true,"image_badge":"","icon_image_width":30,"btn_bg":"","btn_color":"","btn_bg_2":"","btn_color_2":""}},"1cb6bd88-e603-4135-abef-bc075ba6fbfc":{"type":"accordion-content","blocks":{"template--19953642438974__1cb6bd88-e603-4135-abef-bc075ba6fbfc-item-1":{"type":"item","settings":{"title":"How long will one bottle last?","content":"<p>One of our 50ml bottles will last around 2-3 months if used once a day.<\/p>"}},"template--19953642438974__1cb6bd88-e603-4135-abef-bc075ba6fbfc-item-2":{"type":"item","settings":{"title":"Are your fragrances tested on animals?","content":"<p>No, we do absolutely NO animal testing whatsoever.<\/p>"}},"24d462a0-2bce-4477-a7f5-6c12981fdd44":{"type":"item","settings":{"title":"Do your perfumes have good staying power?","content":"<p>Yes, our formulas are developed with the highest quality ingredients and formulated at a Extrait de Parfum strength.<\/p>"}}},"block_order":["template--19953642438974__1cb6bd88-e603-4135-abef-bc075ba6fbfc-item-1","template--19953642438974__1cb6bd88-e603-4135-abef-bc075ba6fbfc-item-2","24d462a0-2bce-4477-a7f5-6c12981fdd44"],"custom_css":["@media (max-width: 768px) {.section-accordian-content .section-stack {gap: 0.5rem !important; }}"],"settings":{"width":"normal","subheading":"","title":"Common questions","content":"","button_text":"","button_url":"","text_position":"start","title_size":"h3","text":"<p><strong>Have another question? Email us <\/strong><a href=\"mailto:chris@whif.com.au\" title=\"mailto:chris@whif.com.au\"><strong>here<\/strong><\/a><\/p>","background":"#f9f9f6","background_gradient":"","text_color":"#000000","heading_color":"#000000","heading_gradient":"","button_background":"","button_text_color":"","accordion_background":"#f9f9f6","accordion_text_color":"#000000","top":60,"bottom":60,"mobile_top":40,"mobile_bottom":40}},"related-products":{"type":"related-products","settings":{"recommendations_count":8,"products":"{{ product.metafields[\"shopify--discovery--product_recommendation\"].complementary_products.value }}","full_width":true,"stack_products":false,"show_progress_bar":false,"show_save":true,"save_text":"SAVE UP TO 25%","bundle_text":"BUNDLE & SAVE","bundle_link":"shopify:\/\/collections\/bundle-collection","products_per_row_mobile":"2","product_show":8,"products_per_row_desktop":4,"subheading":"","title":"You May Also Like","mobile_heading_size":28,"link_url":"shopify:\/\/collections\/all","link_text":"","button_secondary":false,"content":"","background":"#f9f9f6","text_color":"#000000","top":40,"bottom":50,"mobile_top":20,"mobile_bottom":40}},"16940820063986346d":{"type":"apps","blocks":{"4399230a-80dd-4c8d-8703-9f829984009a":{"type":"shopify:\/\/apps\/loox-reviews\/blocks\/loox-dynamic-section\/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e","settings":{"only_photos":false,"aggregated":false,"limit":20,"hide_thumbnails":false,"maxwidth":1080,"is_sample":true}}},"block_order":["4399230a-80dd-4c8d-8703-9f829984009a"],"settings":{"section_heading":"Reviews","title_size":"h1","full_width":true,"remove_vertical_spacing":true,"remove_horizontal_spacing":false,"background":"#f9f9f6","background_gradient":"","text_color":"#000000","enable_review_integration":true,"review_header_gradient":"linear-gradient(135deg, rgba(255, 194, 102, 1), rgba(255, 163, 26, 1) 100%)","review_header_text_color":"#000000","review_button_background":"#000000","review_button_text_color":"#ffffff"}},"3327c621-70f4-4983-98b5-927d9e533527":{"type":"product-sticky-bar","settings":{"title_size":"h4","background":"#f9f9f6","text_color":"#000000","top":5,"bottom":5,"mobile_top":5,"mobile_bottom":5}}},"order":["b36f8dd0-8bcd-4fee-883e-0efce149d609","main","d7bce613-4cb2-4e2b-8037-55d1a0b0e797","rich_text_b974cm","custom_logo_list_6HWh4x","64938ff2-1fc2-4a18-af4a-d673bde4ef3e","whif_text_and_image_LfbCGm","whif_text_and_image_Aq8HU9","1cb6bd88-e603-4135-abef-bc075ba6fbfc","related-products","16940820063986346d","3327c621-70f4-4983-98b5-927d9e533527"]}
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
+{
+  "sections": {
+    "b36f8dd0-8bcd-4fee-883e-0efce149d609": {
+      "type": "new-main-product",
+      "blocks": {
+        "review_stars_Rb46Qf": {
+          "type": "review-stars",
+          "settings": {
+          }
+        },
+        "5cdb68c6-4cf6-4ad7-954a-e7f18de85f6b": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h2"
+          }
+        },
+        "eabf0c51-23e3-4215-8852-a9e97b2a362b": {
+          "type": "text",
+          "settings": {
+            "addClass": "",
+            "text": "<p>50ml Extrait de Parfum</p>"
+          }
+        },
+        "separator_VABzeY": {
+          "type": "separator",
+          "settings": {
+            "addClass": ""
+          }
+        },
+        "price_tnXK7T": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "set_of_bundle_product_6fzWwQ": {
+          "type": "set_of_bundle_product",
+          "settings": {
+            "set_bundle_head": "This bundle includes:",
+            "custom_metafield": "{{ product.metafields.custom.set_product_or_bundle_product | metafield_tag }}"
+          }
+        },
+        "liquid_tVUXkB": {
+          "type": "liquid",
+          "disabled": true,
+          "settings": {
+            "liquid": "{{product.metafields.custom.set_product_or_bundle_product | metafield_tag }}"
+          }
+        },
+        "limited_offer_CJaWKr": {
+          "type": "limited_offer",
+          "settings": {
+            "offer_head": "Limited offer:"
+          }
+        },
+        "text_mexhDP": {
+          "type": "text",
+          "settings": {
+            "addClass": "",
+            "text": "{{ product.metafields.custom.product_review_text | metafield_tag }}"
+          }
+        },
+        "variant_picker_DpnqCj": {
+          "type": "variant_picker",
+          "disabled": true,
+          "settings": {
+            "hide_sold_out_variants": false,
+            "stack_blocks": true,
+            "selector_mode": "block",
+            "color_mode": "color",
+            "size_chart_page": ""
+          }
+        },
+        "text_tQp89K": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "addClass": "custom-delay",
+            "text": "<p><strong>Shipping delays</strong> - Sent 4-6 business days</p>"
+          }
+        },
+        "8205315e-0530-4fa5-84ad-749db38db0e7": {
+          "type": "buy_buttons_price",
+          "settings": {
+            "show_payment_button": false,
+            "show_gift_card_recipient": false,
+            "link_text": "BUNDLE & SAVE",
+            "text_overlay": "UP TO 25% OFF🔥",
+            "link": "shopify://collections/bundle-collection",
+            "atc_button_background": "#1b34a3",
+            "atc_button_text_color": "#f9f9f6",
+            "payment_button_background": "",
+            "payment_button_text_color": "",
+            "show_taxes_notice": false
+          }
+        },
+        "progress_bar_McJTCX": {
+          "type": "progress_bar",
+          "settings": {
+          }
+        },
+        "scroll_progress_bar_KFmPK9": {
+          "type": "scroll_progress_bar",
+          "settings": {
+            "bar-img": "shopify://shop_images/SPEND_AND_SAVE_2.gif"
+          }
+        },
+        "icon_with_text_wEgzkQ": {
+          "type": "icon_with_text",
+          "settings": {
+            "image1": "shopify://shop_images/211754_heart_icon_f07d6d21-a6b5-450b-b1aa-0d0f4e7b454a.png",
+            "icon1": "<p>20,000+ HAPPY CUSTOMERS</p>",
+            "image2": "shopify://shop_images/animal-foot.png",
+            "icon2": "<p>NO ANIMAL INGREDIENTS</p>",
+            "image3": "shopify://shop_images/france.png",
+            "icon3": "<p>MADE IN FRANCE</p>",
+            "image4": "shopify://shop_images/no-gmo.png",
+            "icon4": "<p>PARABEN & PHTHALATE FREE</p>"
+          }
+        },
+        "separator_NQtdm4": {
+          "type": "separator",
+          "settings": {
+            "addClass": ""
+          }
+        },
+        "collapsible_text_CYGaTB": {
+          "type": "collapsible_text",
+          "settings": {
+            "title": "Description",
+            "liquid": "{{ product.description }}",
+            "content": ""
+          }
+        },
+        "collapsible_text_akpGHc": {
+          "type": "collapsible_text",
+          "settings": {
+            "title": "Notes & Ingredients",
+            "liquid": "<p style=\"margin: 0 0 10px; !important\"><b>Notes:</b></p>\n        {% assign notes = product.metafields.custom.perfume_notes.value %}\n        <div style=\"margin: 0 0 20px !important;\">\n        {% for note in notes %}\n        {% assign textParts = note | split: ' ' %}\n        <span class=\"item-heading\">\n          {{ textParts[0] }}\n{% if forloop.last %}{% else %},{% endif %}\n        </span>       \n        {% endfor %}\n        </div>",
+            "content": "<p></p><p><strong>Ingredients:</strong></p>{{ product.metafields.custom.product_ingredients | metafield_tag }}"
+          }
+        },
+        "collapsible_text_RgY4Bg": {
+          "type": "collapsible_text",
+          "settings": {
+            "title": "Fragrance Storage & Care",
+            "liquid": "",
+            "content": "{{ product.metafields.custom.fragrance_storage_care | metafield_tag }}"
+          }
+        }
+      },
+      "block_order": [
+        "review_stars_Rb46Qf",
+        "5cdb68c6-4cf6-4ad7-954a-e7f18de85f6b",
+        "eabf0c51-23e3-4215-8852-a9e97b2a362b",
+        "separator_VABzeY",
+        "price_tnXK7T",
+        "set_of_bundle_product_6fzWwQ",
+        "liquid_tVUXkB",
+        "limited_offer_CJaWKr",
+        "text_mexhDP",
+        "variant_picker_DpnqCj",
+        "text_tQp89K",
+        "8205315e-0530-4fa5-84ad-749db38db0e7",
+        "progress_bar_McJTCX",
+        "scroll_progress_bar_KFmPK9",
+        "icon_with_text_wEgzkQ",
+        "separator_NQtdm4",
+        "collapsible_text_CYGaTB",
+        "collapsible_text_akpGHc",
+        "collapsible_text_RgY4Bg"
+      ],
+      "custom_css": [
+        ".section-full {padding-top: 20px; padding-bottom: 40px;}",
+        ".title-container {margin-bottom: 7px;}",
+        ".title-container + .product-info__text {margin: 7px 0;}",
+        ".title-container + .product-info__text + .loox-rating {margin-top: 7px;}"
+      ],
+      "settings": {
+        "full_width": true,
+        "show_fixed_add_to_cart": true,
+        "cart_scroll_background": "#ffffff",
+        "content_1": "✅ 10% discount on all recurring orders",
+        "content_2": "✅ Pause, adjust or cancle anytime",
+        "desktop_media_width": 55,
+        "desktop_media_layout": "carousel_thumbnails_left",
+        "mobile_media_size": "contained",
+        "mobile_carousel_control": "floating_dots",
+        "enable_video_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": false,
+        "max_image_zoom_level": 3,
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "input_background": "rgba(0,0,0,0)",
+        "input_text_color": "",
+        "icon1": "",
+        "icon2": "",
+        "icon3": "",
+        "icon4": "",
+        "review-text": "",
+        "review-name": "",
+        "review-text2": "",
+        "review-name2": "",
+        "review-text3": "",
+        "review-name3": ""
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "disabled": true,
+      "settings": {
+        "full_width": true,
+        "show_fixed_add_to_cart": true,
+        "content_1": "✅ 10% discount on all recurring orders",
+        "content_2": "✅ Pause, adjust or cancle anytime",
+        "desktop_media_width": 55,
+        "desktop_media_layout": "carousel_thumbnails_left",
+        "mobile_media_size": "expanded",
+        "mobile_carousel_control": "floating_dots",
+        "enable_video_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 3,
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "input_background": "rgba(0,0,0,0)",
+        "input_text_color": ""
+      }
+    },
+    "d7bce613-4cb2-4e2b-8037-55d1a0b0e797": {
+      "type": "footer-scrolling-text",
+      "blocks": {
+        "cc94acfe-cee9-4c8b-aa91-cd773ef5b938": {
+          "type": "text",
+          "settings": {
+            "text": "🧪 PARABEN & PHTHALATE FREE"
+          }
+        },
+        "4e93f068-e413-4426-addc-6eeaa336970c": {
+          "type": "text",
+          "settings": {
+            "text": "🌱 VEGAN"
+          }
+        },
+        "8f77963d-8795-4703-a794-519f63f0f740": {
+          "type": "text",
+          "settings": {
+            "text": "✅ LONG LASTING"
+          }
+        },
+        "d962822b-aee0-4517-8da6-6c11009ac7d2": {
+          "type": "text",
+          "settings": {
+            "text": "🐶 CRUELTY-FREE FORMULAS"
+          }
+        }
+      },
+      "block_order": [
+        "cc94acfe-cee9-4c8b-aa91-cd773ef5b938",
+        "4e93f068-e413-4426-addc-6eeaa336970c",
+        "8f77963d-8795-4703-a794-519f63f0f740",
+        "d962822b-aee0-4517-8da6-6c11009ac7d2"
+      ],
+      "custom_css": [
+        ".h4 {font-family: unset; /* font-weight: 400; */ letter-spacing: 1px;}"
+      ],
+      "settings": {
+        "background": "#000000",
+        "color": "#ffffff",
+        "title_size": "h4",
+        "speed": 5,
+        "top": 5,
+        "bottom": 5,
+        "mobile_top": 5,
+        "mobile_bottom": 5
+      }
+    },
+    "rich_text_b974cm": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_iNVnta": {
+          "type": "heading",
+          "settings": {
+            "text": "As Seen In 🗞️",
+            "heading_tag": "h1",
+            "text_color": "",
+            "gradient": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_iNVnta"
+      ],
+      "settings": {
+        "addclass": "",
+        "section_display": "all",
+        "full_width": true,
+        "content_width": "small",
+        "text_position": "center",
+        "background": "",
+        "text_color": "",
+        "background_2": ""
+      }
+    },
+    "custom_logo_list_6HWh4x": {
+      "type": "custom-logo-list",
+      "blocks": {
+        "logo_fTbbhT": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Untitled_500_x_320_px.png",
+            "additional_heading": "<h2>\"It's liquid gold! This scent is literal heaven\"</h2>",
+            "additional_content": "<p>Mamamia</p>"
+          }
+        },
+        "logo_YzFKNq": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Untitled_500_x_320_px_1.png",
+            "additional_heading": "<h2>\"Luxe scents that smell like your favourite designer perfumes!\"</h2>",
+            "additional_content": "<p>Woman's Day</p>"
+          }
+        },
+        "logo_VXwMLb": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Untitled_500_x_320_px_2.png",
+            "additional_heading": "<h2>\"One of the brands doing it best is Whif.\"</h2>",
+            "additional_content": "<p>GQ</p>"
+          }
+        }
+      },
+      "block_order": [
+        "logo_fTbbhT",
+        "logo_YzFKNq",
+        "logo_VXwMLb"
+      ],
+      "settings": {
+        "add_class": "custom-logo-section"
+      }
+    },
+    "64938ff2-1fc2-4a18-af4a-d673bde4ef3e": {
+      "type": "custom-reviews",
+      "blocks": {
+        "e60b099d-edab-4e9a-8118-53cfa6a90d7b": {
+          "type": "review-grid",
+          "settings": {
+            "review_head": "",
+            "title_1": "Kim P.",
+            "text_1": "<p>My first purchase and wow! Beautiful deep long lasting fragrance and I got so many compliments wearing it. Will definitely be exploring the range.</p>"
+          }
+        },
+        "d2f5a9bd-6d83-4576-b6eb-cdc211d3286b": {
+          "type": "review-grid",
+          "settings": {
+            "review_head": "",
+            "title_1": "Ellie P.",
+            "text_1": "<p>This smells amazing and it's staying power lasts all day!<br/>Smells just like it is meant to. You will not be disappointed. Buy this now.</p>"
+          }
+        },
+        "cef27882-6aa6-4ca2-94b6-5a0b5a9f853d": {
+          "type": "review-grid",
+          "settings": {
+            "review_head": "",
+            "title_1": "Shannon K.",
+            "text_1": "<p>Absolutely amazeballs!! <br/>Lasts all day, sprays beautiful and evenly, cute packaging.<br/>Will definitely be adding more to my growing collection. ❤️</p>"
+          }
+        },
+        "847020e7-5b93-424b-a92c-7c803b84b398": {
+          "type": "review-grid",
+          "settings": {
+            "review_head": "",
+            "title_1": "Matt L.",
+            "text_1": "<p>This is an iconic fragrance and I’m glad I don’t need to pay $300 for it anymore!!</p>"
+          }
+        },
+        "2ce306de-234a-4f29-b4a4-6364042f01bc": {
+          "type": "review-grid",
+          "settings": {
+            "review_head": "",
+            "title_1": "Terri M.",
+            "text_1": "<p>I was sceptical but once I received it and that first spray I wouldn’t be able to tell the difference between this and the original. Long lasting too.</p>"
+          }
+        },
+        "580663ac-d9c8-4ecd-a0f6-aa480b2a826f": {
+          "type": "review-grid",
+          "settings": {
+            "review_head": "",
+            "title_1": "Bonnie H.",
+            "text_1": "<p>These perfumes are amazing! They have great longevity & smell divine! Only bad thing is on initial spray the can be quite harsh, but the dry down is beautiful! I love them thank you Whif &lt;3</p>"
+          }
+        },
+        "bebe5bbe-40f9-4e9b-873b-848409195e0a": {
+          "type": "review-grid",
+          "settings": {
+            "review_head": "",
+            "title_1": "Amy J.",
+            "text_1": "<p>I am a perfume lover, and I can not leave the house without it. I am very glad I found whif as I can purchase my go tos for a fraction of the price. The scent is spot on, and no one can tell the different! I highly recommend!</p>"
+          }
+        }
+      },
+      "block_order": [
+        "e60b099d-edab-4e9a-8118-53cfa6a90d7b",
+        "d2f5a9bd-6d83-4576-b6eb-cdc211d3286b",
+        "cef27882-6aa6-4ca2-94b6-5a0b5a9f853d",
+        "847020e7-5b93-424b-a92c-7c803b84b398",
+        "2ce306de-234a-4f29-b4a4-6364042f01bc",
+        "580663ac-d9c8-4ecd-a0f6-aa480b2a826f",
+        "bebe5bbe-40f9-4e9b-873b-848409195e0a"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "text": "",
+        "background": "",
+        "color": "",
+        "top": 50,
+        "bottom": 20,
+        "mobile_top": 30,
+        "mobile_bottom": 20
+      }
+    },
+    "whif_text_and_image_LfbCGm": {
+      "type": "whif-text-and-image",
+      "blocks": {
+        "heading_nzGcMq": {
+          "type": "heading",
+          "settings": {
+            "title": "Cruelty-free",
+            "title_size": "h1"
+          }
+        },
+        "text_cwYnff": {
+          "type": "text",
+          "settings": {
+            "text": "<p>At Whif, we are committed to creating high-quality, luxurious fragrances that are 100% cruelty-free. We believe that beauty should never come at the expense of our furry friends, which is why all our products are vegan and made without any animal testing. Enjoy your favorite scents with the peace of mind that they are ethically produced, from start to finish.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_nzGcMq",
+        "text_cwYnff"
+      ],
+      "custom_css": [
+        ".whif-text-and-image {padding-top: 20px; padding-bottom: 40px;}",
+        ".whif-text-and-image .whif-content-container h3 {margin-bottom: 10px;}",
+        ".whif-text-and-image .whif-content-container .rte {margin-top: 10px;}",
+        ".whif-text-and-image .whif-content-container .rte p {font-size: 20px;}",
+        ".whif-text-and-image .whif-image-container .media,.whif-text-and-image .whif-image-container .media img {border-radius: 30px;}",
+        "@media (max-width: 768px) {.whif-text-and-image {padding-top: 10px; padding-bottom: 20px; }}"
+      ],
+      "settings": {
+        "section_display": "all",
+        "full": false,
+        "background": "#f9f9f6",
+        "color": "#000000",
+        "image": "shopify://shop_images/Untitled_design_29_e0085e1d-fbc7-429e-84b3-a29e235b280c.jpg",
+        "image_right": false,
+        "image_badge": "",
+        "icon_image_width": 30,
+        "btn_bg": "",
+        "btn_color": "",
+        "btn_bg_2": "",
+        "btn_color_2": ""
+      }
+    },
+    "whif_text_and_image_Aq8HU9": {
+      "type": "whif-text-and-image",
+      "blocks": {
+        "heading_QgDe4E": {
+          "type": "heading",
+          "settings": {
+            "title": "Crafted in Grasse, France",
+            "title_size": "h1"
+          }
+        },
+        "text_TQTJFB": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We take pride in crafting our perfumes in Grasse, France, the world-renowned capital of fragrance. Each scent is meticulously blended using the finest ingredients, honoring the rich tradition of French perfumery. When you choose Whif, you're experiencing the artistry and heritage of Grasse in every bottle.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_QgDe4E",
+        "text_TQTJFB"
+      ],
+      "custom_css": [
+        ".whif-text-and-image {padding-top: 20px; padding-bottom: 40px;}",
+        ".whif-text-and-image .whif-content-container h3 {margin-bottom: 10px;}",
+        ".whif-text-and-image .whif-content-container .rte {margin-top: 10px;}",
+        ".whif-text-and-image .whif-content-container .rte p {font-size: 20px;}",
+        ".whif-text-and-image .whif-image-container .media,.whif-text-and-image .whif-image-container .media img {border-radius: 30px;}",
+        "@media (max-width: 768px) {.whif-text-and-image {padding-top: 0px; padding-bottom: 20px; }}"
+      ],
+      "settings": {
+        "section_display": "all",
+        "full": false,
+        "background": "#f9f9f6",
+        "color": "#000000",
+        "image": "shopify://shop_images/Untitled_design_-_2024-08-21T070026.748.png",
+        "image_right": true,
+        "image_badge": "",
+        "icon_image_width": 30,
+        "btn_bg": "",
+        "btn_color": "",
+        "btn_bg_2": "",
+        "btn_color_2": ""
+      }
+    },
+    "1cb6bd88-e603-4135-abef-bc075ba6fbfc": {
+      "type": "accordion-content",
+      "blocks": {
+        "template--19953642438974__1cb6bd88-e603-4135-abef-bc075ba6fbfc-item-1": {
+          "type": "item",
+          "settings": {
+            "title": "How long will one bottle last?",
+            "content": "<p>One of our 50ml bottles will last around 2-3 months if used once a day.</p>"
+          }
+        },
+        "template--19953642438974__1cb6bd88-e603-4135-abef-bc075ba6fbfc-item-2": {
+          "type": "item",
+          "settings": {
+            "title": "Are your fragrances tested on animals?",
+            "content": "<p>No, we do absolutely NO animal testing whatsoever.</p>"
+          }
+        },
+        "24d462a0-2bce-4477-a7f5-6c12981fdd44": {
+          "type": "item",
+          "settings": {
+            "title": "Do your perfumes have good staying power?",
+            "content": "<p>Yes, our formulas are developed with the highest quality ingredients and formulated at a Extrait de Parfum strength.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--19953642438974__1cb6bd88-e603-4135-abef-bc075ba6fbfc-item-1",
+        "template--19953642438974__1cb6bd88-e603-4135-abef-bc075ba6fbfc-item-2",
+        "24d462a0-2bce-4477-a7f5-6c12981fdd44"
+      ],
+      "custom_css": [
+        "@media (max-width: 768px) {.section-accordian-content .section-stack {gap: 0.5rem !important; }}"
+      ],
+      "settings": {
+        "width": "normal",
+        "subheading": "",
+        "title": "Common questions",
+        "content": "",
+        "button_text": "",
+        "button_url": "",
+        "text_position": "start",
+        "title_size": "h3",
+        "text": "<p><strong>Have another question? Email us </strong><a href=\"mailto:chris@whif.com.au\" title=\"mailto:chris@whif.com.au\"><strong>here</strong></a></p>",
+        "background": "#f9f9f6",
+        "background_gradient": "",
+        "text_color": "#000000",
+        "heading_color": "#000000",
+        "heading_gradient": "",
+        "button_background": "",
+        "button_text_color": "",
+        "accordion_background": "#f9f9f6",
+        "accordion_text_color": "#000000",
+        "top": 60,
+        "bottom": 60,
+        "mobile_top": 40,
+        "mobile_bottom": 40
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "recommendations_count": 8,
+        "products": "{{ product.metafields[\"shopify--discovery--product_recommendation\"].complementary_products.value }}",
+        "full_width": true,
+        "stack_products": false,
+        "show_progress_bar": false,
+        "show_save": true,
+        "save_text": "SAVE UP TO 25%",
+        "bundle_text": "BUNDLE & SAVE",
+        "bundle_link": "shopify://collections/bundle-collection",
+        "products_per_row_mobile": "2",
+        "product_show": 8,
+        "products_per_row_desktop": 4,
+        "subheading": "",
+        "title": "You May Also Like",
+        "mobile_heading_size": 28,
+        "link_url": "shopify://collections/all",
+        "link_text": "",
+        "button_secondary": false,
+        "content": "",
+        "background": "#f9f9f6",
+        "text_color": "#000000",
+        "top": 40,
+        "bottom": 50,
+        "mobile_top": 20,
+        "mobile_bottom": 40
+      }
+    },
+    "16940820063986346d": {
+      "type": "apps",
+      "blocks": {
+        "4399230a-80dd-4c8d-8703-9f829984009a": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-dynamic-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "only_photos": false,
+            "aggregated": false,
+            "limit": 20,
+            "hide_thumbnails": false,
+            "maxwidth": 1080,
+            "is_sample": true
+          }
+        }
+      },
+      "block_order": [
+        "4399230a-80dd-4c8d-8703-9f829984009a"
+      ],
+      "settings": {
+        "section_heading": "Reviews",
+        "title_size": "h1",
+        "full_width": true,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": false,
+        "background": "#f9f9f6",
+        "background_gradient": "",
+        "text_color": "#000000",
+        "enable_review_integration": true,
+        "review_header_gradient": "linear-gradient(135deg, rgba(255, 194, 102, 1), rgba(255, 163, 26, 1) 100%)",
+        "review_header_text_color": "#000000",
+        "review_button_background": "#000000",
+        "review_button_text_color": "#ffffff"
+      }
+    },
+    "3327c621-70f4-4983-98b5-927d9e533527": {
+      "type": "product-sticky-bar",
+      "settings": {
+        "title_size": "h4",
+        "background": "#f9f9f6",
+        "text_color": "#000000",
+        "top": 5,
+        "bottom": 5,
+        "mobile_top": 5,
+        "mobile_bottom": 5
+      }
+    }
+  },
+  "order": [
+    "b36f8dd0-8bcd-4fee-883e-0efce149d609",
+    "main",
+    "d7bce613-4cb2-4e2b-8037-55d1a0b0e797",
+    "rich_text_b974cm",
+    "custom_logo_list_6HWh4x",
+    "64938ff2-1fc2-4a18-af4a-d673bde4ef3e",
+    "whif_text_and_image_LfbCGm",
+    "whif_text_and_image_Aq8HU9",
+    "1cb6bd88-e603-4135-abef-bc075ba6fbfc",
+    "related-products",
+    "16940820063986346d",
+    "3327c621-70f4-4983-98b5-927d9e533527"
+  ]
+}
