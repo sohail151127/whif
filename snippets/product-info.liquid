@@ -2,10 +2,20 @@
   .set_product .set_heading.set_heading_s {
     font-weight:bold;
   }
+
+ 
+.custom-product-buttons .button__price {
+  display:none;
+}
+
+
+
+
+  
 </style>
 
 
-
+{{ template }}
 {%- capture product_form_id -%}product-form-{{ product.id }}-{{ section.id }}{%- endcapture -%}
 {% assign isPreOrder = false %}
   {% for tag in product.tags %}
