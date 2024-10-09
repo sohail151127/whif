@@ -18,9 +18,9 @@ document.getElementById('add-bundle-to-cart').addEventListener('click', function
   // Define an array to store the products in the bundle
   var bundleItems = [];
 
-  // Loop through the metafield to get the product variant IDs (the first variant of each product)
+  // Loop through the metafield to get the selected or first available variant IDs
   {% for x in product.metafields.custom.create_a_bundle.value %}
-    var variantId = {{ all_products[x.id].variants.first.id }};
+    var variantId = {{ x.selected_or_first_available_variant.id }};
     bundleItems.push({
       id: variantId,
       quantity: 1 // Adjust quantity as needed
@@ -49,6 +49,7 @@ document.getElementById('add-bundle-to-cart').addEventListener('click', function
     console.error('Error adding bundle to cart:', error);
   });
 });
+
 
 </script>
 
