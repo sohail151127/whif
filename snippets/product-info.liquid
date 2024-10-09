@@ -19,11 +19,24 @@ document.getElementById('add-bundle-to-cart').addEventListener('click', function
   var bundleItems = [];
 
   // Loop through the metafield to get the selected or first available variant IDs
+  var mainProductId = {{ product.selected_or_first_available_variant.id }};
+  bundleItems.push({
+    id: mainProductId,
+    quantity: 1,
+    properties: {
+      'Bundle': 'Main Product'
+    }
+  });
+
   {% for x in product.metafields.custom.create_a_bundle.value %}
     var variantId = {{ x.selected_or_first_available_variant.id }};
     bundleItems.push({
       id: variantId,
-      quantity: 1 // Adjust quantity as needed
+      quantity: 1,
+      properties: {
+        'Bundle': 'Bundle Item',
+        'Parent': '{{ product.title }}' // Mark which bundle this item belongs to
+      }
     });
   {% endfor %}
 
@@ -49,6 +62,7 @@ document.getElementById('add-bundle-to-cart').addEventListener('click', function
     console.error('Error adding bundle to cart:', error);
   });
 });
+
 
 
 </script>
