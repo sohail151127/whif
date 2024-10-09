@@ -1,3 +1,82 @@
+{% comment %}  ============ custom css {% endcomment %}
+<style>
+  /* Styling for main bundle product */
+.bundle-main {
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+  margin-bottom: 10px;
+}
+
+.bundle-main img {
+  width: 50px;
+  margin-right: 10px;
+}
+
+.bundle-main div {
+  display: flex;
+  align-items: center;
+}
+
+.bundle-main p {
+  margin: 0;
+}
+
+/* Styling for bundle items */
+.bundle-items-container {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.bundle-items-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.bundle-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.bundle-item img {
+  width: 40px;
+  margin-right: 10px;
+}
+
+.bundle-item p {
+  margin: 0;
+}
+
+.toggle-bundle-items {
+  background-color: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+/* Hide bundle items by default, shown when the button is clicked */
+.bundle-items-list {
+  display: none;
+}
+
+.bundle-items-list.show {
+  display: block;
+}
+</style>
+{% comment %} ============= custom css ============ {% endcomment %}
+
+
+
+
+
+
+
+
+
+
 <cart-drawer {% if request.design_mode %}handle-section-events{% endif %} class="cart-drawer drawer drawer--lg" id="cart-drawer">
   {%- if cart.item_count == 0 -%}
     <button is="close-button" aria-label="{{ 'general.accessibility.close' | t | escape }}">
