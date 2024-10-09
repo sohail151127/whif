@@ -1,3 +1,11 @@
+<style>
+  .set_product.set_product-s {
+    font-weight:bold;
+  }
+</style>
+
+
+
 {%- capture product_form_id -%}product-form-{{ product.id }}-{{ section.id }}{%- endcapture -%}
 {% assign isPreOrder = false %}
   {% for tag in product.tags %}
