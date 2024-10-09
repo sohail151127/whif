@@ -136,7 +136,7 @@
         "collapsible_text_CYGaTB": {
           "type": "collapsible_text",
           "settings": {
-            "title": "Description",
+            "title": "What's Included",
             "liquid": "{{ product.description }}",
             "content": ""
           }
