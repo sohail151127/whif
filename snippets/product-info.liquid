@@ -360,7 +360,7 @@
         {% endif %}
         {% assign class = ' custom-standard-product' %}
         {% assign add_class = ' custom-verticle-items' %}
-        <div class="custom-product-buttons{{ add_class }}">
+        <div style="border:2px solid red;" class="custom-product-buttons{{ add_class }}">
           {% if product.metafields.custom.pre_order_note != blank %}<div class="pre-order-metafield">{{ product.metafields.custom.pre_order_note }}</div>{% endif %}
           {% if product.template_suffix == 'discovery-lab' %}
             <!-- <label>Buying Options:</label> -->
