@@ -653,6 +653,18 @@
         "mobile_top": 5,
         "mobile_bottom": 5
       }
+    },
+    "custom_liquid_RpGP3Q": {
+      "type": "custom-liquid",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "liquid": "",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
     }
   },
   "order": [
@@ -667,6 +679,7 @@
     "1cb6bd88-e603-4135-abef-bc075ba6fbfc",
     "related-products",
     "16940820063986346d",
-    "3327c621-70f4-4983-98b5-927d9e533527"
+    "3327c621-70f4-4983-98b5-927d9e533527",
+    "custom_liquid_RpGP3Q"
   ]
 }
