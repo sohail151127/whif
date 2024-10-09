@@ -77,6 +77,9 @@
       </div>
       {% render 'cart-discount-tiers' %}
       <div class="cart-drawer-main v-stack gap-6 sm:gap-8">
+
+
+        {% comment %} ==============   original code ===========
         <div class="cart-drawer__line-items">
           {%- for line_item in cart.items -%}
            
@@ -85,6 +88,60 @@
               {% endunless %}
           {%- endfor -%}
         </div>
+        {% endcomment %} 
+
+        {% comment %} =================== new code start ============ {% endcomment %}
+        <div class="cart-drawer__line-items">
+  {%- for line_item in cart.items -%}
+
+    {%- if line_item.properties['Bundle'] == 'Main Product' -%}
+      <!-- Main Bundle Product Display -->
+      <div class="cart-item bundle-main">
+        <div>
+          <img src="{{ line_item.image | img_url: 'medium' }}" alt="{{ line_item.product_title }}">
+        </div>
+        <div>
+          <p>{{ line_item.product_title }}</p>
+          <p>{{ line_item.variant_title }}</p>
+          <span>{{ line_item.line_price | money }}</span>
+        </div>
+
+        <!-- Expandable section for bundle items -->
+        <div class="bundle-items-container">
+          <button class="toggle-bundle-items">Show/Hide Bundle Items</button>
+          <ul class="bundle-items-list" style="display: none;">
+            {%- for bundle_item in cart.items -%}
+              {%- if bundle_item.properties['Parent'] == line_item.product_title and bundle_item.properties['Bundle'] == 'Bundle Item' -%}
+                <li>
+                  <div class="cart-item bundle-item">
+                    <img src="{{ bundle_item.image | img_url: 'small' }}" alt="{{ bundle_item.product_title }}">
+                    <div>
+                      <p>{{ bundle_item.product_title }}</p>
+                      <p>{{ bundle_item.variant_title }}</p>
+                      <span>{{ bundle_item.line_price | money }}</span>
+                    </div>
+                  </div>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+      </div>
+    
+    {%- else -%}
+      <!-- Render non-bundle items and the individual products not part of the bundle -->
+      {% unless line_item.variant_id == 50459722744126 %}
+        {%- render 'line-item', line_item: line_item, show_desktop_quantity: true -%}
+      {% endunless %}
+    
+    {%- endif -%}
+
+  {%- endfor -%}
+</div>
+        {% comment %} =================== new code end ============ {% endcomment %}
+
+
+        
      {%- if section.settings.products.count > 0 -%}
           <div class="cart-drawer__recommendations drawer_mobile" style="background: {{ section.settings.product_card_background }}; color: var(--text-color); --text-color: {{ section.settings.product_card_text_color }}">
             <div class="v-stack gap-2.5 sm:gap-4">
