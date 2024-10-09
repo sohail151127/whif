@@ -14,14 +14,15 @@
 
 <button id="add-bundle-to-cart" class="btn">Add Bundle to Cart</button>
 <script>
-  document.getElementById('add-bundle-to-cart').addEventListener('click', function() {
+document.getElementById('add-bundle-to-cart').addEventListener('click', function() {
   // Define an array to store the products in the bundle
   var bundleItems = [];
 
-  // Loop through the metafield to get the product IDs
+  // Loop through the metafield to get the product variant IDs (the first variant of each product)
   {% for x in product.metafields.custom.create_a_bundle.value %}
+    var variantId = {{ all_products[x.id].variants.first.id }};
     bundleItems.push({
-      id: {{ x.id }},
+      id: variantId,
       quantity: 1 // Adjust quantity as needed
     });
   {% endfor %}
