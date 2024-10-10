@@ -132,3 +132,30 @@
     {% endfor %}
 </div>
 {%- endcomment -%}
+
+
+
+
+<script>
+  let cartTotal = {{ cartTotal }};
+let tiers = [100, 140, 180, 230]; // Example tiers
+let trackWidth = calculateTrackWidth(cartTotal, tiers); // Create a function to calculate this
+
+// Update the width of the progress dynamically
+document.querySelector('.progress').style.width = trackWidth + '%';
+
+function calculateTrackWidth(total, tiers) {
+    if (total >= tiers[3]) {
+        return 100;
+    } else if (total >= tiers[2]) {
+        return 75;
+    } else if (total >= tiers[1]) {
+        return 50;
+    } else if (total >= tiers[0]) {
+        return 25;
+    } else {
+        return (total / tiers[0]) * 25; // Dynamic calculation for values below the first tier
+    }
+}
+
+</script>
