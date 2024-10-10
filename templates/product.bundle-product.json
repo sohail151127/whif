@@ -136,7 +136,7 @@
         "collapsible_text_CYGaTB": {
           "type": "collapsible_text",
           "settings": {
-            "title": "Description",
+            "title": "What's Included",
             "liquid": "{{ product.description }}",
             "content": ""
           }
@@ -145,8 +145,8 @@
           "type": "collapsible_text",
           "settings": {
             "title": "Notes & Ingredients",
-            "liquid": "<p style=\"margin: 0 0 10px; !important\"><b>Notes:</b></p>\n        {% assign notes = product.metafields.custom.perfume_notes.value %}\n        <div style=\"margin: 0 0 20px !important;\">\n        {% for note in notes %}\n        {% assign textParts = note | split: ' ' %}\n        <span class=\"item-heading\">\n          {{ textParts[0] }}\n{% if forloop.last %}{% else %},{% endif %}\n        </span>       \n        {% endfor %}\n        </div>",
-            "content": "<p></p><p><strong>Ingredients:</strong></p>{{ product.metafields.custom.product_ingredients | metafield_tag }}"
+            "liquid": "<p style=\"margin: 0 0 10px; !important\"><b>Bursting Bloom Notes:</b></p>\n        {% assign notes = product.metafields.custom.perfume_notes.value %}\n        <div style=\"margin: 0 0 20px !important;\">\n        {% for note in notes %}\n        {% assign textParts = note | split: ' ' %}\n        <span class=\"item-heading\">\n          {{ textParts[0] }}\n{% if forloop.last %}{% else %},{% endif %}\n        </span>       \n        {% endfor %}\n        </div>",
+            "content": "<p></p><p><strong>Bursting Bloom Ingredients:</strong></p>{{ product.metafields.custom.product_ingredients | metafield_tag }}"
           }
         },
         "collapsible_text_RgY4Bg": {

@@ -77,6 +77,7 @@
       </div>
       {% render 'cart-discount-tiers' %}
       <div class="cart-drawer-main v-stack gap-6 sm:gap-8">
+
         <div class="cart-drawer__line-items">
           {%- for line_item in cart.items -%}
            
@@ -85,6 +86,7 @@
               {% endunless %}
           {%- endfor -%}
         </div>
+            
      {%- if section.settings.products.count > 0 -%}
           <div class="cart-drawer__recommendations drawer_mobile" style="background: {{ section.settings.product_card_background }}; color: var(--text-color); --text-color: {{ section.settings.product_card_text_color }}">
             <div class="v-stack gap-2.5 sm:gap-4">
@@ -293,3 +295,21 @@
   ]
 }
 {% endschema %}
+
+
+
+{% comment %} ====== new js code ============ {% endcomment %}
+<script>
+  document.querySelectorAll('.toggle-bundle-items').forEach(function(button) {
+  button.addEventListener('click', function() {
+    const bundleList = this.nextElementSibling;
+    if (bundleList.style.display === 'none') {
+      bundleList.style.display = 'block';
+    } else {
+      bundleList.style.display = 'none';
+    }
+  });
+});
+
+</script>
+{% comment %} ====== new js code ============ {% endcomment %}
