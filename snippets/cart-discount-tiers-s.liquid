@@ -1,116 +1,74 @@
-{% assign cartTotal = cart.total_price | divided_by: 100.0 %}
-{% assign discountTiers = '100, 140, 180, 230' | split: ', ' %}
-{% assign discountAmounts = '0, 10, 15, 20' | split: ', ' %}
-{% assign lastIndex = discountTiers.size | minus: 1 %}
-{% assign discountFound = false %}
-{% assign nextDiscountTierMessage = true %}
-{% for i in (0..lastIndex) %}
-    {% assign tier = discountTiers[i] | plus: 0 %}
-    {% assign discount = discountAmounts[i] | plus: 0 %}
-    
-    {% if cartTotal >= tier %}
-        {% assign discountFound = true %}
-        {% assign discountAmount = discount %}
-        {% assign nextIndex = i | plus: 1 %}
-        {% if nextIndex <= lastIndex %}
-            {% assign nextTier = discountTiers[nextIndex] | plus: 0 %}
-            {% assign limitToShow = nextTier | minus: cartTotal %}
-        {% else %}
-            {% assign nextDiscountTierMessage = false %}
-        {% endif %}
-    {% endif %}
-{% endfor %}
-
-{% if cartTotal < discountTiers[0] %}
- {% assign limitToShow = discountTiers[0] | minus: cartTotal %}
- {% assign message = "You are $" | append: limitToShow | append: " away from FREE SHIPPING!" %}
-{% elsif cartTotal < discountTiers[1] %}
-    {% assign message = "You are $" | append: limitToShow | append: " away from 10% OFF!" %}
-{% elsif cartTotal < discountTiers[2] %}
-    {% assign message = "You have 10% OFF + FREE SHIPPING! You are $" | append: limitToShow | append: " away from 15% OFF!" %}
-{% elsif cartTotal < discountTiers[3] %}
-    {% assign message = "You have 15% OFF + FREE SHIPPING! You are $" | append: limitToShow | append: " away from 20% OFF!" %}
-{% else %}
-    {% assign message = "You have 20% OFF + FREE SHIPPING!" %}
-    {% assign nextDiscountTierMessage = false %}
-{% endif %}
-
-<div class="cart__discount_tiers">
-    <div class="cart__discount_tiers-message--success {% if discountFound == false %}_hide{% endif %}">
-        <!-- {% if discountAmount > 0 %}
-            🎉 Congrats you unlocked <strong>{{ discountAmount }}% OFF + FREE SHIPPING</strong>
-        {% else %}
-            🎉 Congrats you unlocked <strong>FREE SHIPPING</strong>
-        {% endif %} -->
-    </div>
-    <div class="cart__discount_tiers-message--next">
-        {% if nextDiscountTierMessage %}
-          {% assign message = "You are $" | append: limitToShow | append: " away from FREE SHIPPING!" %}
-            👉 {{ message }}
-        {% endif %}
-    </div>
-    <div class="cart__discount_tiers-items--wrapper">
-        <div class="cart__discount_tiers-progress">
-            {% assign track = cartTotal | divided_by: 220.00 | times: 100.00 %}
-            {% if cartTotal >= discountTiers[0] and cartTotal < discountTiers[1] %}
-                {% assign track = 25 %}
-            {% elsif cartTotal >= discountTiers[1] and cartTotal < discountTiers[2] %}
-                {% assign track = 50 %}
-            {% elsif cartTotal >= discountTiers[2] and cartTotal < discountTiers[3] %}
-                {% assign track = 75 %}
-            {% elsif cartTotal >= discountTiers[3] %}
-                {% assign track = 100 %}
-              {% else %}
-                 {% assign track = cartTotal | divided_by: 220.00 | times: 100.00 %}
-            {% endif %}
-            <div class="cart__discount_tiers-progress--track" style="width: {{track}}%;"></div>
+<div class="cart__discount_tiers-items--wrapper">
+    <div class="progress-bar-container">
+        <div class="progress-bar">
+            <!-- Existing progress logic remains unchanged -->
+            <div class="progress" style="width: {{track}}%;"></div>
         </div>
-        <div class="cart__discount_tiers-items">
-          <div class="empty_discount"></div>
+
+        <!-- Milestones for each discount tier -->
+        <div class="milestones">
             {% for i in (0..lastIndex) %}
                 {% assign tier = discountTiers[i] | plus: 0 %}
-                {% assign discount = discountAmounts[i] | plus: 0 %}
-              <div class="discount_price_container">
-                <div class="cart__discount_tiers-item {% if cartTotal >= tier %}_active{% endif %}" data-limit="{{ tier }}">
-                  <div class="ship-container">
-                    <span><svg id="a" xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 30 30"><path class="b" d="M27.47,12.67l-.15-.08c-.37-1-1.37-1.67-2.42-1.61h-1.76s0-3.38,0-3.38C22.82,3.27,19.07-.01,14.85.23,10.56-.02,6.74,3.27,6.43,7.68v3.3h-1.69c-.65-.04-1.3.18-1.8.61-.5.44-.8,1.05-.84,1.78v13.99c.09,1.31,1.19,2.31,2.48,2.31.04,0,.08,0,.13,0h20.13c.69.04,1.3-.18,1.8-.62.5-.44.8-1.05.84-1.78v-14.61ZM8.68,7.76c.22-3.1,2.95-5.47,6.17-5.27,3.07-.2,5.81,2.17,6.03,5.19v3.3h-12.19s0-3.22,0-3.22ZM24.89,27.41H4.59c-.13,0-.23-.08-.24-.14l.07-13.99,20.55-.06s0,0,.02,0c.12,0,.21.09.22.21v13.77c0,.11-.11.22-.32.21Z"/><path class="b" d="M14.48,17.19c-.97.13-1.74.9-1.87,1.87.01.55.28,1.07.72,1.4v1.76c.11.8.85,1.36,1.64,1.25.65-.09,1.16-.6,1.25-1.25v-1.76c.44-.33.71-.85.72-1.4-.16-1.2-1.27-2.03-2.46-1.87Z"/></svg></span>
-                    <span>Spend ${{ tier }}</span>
-                      {% comment %} {% if discount == 0 %}
-                        FREE
-                    {% else %}
-                        <span class="discount-off">{{ discount }}%</span>
-                    {% endif %}
-                    {% if discount == 0 %}
-                        SHIPPING
-                      <span><img src="https://cdn.shopify.com/s/files/1/0792/4518/1246/files/delivery-truck.png?v=1718176484"></span>
-                    {% else %}
-                        <span  class="discount-off">OFF</span>
-                        <span class="free-ship">+Free Shipping</span> 
-                     {% endif %}
-              {% endcomment %}
+                <div class="milestone">
+                    <span class="lock-icon">🔒</span>
+                    <p>Rs{{ tier }}</p>
+                    <p>FREE FULL-SIZE ITEM</p>
                 </div>
-                  <div class="check-tick" style="display:none">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 14 10"><path id="_8665019_check_mark_icon" data-name="8665019_check_mark_icon" d="M46,97a1,1,0,0,1-.293.707l-3.684,3.684-4.316,4.316a1,1,0,0,1-1.414,0l-4-4a1,1,0,1,1,1.414-1.414L37,103.587l7.294-7.294A1,1,0,0,1,46,97Z" transform="translate(-32 -96)" fill="#f1ede0"/></svg>
-                  </div>
-                </div>
-                <div class="price-text">
-                {% if discount == 0 %}
-                        FREE
-                    {% else %}
-                        <span class="discount-off">{{ discount }}%</span>
-                    {% endif %}
-                    {% if discount == 0 %}
-                        SHIPPING
-                    {% else %}
-                        <span  class="discount-off">OFF</span>
-                        <!-- <span class="free-ship">+Free Shipping</span>  -->
-                     {% endif %}
-              
-                 </div>
-              </div>
             {% endfor %}
-          <div class="empty_discount"></div>
-                      
         </div>
     </div>
+
+    <!-- Commenting out existing reward section if not needed right now -->
+    {%- comment -%}
+    <div class="cart__discount_tiers-progress">
+        {% assign track = cartTotal | divided_by: 220.00 | times: 100.00 %}
+        {% if cartTotal >= discountTiers[0] and cartTotal < discountTiers[1] %}
+            {% assign track = 25 %}
+        {% elsif cartTotal >= discountTiers[1] and cartTotal < discountTiers[2] %}
+            {% assign track = 50 %}
+        {% elsif cartTotal >= discountTiers[2] and cartTotal < discountTiers[3] %}
+            {% assign track = 75 %}
+        {% elsif cartTotal >= discountTiers[3] %}
+            {% assign track = 100 %}
+        {% endif %}
+        <div class="cart__discount_tiers-progress--track" style="width: {{track}}%;"></div>
+    </div>
+    {%- endcomment -%}
 </div>
+
+
+
+
+
+<!-- Product Rewards Section -->
+<div class="reward-description">
+    <div class="reward-item">
+        <img src="balancing-vitamin-cleanser.jpg" alt="Balancing Vitamin Cleanser">
+        <p>
+            <strong>FREE</strong> Balancing Vitamin Cleanser - Valued at $44.99 when you spend Rs. -15,705 more
+        </p>
+    </div>
+    <div class="reward-item">
+        <img src="plump-glow-bundle.jpg" alt="Plump + Glow Bundle">
+        <p>
+            <strong>FREE</strong> Plump + Glow Bundle - Valued at $134.99 when you spend Rs. -15,640 more
+        </p>
+    </div>
+</div>
+
+<!-- Existing Rewards Logic can be commented out -->
+{%- comment -%}
+<div class="cart__discount_tiers-items">
+    {% for i in (0..lastIndex) %}
+        <div class="cart__discount_tiers-item {% if cartTotal >= tier %}_active{% endif %}" data-limit="{{ tier }}">
+            <div class="ship-container">
+                <span>🔒</span>
+                <span>Spend ${{ tier }}</span>
+            </div>
+            <div class="check-tick">
+                <svg>...</svg>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{%- endcomment -%}
