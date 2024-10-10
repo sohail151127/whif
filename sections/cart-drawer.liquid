@@ -295,21 +295,3 @@
   ]
 }
 {% endschema %}
-
-
-
-{% comment %} ====== new js code ============ {% endcomment %}
-<script>
-  document.querySelectorAll('.toggle-bundle-items').forEach(function(button) {
-  button.addEventListener('click', function() {
-    const bundleList = this.nextElementSibling;
-    if (bundleList.style.display === 'none') {
-      bundleList.style.display = 'block';
-    } else {
-      bundleList.style.display = 'none';
-    }
-  });
-});
-
-</script>
-{% comment %} ====== new js code ============ {% endcomment %}
