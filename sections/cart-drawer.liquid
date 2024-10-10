@@ -75,7 +75,13 @@
       <div id="free-gift-timer" class="_disabled">
         <div>Free gift will expire in</div><div class="giftTimer__counter"></div>
       </div>
+
+      {% comment %}
       {% render 'cart-discount-tiers' %}
+      {% endcomment %}
+      {% render 'cart-discount-tiers-s' %}
+
+      
       <div class="cart-drawer-main v-stack gap-6 sm:gap-8">
 
         <div class="cart-drawer__line-items">
