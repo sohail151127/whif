@@ -234,7 +234,7 @@ headerProgressBar();
 
        if (cartTotal >= limit && cartTotal < nextLimit) {
         successNode.classList.add('_hide');
-        nextNode.innerHTML = `👉 Spend anotherrrrrr $${limitToShow} to unlock ${nextDiscount}% OFF`;
+        nextNode.innerHTML = `👉 Spend another $${limitToShow} to unlock ${nextDiscount}% OFF`;
       } else if (cartTotal >= upperLimit) {
           successNode.classList.remove('_hide');
           successNode.innerHTML = `🎉 Congrats you unlocked <strong>${discounts[discounts.length - 1]}% OFF + FREE SHIPPING</strong>`;
