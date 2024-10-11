@@ -245,7 +245,7 @@ headerProgressBar();
     // Special case for cartTotal less than the first limit
     if (cartTotal < limits[0]) {
       var nextLimitToShow = (limits[0] - cartTotal).toFixed(2);
-      nextNode.innerHTML = `👉 You areeee $${nextLimitToShow} away from FREE SHIPPING!`;
+      nextNode.innerHTML = `👉 Spend another $${nextLimitToShow} to unlock 10% OFF`;
     }
 
     tierNodes.forEach(function (node) {
