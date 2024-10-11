@@ -130,7 +130,7 @@ $('.slider-single').slick({
     // Special case for cartTotal less than the first limit
     if (cartTotal < limits[0]) {
       var nextLimitToShow = (limits[0] - cartTotal).toFixed(2);
-      nextNode.innerHTML = `👉 Spen another $${nextLimitToShow} to unlock 10% OFF`;
+      nextNode.innerHTML = `👉 Spend another $${nextLimitToShow} to unlock 10% OFF`;
     }
 
 }
