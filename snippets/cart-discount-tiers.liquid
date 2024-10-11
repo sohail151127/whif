@@ -1,6 +1,6 @@
 {% assign cartTotal = cart.total_price | divided_by: 100.0 %}
-{% assign discountTiers = '100, 140, 180, 230' | split: ', ' %}
-{% assign discountAmounts = '0, 10, 15, 20' | split: ', ' %}
+{% assign discountTiers = '140, 180, 230' | split: ', ' %}
+{% assign discountAmounts = '10, 15, 20' | split: ', ' %}
 {% assign lastIndex = discountTiers.size | minus: 1 %}
 {% assign discountFound = false %}
 {% assign nextDiscountTierMessage = true %}
