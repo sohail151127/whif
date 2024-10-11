@@ -23,7 +23,7 @@
 
 {% if cartTotal < discountTiers[0] %}
  {% assign limitToShow = discountTiers[0] | minus: cartTotal %}
- {% assign message = "You are $" | append: limitToShow | append: " away from FREE SHIPPING!" %}
+ {% assign message = "Spend another $" | append: limitToShow | append: " to unlock FREE SHIPPING!" %}
 {% elsif cartTotal < discountTiers[1] %}
     {% assign message = "You are $" | append: limitToShow | append: " away from 10% OFF!" %}
 {% elsif cartTotal < discountTiers[2] %}
