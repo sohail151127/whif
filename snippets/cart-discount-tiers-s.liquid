@@ -80,17 +80,7 @@
 
 
 
-        <!-- Add the rectangular boxes here -->
-        <div class="reward-box">
-            <div class="reward-title">FREE FULL-SIZE ITEM</div>
-            <div class="reward-description">
-                {% if tier == 100 %}
-                    FREE Balancing Vitamin Cleanser - Valued at $44.99 when you spend $15,705
-                {% elsif tier == 150 %}
-                    FREE Plump + Glow Bundle - Valued at $134.99 when you spend $15,640
-                {% endif %}
-            </div>
-        </div>
+
 
 
 
@@ -115,6 +105,21 @@
               
                  </div>
               </div>
+
+
+        <!-- Add the rectangular boxes here -->
+        <div class="reward-box">
+            <div class="reward-title">FREE FULL-SIZE ITEM</div>
+            <div class="reward-description">
+                {% if tier == 100 %}
+                    FREE Balancing Vitamin Cleanser - Valued at $44.99 when you spend $15,705
+                {% elsif tier == 150 %}
+                    FREE Plump + Glow Bundle - Valued at $134.99 when you spend $15,640
+                {% endif %}
+            </div>
+        </div>
+
+              
             {% endfor %}
           <div class="empty_discount"></div>
                       
