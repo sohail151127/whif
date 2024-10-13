@@ -1,17 +1,17 @@
 <style>
-  /* Container to hold the reward boxes */
+/* Container to hold the reward boxes */
 .reward-container {
     display: flex;
-    gap: 5px;
-    margin-top: 20px;
+    gap: 20px;
 }
 
 /* Individual Reward Box Styling */
 .reward-box {
-    border: 2px solid #DDD; /* Adjust to match the light border from the screenshot */
+    border: 2px solid #DDD;
     border-radius: 8px;
-    background-color: #F7F6ED; /* Light background color */
+    background-color: #F7F6ED;
     padding: 12px 5px;
+    position: relative; /* For the tick icon */
 }
 
 /* Flexbox to align the image and text content */
@@ -49,7 +49,26 @@
 
 /* Description of the reward */
 .reward-description {
-    color: #333; /* Darker color for readability */
+    color: #333;
+}
+
+/* Reached State (Green border and check icon) */
+.reward-box.reached {
+    border-color: #2ECC71; /* Green border when reached */
+    background-color: #FFFFFF; /* Optional lighter background color */
+}
+
+/* Tick Icon for Reached State */
+.reward-tick {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #2ECC71;
+    color: white;
+    border-radius: 50%;
+    padding: 2px;
+    width: 18px;
+    height: 18px;
 }
 
 </style>
