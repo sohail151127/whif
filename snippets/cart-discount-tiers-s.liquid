@@ -117,45 +117,38 @@
     </div>
 
 
-<div style="border:2px solid red;     display: flex; gap: 20px;">
-        <!-- Add the rectangular boxes here -->
-        <div class="reward-box" style="border:2px solid red;    border-radius: 8px;">
-            <div style="display:flex; gap:10px;padding: 12px 5px;     align-items: center;">
-            <div style="max-width:64px;    border-radius: 6px;">
-            <img style="border-radius: 6px;" src="https://cdn.shopify.com/s/files/1/0792/4518/1246/files/Seraphic_Dream_11.png?v=1727401746" width="100%" height="auto" alt="" />
+<div class="reward-container">
+    <!-- First Rectangular Box -->
+    <div class="reward-box">
+        <div class="reward-content">
+            <div class="reward-image">
+                <img src="https://cdn.shopify.com/s/files/1/0792/4518/1246/files/Seraphic_Dream_11.png?v=1727401746" alt="Vitamin Cleanser" />
             </div>
-            <div style="font-size:10px;">
-            <div class="reward-title">FREE FULL-SIZE ITEM</div>
-            <div class="reward-description">
-                {% if tier == 100 %}
+            <div class="reward-text">
+                <div class="reward-title">FREE FULL-SIZE ITEM</div>
+                <div class="reward-description">
                     FREE Balancing Vitamin Cleanser - Valued at $44.99 when you spend $15,705
-                {% elsif tier == 150 %}
-                    FREE Plump + Glow Bundle - Valued at $134.99 when you spend $15,640
-                {% endif %}
-            </div>
-            </div>
+                </div>
             </div>
         </div>
+    </div>
 
-        <!-- Add the rectangular boxes here -->
-        <div class="reward-box" style="border:2px solid red;    border-radius: 8px;">
-            <div style="display:flex; gap:10px;    padding: 12px 5px;    align-items: center;">
-            <div style="max-width:64px;    border-radius: 6px;">
-            <img style="border-radius: 6px;" src="https://cdn.shopify.com/s/files/1/0792/4518/1246/files/Seraphic_Dream_10.png?v=1727401677" width="100%" height="auto" alt="" />
+    <!-- Second Rectangular Box -->
+    <div class="reward-box">
+        <div class="reward-content">
+            <div class="reward-image">
+                <img src="https://cdn.shopify.com/s/files/1/0792/4518/1246/files/Seraphic_Dream_10.png?v=1727401677" alt="Glow Bundle" />
             </div>
-            <div style="font-size:10px;">
-            <div class="reward-title">FREE FULL-SIZE ITEM</div>
-            <div class="reward-description">
-                {% if tier == 100 %}
-                    FREE Balancing Vitamin Cleanser - Valued at $44.99 when you spend $15,705
-                {% elsif tier == 150 %}
+            <div class="reward-text">
+                <div class="reward-title">FREE FULL-SIZE ITEM</div>
+                <div class="reward-description">
                     FREE Plump + Glow Bundle - Valued at $134.99 when you spend $15,640
-                {% endif %}
-            </div>
-            </div>
+                </div>
             </div>
         </div>
+    </div>
 </div>
+
 
                       
 </div>
