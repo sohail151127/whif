@@ -179,36 +179,45 @@
 
 
 <div class="reward-container">
-    <!-- First Rectangular Box -->
-    <div class="reward-box">
+    <!-- First Rectangular Box (Reached State) -->
+    <div class="reward-box {% if cartTotal >= 100 %}reached{% endif %}">
         <div class="reward-content">
             <div class="reward-image">
-                <img src="https://cdn.shopify.com/s/files/1/0792/4518/1246/files/Seraphic_Dream_11.png?v=1727401746" alt="Vitamin Cleanser" />
+                <img src="https://cdn.shopify.com/s/files/1/0792/4518/1246/files/Seraphic_Dream_11.png?v=1727401746" alt="Free Shipping Icon" />
             </div>
             <div class="reward-text">
-                <div class="reward-title">FREE FULL-SIZE ITEM</div>
+                <div class="reward-title">FREE SHIPPING!</div>
                 <div class="reward-description">
-                    FREE Balancing Vitamin Cleanser - Valued at $44.99 when you spend $15,705
+                    Get free shipping on your order when you spend $100+.
                 </div>
             </div>
+            <!-- Checkmark Icon -->
+            {% if cartTotal >= 100 %}
+            <div class="reward-tick">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8a8 8 0 1 0-16 0 8 8 0 0 0 16 0zM6.93 10.58L4.47 8.12l-.708.707L6.93 12l6.364-6.364-.708-.707L6.93 10.58z"/>
+                </svg>
+            </div>
+            {% endif %}
         </div>
     </div>
 
-    <!-- Second Rectangular Box -->
+    <!-- Second Rectangular Box (Still Locked) -->
     <div class="reward-box">
         <div class="reward-content">
             <div class="reward-image">
-                <img src="https://cdn.shopify.com/s/files/1/0792/4518/1246/files/Seraphic_Dream_10.png?v=1727401677" alt="Glow Bundle" />
+                <img src="https://cdn.shopify.com/s/files/1/0792/4518/1246/files/Seraphic_Dream_10.png?v=1727401677" alt="Gift Icon" />
             </div>
             <div class="reward-text">
-                <div class="reward-title">FREE FULL-SIZE ITEM</div>
+                <div class="reward-title">FREE GIFT – VALUED AT $80</div>
                 <div class="reward-description">
-                    FREE Plump + Glow Bundle - Valued at $134.99 when you spend $15,640
+                    Spend $150 to get a free discovery set of 4x10ml travel perfumes.
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 
                       
