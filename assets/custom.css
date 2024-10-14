@@ -4577,6 +4577,7 @@ label.block-swatch span.overlay, div.custom-product-buttons .bundle-set-button s
     width: 0;
     position: relative;
     left: -28.5px;
+    left: -38px;  
 }
 .cart__discount_tiers-items .price-text {
     width: 87px;
