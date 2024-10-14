@@ -100,14 +100,14 @@
         "settings": {
         }
       },
-      "8035815586522894503": {
-        "type": "shopify://apps/salepify/blocks/free-gift.embed/f616e94d-36ae-45cb-9d98-57804196c7a7",
-        "disabled": false,
+      "15714838451323730227": {
+        "type": "shopify://apps/salepify/blocks/advanced-free-gift/f616e94d-36ae-45cb-9d98-57804196c7a7",
+        "disabled": true,
         "settings": {
         }
       },
-      "15714838451323730227": {
-        "type": "shopify://apps/salepify/blocks/advanced-free-gift/f616e94d-36ae-45cb-9d98-57804196c7a7",
+      "8035815586522894503": {
+        "type": "shopify://apps/salepify/blocks/free-gift.embed/f616e94d-36ae-45cb-9d98-57804196c7a7",
         "disabled": true,
         "settings": {
         }
