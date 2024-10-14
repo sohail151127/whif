@@ -170,12 +170,6 @@ headerProgressBar();
       var cartPrice = cart.items_subtotal_price / 100;
       var cartTotal = cartPrice-fixed_item_price;
       
-      // var cartTotal = cart.original_total_price / 100;
-      // if (cart.cart_level_discount_applications.length > 0) {
-      //   // console.log('total');
-      //   let discountCart = cart.total_price / 100;
-      //   cartTotal = discountCart - fixed_item_price;
-      // } 
       var upperLimit = limits[(limits.length - 1)];
       var tierNode;
       var tierNodes = document.querySelectorAll('.cart__discount_tiers-item');
