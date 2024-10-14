@@ -127,7 +127,7 @@ $('.slider-single').slick({
       
       if (cartTotal >= limit && cartTotal < nextLimit) {
         successNode.classList.add('_hide');        
-        nextNode.innerHTML = `👉 Spend another $${limitToShow} to unlock FREE gift`;
+        nextNode.innerHTML = `👉 Spend another $${limitToShow} to unlock a FREE gift`;
       } else if (cartTotal >= upperLimit) {
           successNode.classList.remove('_hide');
           successNode.innerHTML = `🎉 Congrats you unlocked <strong> FREE SHIPPING + FREE GIFT</strong>`;
