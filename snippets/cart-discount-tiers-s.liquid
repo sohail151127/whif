@@ -130,7 +130,7 @@
 
     <div class="cart__discount_tiers-items--wrapper" style="border:2px solid blue;">
         <div class="cart__discount_tiers-progress">
-            {% assign track = cartTotal | divided_by: 220.00 | times: 100.00 %}
+            {% assign track = cartTotal | divided_by: 200.00 | times: 100.00 %}
             {% if cartTotal >= discountTiers[0] and cartTotal < discountTiers[1] %}
                 {% assign track = 25 %}
             {% elsif cartTotal >= discountTiers[1] and cartTotal < discountTiers[2] %}
