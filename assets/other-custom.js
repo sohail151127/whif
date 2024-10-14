@@ -206,9 +206,9 @@ headerProgressBar();
     });
 
     // Calculate the progress track percentage
-    var track = ((cartTotal / 220) * 100);
+    var track = ((cartTotal / 200) * 100);
     if(cartTotal <= 100 ){
-      track = ((cartTotal / 220) * 100)
+      track = ((cartTotal / 200) * 100)
     }
 
     if(cartTotal >= limits[2]){
