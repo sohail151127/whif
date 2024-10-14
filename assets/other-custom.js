@@ -117,13 +117,16 @@ $('.slider-single').slick({
       var nextLimit = limits[nextIndex];
       var nextDiscount = discounts[nextIndex];
       var limitToShow = (nextLimit - cartTotal).toFixed(2);
-      if (cartTotal >= limit && cartTotal < nextLimit) {
-        successNode.classList.add('_hide');
 
-
-
+      
+      
 // ==========================  code for header progress bar  ========================== 
-        
+
+
+
+      
+      if (cartTotal >= limit && cartTotal < nextLimit) {
+        successNode.classList.add('_hide');        
         nextNode.innerHTML = `👉 Spend another $${limitToShow} to unlock ${nextDiscount}% OFF`;
       } else if (cartTotal >= upperLimit) {
           successNode.classList.remove('_hide');
