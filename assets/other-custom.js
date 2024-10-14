@@ -144,59 +144,69 @@ $('.slider-single').slick({
 
 headerProgressBar();
 
+
+
+
+
+
+
+
+
 /** 
  * 
  * New Function for cart discount Tier
  * 
  */
-  async function fetchCart() {
-      const response = await fetch('/cart.js');
-      const cart = await response.json();
-       console.log(cart);    
-       let cart_items = cart.items;
-      var specificItemId = 50459722744126; 
-      var itemPrice = null;
-      cart.items.forEach(function(item) {
-        if (item.id === specificItemId) {
-          itemPrice = item.price; 
-          
-        }
-      });
-       // console.log(itemPrice);
-      let fixed_item_price = (itemPrice / 100).toFixed(2);
-      // let fixed_item_price = 0;
-      var limits = [100, 150];
-      var discounts = [0, 10];
-      var cartPrice = cart.items_subtotal_price / 100;
-      var cartTotal = cartPrice-fixed_item_price;
-      
-      var upperLimit = limits[(limits.length - 1)];
-      var tierNode;
-      var tierNodes = document.querySelectorAll('.cart__discount_tiers-item');
-      var progressTrackNode = document.querySelector('.cart__discount_tiers-progress--track');
-      var successNode = document.querySelector('.cart__discount_tiers-message--success');
-      var nextNode = document.querySelector('.cart__discount_tiers-message--next');
+async function fetchCart() {
+  try {
+    const response = await fetch('/cart.js');
+    const cart = await response.json();
+    console.log(cart);    
+    let cart_items = cart.items;
+    var specificItemId = 50459722744126; 
+    var itemPrice = null;
+    
+    // Get item price for a specific item
+    cart.items.forEach(function(item) {
+      if (item.id === specificItemId) {
+        itemPrice = item.price; 
+      }
+    });
 
-      // Add references to the tick elements inside the rectangular boxes
-      var freeShippingTick = document.querySelector('.reward-box:nth-child(1) .reward-tick');
-      var freeGiftTick = document.querySelector('.reward-box:nth-child(2) .reward-tick');
+    let fixed_item_price = (itemPrice / 100).toFixed(2);
+    var limits = [100, 150]; // Threshold for free shipping and free gift
+    var discounts = [0, 10];
+    var cartPrice = cart.items_subtotal_price / 100;
+    var cartTotal = cartPrice - fixed_item_price;
+    
+    var upperLimit = limits[limits.length - 1];
+    var tierNode;
+    var tierNodes = document.querySelectorAll('.cart__discount_tiers-item');
+    var progressTrackNode = document.querySelector('.cart__discount_tiers-progress--track');
+    var successNode = document.querySelector('.cart__discount_tiers-message--success');
+    var nextNode = document.querySelector('.cart__discount_tiers-message--next');
 
-      // Reset tick marks and hide them initially
-      freeShippingTick.style.display = 'none';
-      freeGiftTick.style.display = 'none';
+    // Add references to the tick elements inside the rectangular boxes
+    var freeShippingTick = document.querySelector('.reward-box:nth-child(1) .reward-tick');
+    var freeGiftTick = document.querySelector('.reward-box:nth-child(2) .reward-tick');
+
+    // Reset tick marks and hide them initially
+    freeShippingTick.style.display = 'none';
+    freeGiftTick.style.display = 'none';
 
     // Reset active states and messages
     tierNodes.forEach(function (node) {
       node.classList.remove('_active');
-          let shipContainer = node.querySelector('.ship-container');
-         let shipCheck = node.querySelector('.check-tick');
-         if (shipContainer) {
-            shipContainer.style.display = 'block';
-        }
-        if (shipCheck) {
-            shipCheck.style.display = 'none';
-        }
+      let shipContainer = node.querySelector('.ship-container');
+      let shipCheck = node.querySelector('.check-tick');
+      if (shipContainer) {
+        shipContainer.style.display = 'block';
+      }
+      if (shipCheck) {
+        shipCheck.style.display = 'none';
+      }
     });
+    
     successNode.classList.add('_hide');
     nextNode.innerHTML = '';
 
@@ -207,12 +217,9 @@ headerProgressBar();
     });
 
     // Calculate the progress track percentage
-    var track = ((cartTotal / 225) * 100);
-    if(cartTotal <= 100 ){
-      track = ((cartTotal / 225) * 100)
-    }
+    var track = ((cartTotal / 225) * 100); // Use 225 to spread across progress bar
 
-    if(cartTotal >= limits[2]){
+    if (cartTotal >= limits[1]) { // No more than two limits
        track = 100;
     }
     progressTrackNode.style.width = `${track}%`;
@@ -220,22 +227,17 @@ headerProgressBar();
     // Determine and display the appropriate messages
     discounts.forEach(function (discount, index) {
       var limit = limits[index];
-      // console.log(limit);
-      var nextIndex = (index + 1);
+      var nextIndex = index + 1;
       var nextLimit = limits[nextIndex];
-      // console.log('next',nextLimit);
       var nextDiscount = discounts[nextIndex];
       var limitToShow = (nextLimit - cartTotal).toFixed(2);
 
-
-// =====================   inside the cart drawer ============================
-      
-       if (cartTotal >= limit && cartTotal < nextLimit) {
+      if (cartTotal >= limit && cartTotal < nextLimit) {
         successNode.classList.add('_hide');
         nextNode.innerHTML = `👉 Spend another $${limitToShow} to unlock a FREE gift`;
       } else if (cartTotal >= upperLimit) {
-          successNode.classList.remove('_hide');
-          successNode.innerHTML = `🎉 Congrats you unlocked <strong> FREE SHIPPING + FREE GIFT</strong>`;
+        successNode.classList.remove('_hide');
+        successNode.innerHTML = `🎉 Congrats you unlocked <strong> FREE SHIPPING + FREE GIFT</strong>`;
       }
     });
 
@@ -246,82 +248,77 @@ headerProgressBar();
     }
 
     tierNodes.forEach(function (node) {
-      // console.log('node',node);
-        var limit = parseFloat(node.dataset.limit);
-        if (cartTotal >= limit) {
-            node.classList.add('_active');
-            // console.log(node);
-         let shipContainer = node.querySelector('.ship-container');
-         let shipCheck = node.querySelector('.check-tick');
-         if (shipContainer) {
-            shipContainer.style.display = 'none';
+      var limit = parseFloat(node.dataset.limit);
+      if (cartTotal >= limit) {
+        node.classList.add('_active');
+        let shipContainer = node.querySelector('.ship-container');
+        let shipCheck = node.querySelector('.check-tick');
+        if (shipContainer) {
+          shipContainer.style.display = 'none';
         }
         if (shipCheck) {
-            shipCheck.style.display = 'block';
+          shipCheck.style.display = 'block';
         }
 
         // Check for Free Shipping Tier
         if (limit === 100 && cartTotal >= 100) {
-            freeShippingTick.style.display = 'block'; // Show tick for Free Shipping box
+          freeShippingTick.style.display = 'block'; // Show tick for Free Shipping
         }
 
         // Check for Free Gift Tier
         if (limit === 150 && cartTotal >= 150) {
-            freeGiftTick.style.display = 'block'; // Show tick for Free Gift box
+          freeGiftTick.style.display = 'block'; // Show tick for Free Gift
         }
-          
-        }
+      }
     });
 
+    // ===============  Logic to add or remove the free gift product ====================
+    const giftVariantId = 50214108397886; // Your free gift product variant ID
+    const hasGift = cart.items.some(item => item.id === giftVariantId);
 
+    // Add the free gift if cartTotal >= 150 and it's not already in the cart
+    if (cartTotal >= 150 && !hasGift) {
+      await fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          quantity: 1,
+          id: giftVariantId, // Free gift variant ID
+        }),
+      });
+      console.log('Free gift added');
+    }
 
+    // Remove the free gift if cartTotal < 150 and it's in the cart
+    if (cartTotal < 150 && hasGift) {
+      await fetch('/cart/change.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          quantity: 0,
+          id: giftVariantId, // Free gift variant ID
+        }),
+      });
+      console.log('Free gift removed');
+    }
 
-
-  // ===============  Logic to add or remove the free gift product ====================
-  const giftVariantId = 50214108397886; // Your free gift product variant ID
-  const hasGift = cart.items.some(item => item.variant_id === giftVariantId);
-
-
-  // Add the free gift if cartTotal >= 150 and it's not already in the cart
-  if (cartTotal >= 150 && !hasGift) {
-    await fetch('/cart/add.js', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        quantity: 1,
-        id: giftVariantId, // Free gift variant ID
-      }),
-    });
-    console.log('Free gift added');
+    // Now call header progress bar update (if needed)
+    headerProgressBar();
+  } catch (error) {
+    console.error('Error fetching cart:', error);
   }
-
-  // Remove the free gift if cartTotal < 150 and it's in the cart
-  if (cartTotal < 150 && hasGift) {
-    await fetch('/cart/change.js', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        quantity: 0,
-        id: giftVariantId, // Free gift variant ID
-      }),
-    });
-    console.log('Free gift removed');
-  }
-
-  // Now call header progress bar update (if needed)
-  headerProgressBar();
-}
-
-
-
-
-    
 }
 fetchCart();
+
+
+
+
+
+
 
 
   document.documentElement.addEventListener('variant:add', function(e) {
