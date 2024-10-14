@@ -272,6 +272,7 @@ async function fetchCart() {
       }
     });
 
+    /*
     // ===============  Logic to add or remove the free gift product ====================
     const giftVariantId = 50214108397886; // Your free gift product variant ID
     const hasGift = cart.items.some(item => item.id === giftVariantId);
@@ -305,6 +306,7 @@ async function fetchCart() {
       });
       console.log('Free gift removed');
     }
+    */
 
     // Now call header progress bar update (if needed)
     headerProgressBar();
@@ -313,6 +315,7 @@ async function fetchCart() {
   }
 }
 fetchCart();
+
 
 
 
