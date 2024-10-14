@@ -176,9 +176,13 @@ headerProgressBar();
       var successNode = document.querySelector('.cart__discount_tiers-message--success');
       var nextNode = document.querySelector('.cart__discount_tiers-message--next');
 
-        // Add references to the tick elements inside the rectangular boxes
+      // Add references to the tick elements inside the rectangular boxes
       var freeShippingTick = document.querySelector('.reward-box:nth-child(1) .reward-tick');
       var freeGiftTick = document.querySelector('.reward-box:nth-child(2) .reward-tick');
+
+      // Reset tick marks and hide them initially
+      freeShippingTick.style.display = 'none';
+      freeGiftTick.style.display = 'none';
 
     // Reset active states and messages
     tierNodes.forEach(function (node) {
