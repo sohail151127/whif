@@ -272,6 +272,55 @@ headerProgressBar();
           
         }
     });
+
+
+
+
+
+  // ===============  Logic to add or remove the free gift product ====================
+  const giftVariantId = 50214108397886; // Your free gift product variant ID
+  const hasGift = cart.items.some(item => item.variant_id === giftVariantId);
+
+
+  // Add the free gift if cartTotal >= 150 and it's not already in the cart
+  if (cartTotal >= 150 && !hasGift) {
+    await fetch('/cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        quantity: 1,
+        id: giftVariantId, // Free gift variant ID
+      }),
+    });
+    console.log('Free gift added');
+  }
+
+  // Remove the free gift if cartTotal < 150 and it's in the cart
+  if (cartTotal < 150 && hasGift) {
+    await fetch('/cart/change.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        quantity: 0,
+        id: giftVariantId, // Free gift variant ID
+      }),
+    });
+    console.log('Free gift removed');
+  }
+
+  // Now call header progress bar update (if needed)
+  headerProgressBar();
+}
+
+// =============================================================
+// =============================================================
+
+
+    
 }
 fetchCart();
 
