@@ -53,12 +53,6 @@
     color: #333;
 }
 
-/* Reached State (Green border and check icon) */
-.reward-box.reached {
-    border-color: #2ECC71; /* Green border when reached */
-    background-color: #FFFFFF; /* Optional lighter background color */
-}
-
 /* Tick Icon for Reached State */
 .reward-tick {
     position: absolute;
@@ -69,13 +63,7 @@
     width: 33px;
     height: 33px;
 }
-
 </style>
-
-
-
-
-
 
 {% assign cartTotal = cart.total_price | divided_by: 100.0 %}
 {% assign discountTiers = '100, 150' | split: ', ' %}
@@ -128,7 +116,8 @@
             👉 {{ message }}
         {% endif %}
     </div>
-    <div class="cart__discount_tiers-items--wrapper"  style="border:2px solid blue;">
+
+    <div class="cart__discount_tiers-items--wrapper" style="border:2px solid blue;">
         <div class="cart__discount_tiers-progress">
             {% assign track = cartTotal | divided_by: 220.00 | times: 100.00 %}
             {% if cartTotal >= discountTiers[0] and cartTotal < discountTiers[1] %}
@@ -139,102 +128,96 @@
                 {% assign track = 75 %}
             {% elsif cartTotal >= discountTiers[3] %}
                 {% assign track = 100 %}
-              {% else %}
-                 {% assign track = cartTotal | divided_by: 220.00 | times: 100.00 %}
+            {% else %}
+                {% assign track = cartTotal | divided_by: 220.00 | times: 100.00 %}
             {% endif %}
             <div class="cart__discount_tiers-progress--track" style="width: {{track}}%;"></div>
         </div>
+
         <div class="cart__discount_tiers-items">
-          <div class="empty_discount"></div>
+            <div class="empty_discount"></div>
+
             {% for i in (0..lastIndex) %}
                 {% assign tier = discountTiers[i] | plus: 0 %}
                 {% assign discount = discountAmounts[i] | plus: 0 %}
-              <div class="discount_price_container">
-                <div style="border:2px solid red;" class="cart__discount_tiers-item {% if cartTotal >= tier %}_active{% endif %}" data-limit="{{ tier }}">
-                  <div class="ship-container">
-                    <span><svg id="a" xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 30 30"><path class="b" d="M27.47,12.67l-.15-.08c-.37-1-1.37-1.67-2.42-1.61h-1.76s0-3.38,0-3.38C22.82,3.27,19.07-.01,14.85.23,10.56-.02,6.74,3.27,6.43,7.68v3.3h-1.69c-.65-.04-1.3.18-1.8.61-.5.44-.8,1.05-.84,1.78v13.99c.09,1.31,1.19,2.31,2.48,2.31.04,0,.08,0,.13,0h20.13c.69.04,1.3-.18,1.8-.62.5-.44.8-1.05.84-1.78v-14.61ZM8.68,7.76c.22-3.1,2.95-5.47,6.17-5.27,3.07-.2,5.81,2.17,6.03,5.19v3.3h-12.19s0-3.22,0-3.22ZM24.89,27.41H4.59c-.13,0-.23-.08-.24-.14l.07-13.99,20.55-.06s0,0,.02,0c.12,0,.21.09.22.21v13.77c0,.11-.11.22-.32.21Z"/><path class="b" d="M14.48,17.19c-.97.13-1.74.9-1.87,1.87.01.55.28,1.07.72,1.4v1.76c.11.8.85,1.36,1.64,1.25.65-.09,1.16-.6,1.25-1.25v-1.76c.44-.33.71-.85.72-1.4-.16-1.2-1.27-2.03-2.46-1.87Z"/></svg></span>
-                    <span>Spend ${{ tier }}</span>
- 
+                <div class="discount_price_container">
+                    <div style="border:2px solid red;" class="cart__discount_tiers-item {% if cartTotal >= tier %}_active{% endif %}" data-limit="{{ tier }}">
+                        <div class="ship-container">
+                            <span><svg id="a" xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 30 30"><path class="b" d="M27.47,12.67l-.15-.08c-.37-1-1.37-1.67-2.42-1.61h-1.76s0-3.38,0-3.38C22.82,3.27,19.07-.01,14.85.23,10.56-.02,6.74,3.27,6.43,7.68v3.3h-1.69c-.65-.04-1.3.18-1.8.61-.5.44-.8,1.05-.84,1.78v13.99c.09,1.31,1.19,2.31,2.48,2.31.04,0,.08,0,.13,0h20.13c.69.04,1.3-.18,1.8-.62.5-.44.8-1.05.84-1.78v-14.61ZM8.68,7.76c.22-3.1,2.95-5.47,6.17-5.27,3.07-.2,5.81,2.17,6.03,5.19v3.3h-12.19s0-3.22,0-3.22ZM24.89,27.41H4.59c-.13,0-.23-.08-.24-.14l.07-13.99,20.55-.06s0,0,.02,0c.12,0,.21.09.22.21v13.77c0,.11-.11.22-.32.21Z"/><path class="b" d="M14.48,17.19c-.97.13-1.74.9-1.87,1.87.01.55.28,1.07.72,1.4v1.76c.11.8.85,1.36,1.64,1.25.65-.09,1.16-.6,1.25-1.25v-1.76c.44-.33.71-.85.72-1.4-.16-1.2-1.27-2.03-2.46-1.87Z"/></svg></span>
+                            <span>Spend ${{ tier }}</span>
+                        </div>
+
+                        <div class="check-tick" style="display:none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 14 10"><path id="_8665019_check_mark_icon" data-name="8665019_check_mark_icon" d="M46,97a1,1,0,0,1-.293.707l-3.684,3.684-4.316,4.316a1,1,0,0,1-1.414,0l-4-4a1,1,0,1,1,1.414-1.414L37,103.587l7.294-7.294A1,1,0,0,1,46,97Z" transform="translate(-32 -96)" fill="#f1ede0"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="price-text">
+                        {% if discount == 0 %}
+                            FREE
+                        {% else %}
+                            <span class="discount-off">{{ discount }}%</span>
+                        {% endif %}
+                        {% if discount == 0 %}
+                            SHIPPING
+                        {% else %}
+                            <span class="discount-off">OFF</span>
+                        {% endif %}
+                    </div>
                 </div>
-
-
-
-
-
-
-
-
-              
-                  <div class="check-tick" style="display:none">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 14 10"><path id="_8665019_check_mark_icon" data-name="8665019_check_mark_icon" d="M46,97a1,1,0,0,1-.293.707l-3.684,3.684-4.316,4.316a1,1,0,0,1-1.414,0l-4-4a1,1,0,1,1,1.414-1.414L37,103.587l7.294-7.294A1,1,0,0,1,46,97Z" transform="translate(-32 -96)" fill="#f1ede0"/></svg>
-                  </div>
-                </div>
-                <div class="price-text">
-                {% if discount == 0 %}
-                        FREE
-                    {% else %}
-                        <span class="discount-off">{{ discount }}%</span>
-                    {% endif %}
-                    {% if discount == 0 %}
-                        SHIPPING
-                    {% else %}
-                        <span  class="discount-off">OFF</span>
-                        <!-- <span class="free-ship">+Free Shipping</span>  -->
-                     {% endif %}
-              
-                 </div>
-              </div>
-
-
-
-
-              
             {% endfor %}
-          <div class="empty_discount"></div>
-                      
+
+            <div class="empty_discount"></div>
         </div>
     </div>
 
-
-<div class="reward-container">
-    <!-- First Rectangular Box (Reached State) -->
-    <div class="reward-box reached{% if cartTotal >= 100 %}reached{% endif %}">
-        <div class="reward-content">
-            <div class="reward-image">
-                <img src="https://cdn.shopify.com/s/files/1/0792/4518/1246/files/Seraphic_Dream_11.png?v=1727401746" alt="Free Shipping Icon" />
-            </div>
-            <div class="reward-text">
-                <div class="reward-title">FREE SHIPPING!</div>
-                <div class="reward-description">
-                    Get free shipping on your order when you spend $100+.
+    <div class="reward-container">
+        <!-- First Rectangular Box (Reached State) -->
+        <div class="reward-box {% if cartTotal >= 100 %}reached{% endif %}">
+            <div class="reward-content">
+                <div class="reward-image">
+                    <img src="https://cdn.shopify.com/s/files/1/0792/4518/1246/files/Seraphic_Dream_11.png?v=1727401746" alt="Free Shipping Icon" />
                 </div>
-            </div>
-            <!-- Checkmark Icon -->
-            {% if 100 == 100 %}
-            <div class="reward-tick">
-               <svg viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#fff" stroke="#fff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M511.891456 928.549888c229.548032 0 415.634432-186.0864 415.634432-415.634432C927.525888 283.3664 741.439488 97.28 511.890432 97.28 282.343424 97.28 96.258048 283.3664 96.258048 512.915456c0 229.548032 186.084352 415.634432 415.634432 415.634432" fill="#50bbfd"></path><path d="M436.571136 707.376128l330.3936-330.3936c5.506048-5.507072 8.571904-12.803072 8.633344-20.544512 0.060416-7.85408-2.961408-15.235072-8.511488-20.784128 0.001024-0.012288-0.001024-0.002048-0.001024-0.002048l-0.001024-0.001024c-5.410816-5.409792-12.978176-8.489984-20.687872-8.460288-7.810048 0.032768-15.13984 3.081216-20.640768 8.58112l-309.11488 309.116928-94.99648-94.998528c-5.501952-5.501952-12.833792-8.5504-20.642816-8.58112h-0.115712c-7.69536 0-15.186944 3.08224-20.569088 8.465408-11.360256 11.36128-11.307008 29.899776 0.118784 41.325568l109.924352 109.924352a29.017088 29.017088 0 0 0 4.883456 6.474752c5.658624 5.6576 13.095936 8.482816 20.550656 8.481792a29.31712 29.31712 0 0 0 20.77696-8.604672M511.891456 97.28C282.3424 97.28 96.256 283.3664 96.256 512.915456s186.0864 415.634432 415.635456 415.634432c229.548032 0 415.634432-186.085376 415.634432-415.634432C927.525888 283.365376 741.439488 97.28 511.891456 97.28m0 40.96c50.597888 0 99.661824 9.901056 145.82784 29.427712 44.61056 18.868224 84.683776 45.889536 119.10656 80.31232 34.422784 34.422784 61.444096 74.496 80.313344 119.107584 19.525632 46.164992 29.426688 95.228928 29.426688 145.82784s-9.901056 99.662848-29.426688 145.82784c-18.869248 44.61056-45.89056 84.6848-80.313344 119.107584s-74.496 61.443072-119.10656 80.31232c-46.166016 19.526656-95.229952 29.426688-145.82784 29.426688-50.598912 0-99.662848-9.900032-145.828864-29.426688-44.61056-18.869248-84.683776-45.889536-119.10656-80.31232-34.422784-34.422784-61.444096-74.497024-80.313344-119.107584C147.117056 612.57728 137.216 563.514368 137.216 512.915456s9.901056-99.662848 29.426688-145.82784c18.869248-44.611584 45.89056-84.6848 80.313344-119.107584s74.496-61.444096 119.10656-80.31232C412.228608 148.140032 461.292544 138.24 511.891456 138.24" fill="#50bbfd000000"></path></g></svg>
-            </div>
-            {% endif %}
-        </div>
-    </div>
-
-    <!-- Second Rectangular Box (Still Locked) -->
-    <div class="reward-box">
-        <div class="reward-content">
-            <div class="reward-image">
-                <img src="https://cdn.shopify.com/s/files/1/0792/4518/1246/files/Seraphic_Dream_10.png?v=1727401677" alt="Gift Icon" />
-            </div>
-            <div class="reward-text">
-                <div class="reward-title">FREE GIFT – VALUED AT $80</div>
-                <div class="reward-description">
-                    Spend $150 to get a free discovery set of 4x10ml travel perfumes.
+                <div class="reward-text">
+                    <div class="reward-title">FREE SHIPPING!</div>
+                    <div class="reward-description">
+                        Get free shipping on your order when you spend $100+.
+                    </div>
                 </div>
+                {% if cartTotal >= 100 %}
+                <div class="reward-tick">
+                    <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#fff" stroke="#fff">
+                        <path d="M511.891456 928.549888c229.548032 0 415.634432-186.0864 415.634432-415.634432C927.525888 283.3664 741.439488 97.28 511.890432 97.28 282.343424 97.28 96.258048 283.3664 96.258048 512.915456c0 229.548032 186.084352 415.634432 415.634432 415.634432" fill="#50bbfd"></path>
+                        <path d="M436.571136 707.376128l330.3936-330.3936c5.506048-5.507072 8.571904-12.803072 8.633344-20.544512 0.060416-7.85408-2.961408-15.235072-8.511488-20.784128 0.001024-0.012288-0.001024-0.002048-0.001024-0.002048l-0.001024-0.001024c-5.410816-5.409792-12.978176-8.489984-20.687872-8.460288-7.810048 0.032768-15.13984 3.081216-20.640768 8.58112l-309.11488 309.116928-94.99648-94.998528c-5.501952-5.501952-12.833792-8.5504-20.642816-8.58112h-0.115712c-7.69536 0-15.186944 3.08224-20.569088 8.465408-11.360256 11.36128-11.307008 29.899776 0.118784 41.325568l109.924352 109.924352a29.017088 29.017088 0 0 0 4.883456 6.474752c5.658624 5.6576 13.095936 8.482816 20.550656 8.481792a29.31712 29.31712 0 0 0 20.77696-8.604672" fill="#50bbfd"></path>
+                        <path d="M511.891456 97.28C282.3424 97.28 96.256 283.3664 96.256 512.915456s186.0864 415.634432 415.635456 415.634432c229.548032 0 415.634432-186.085376 415.634432-415.634432C927.525888 283.365376 741.439488 97.28 511.891456 97.28m0 40.96c50.597888 0 99.661824 9.901056 145.82784 29.427712 44.61056 18.868224 84.683776 45.889536 119.10656 80.31232 34.422784 34.422784 61.444096 74.496 80.313344 119.107584 19.525632 46.164992 29.426688 95.228928 29.426688 145.82784s-9.901056 99.662848-29.426688 145.82784c-18.869248 44.61056-45.89056 84.6848-80.313344 119.107584s-74.496 61.443072-119.10656 80.31232c-46.166016 19.526656-95.229952 29.426688-145.82784 29.426688-50.598912 0-99.662848-9.900032-145.828864-29.426688-44.61056-18.869248-84.683776-45.889536-119.10656-80.31232-34.422784-34.422784-61.444096-74.497024-80.313344-119.107584C147.117056 612.57728 137.216 563.514368 137.216 512.915456s9.901056-99.662848 29.426688-145.82784c18.869248-44.611584 45.89056-84.6848 80.313344-119.107584s74.496-61.444096 119.10656-80.31232C412.228608 148.140032 461.292544 138.24 511.891456 138.24" fill="#50bbfd"></path>
+                    </svg>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Second Rectangular Box (Reached State) -->
+        <div class="reward-box {% if cartTotal >= 150 %}reached{% endif %}">
+            <div class="reward-content">
+                <div class="reward-image">
+                    <img src="https://cdn.shopify.com/s/files/1/0792/4518/1246/files/Seraphic_Dream_10.png?v=1727401677" alt="Gift Icon" />
+                </div>
+                <div class="reward-text">
+                    <div class="reward-title">FREE GIFT – VALUED AT $80</div>
+                    <div class="reward-description">
+                        Spend $150 to get a free discovery set of 4x10ml travel perfumes.
+                    </div>
+                </div>
+                {% if cartTotal >= 150 %}
+                <div class="reward-tick">
+                    <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#fff" stroke="#fff">
+                        <path d="M511.891456 928.549888c229.548032 0 415.634432-186.0864 415.634432-415.634432C927.525888 283.3664 741.439488 97.28 511.890432 97.28 282.343424 97.28 96.258048 283.3664 96.258048 512.915456c0 229.548032 186.084352 415.634432 415.634432 415.634432" fill="#50bbfd"></path>
+                        <path d="M436.571136 707.376128l330.3936-330.3936c5.506048-5.507072 8.571904-12.803072 8.633344-20.544512 0.060416-7.85408-2.961408-15.235072-8.511488-20.784128 0.001024-0.012288-0.001024-0.002048-0.001024-0.002048l-0.001024-0.001024c-5.410816-5.409792-12.978176-8.489984-20.687872-8.460288-7.810048 0.032768-15.13984 3.081216-20.640768 8.58112l-309.11488 309.116928-94.99648-94.998528c-5.501952-5.501952-12.833792-8.5504-20.642816-8.58112h-0.115712c-7.69536 0-15.186944 3.08224-20.569088 8.465408-11.360256 11.36128-11.307008 29.899776 0.118784 41.325568l109.924352 109.924352a29.017088 29.017088 0 0 0 4.883456 6.474752c5.658624 5.6576 13.095936 8.482816 20.550656 8.481792a29.31712 29.31712 0 0 0 20.77696-8.604672" fill="#50bbfd"></path>
+                        <path d="M511.891456 97.28C282.3424 97.28 96.256 283.3664 96.256 512.915456s186.0864 415.634432 415.635456 415.634432c229.548032 0 415.634432-186.085376 415.634432-415.634432C927.525888 283.365376 741.439488 97.28 511.891456 97.28m0 40.96c50.597888 0 99.661824 9.901056 145.82784 29.427712 44.61056 18.868224 84.683776 45.889536 119.10656 80.31232 34.422784 34.422784 61.444096 74.496 80.313344 119.107584 19.525632 46.164992 29.426688 95.228928 29.426688 145.82784s-9.901056 99.662848-29.426688 145.82784c-18.869248 44.61056-45.89056 84.6848-80.313344 119.107584s-74.496 61.443072-119.10656 80.31232c-46.166016 19.526656-95.229952 29.426688-145.82784 29.426688-50.598912 0-99.662848-9.900032-145.828864-29.426688-44.61056-18.869248-84.683776-45.889536-119.10656-80.31232-34.422784-34.422784-61.444096-74.497024-80.313344-119.107584C147.117056 612.57728 137.216 563.514368 137.216 512.915456s9.901056-99.662848 29.426688-145.82784c18.869248-44.611584 45.89056-84.6848 80.313344-119.107584s74.496-61.444096 119.10656-80.31232C412.228608 148.140032 461.292544 138.24 511.891456 138.24" fill="#50bbfd"></path>
+                    </svg>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>
-</div>
-
-
-
-                      
 </div>
