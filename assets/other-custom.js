@@ -84,8 +84,8 @@ $('.slider-single').slick({
         }
       });
       let fixed_item_price = (itemPrice / 100).toFixed(2);
-      var limits = [100, 140, 180, 230];
-      var discounts = [0, 10, 15, 20];
+      var limits = [100, 150];
+      var discounts = [0, 10];
       var cartPrice = cart.items_subtotal_price / 100;
       var cartTotal = cartPrice-fixed_item_price;
       // if (cart.cart_level_discount_applications.length > 0) {
