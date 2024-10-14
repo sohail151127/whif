@@ -72,7 +72,35 @@
 .cart__discount_tiers-item {
   top:-8px;
 }
+/* Vertical line between circle and reward box */
+.reward-box::before {
+    content: '';
+    position: absolute;
+    top: -50px; /* Adjust as needed to reach the progress circle */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 50px; /* Adjust based on the distance from circle to box */
+    background-color: #ddd; /* Adjust line color */
+    z-index: 0;
+}
 
+.cart__discount_tiers-item {
+  top: -8px;
+}
+
+/* Vertical line for the progress bar circle */
+.cart__discount_tiers-item::after {
+    content: '';
+    position: absolute;
+    top: 40px; /* Adjust the position to start at the bottom of the circle */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 60px; /* Adjust the height to reach the rectangular box */
+    background-color: #ddd; /* Adjust the color of the line */
+    z-index: 0;
+}
   
 </style>
 
