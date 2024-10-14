@@ -151,7 +151,7 @@
             {% for i in (0..lastIndex) %}
                 {% assign tier = discountTiers[i] | plus: 0 %}
                 {% assign discount = discountAmounts[i] | plus: 0 %}
-                <div class="discount_price_container">
+                <div class="discount_price_container discount_price_container_{{ forloop.index0 }}">
                     <div style="border:2px solid red;" class="cart__discount_tiers-item {% if cartTotal >= tier %}_active{% endif %}" data-limit="{{ tier }}">
                         <div class="ship-container">
                             <span class="main-svgs-parent-{{ forloop.index }}">
