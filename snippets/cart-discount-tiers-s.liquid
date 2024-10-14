@@ -128,7 +128,7 @@
         {% endif %}
     </div>
 
-    <div class="cart__discount_tiers-items--wrapper" style="border:2px solid blue;">
+    <div class="cart__discount_tiers-items--wrapper">
         <div class="cart__discount_tiers-progress">
             {% assign track = cartTotal | divided_by: 200.00 | times: 100.00 %}
             {% if cartTotal >= discountTiers[0] and cartTotal < discountTiers[1] %}
@@ -152,7 +152,7 @@
                 {% assign tier = discountTiers[i] | plus: 0 %}
                 {% assign discount = discountAmounts[i] | plus: 0 %}
                 <div class="discount_price_container discount_price_container_{{ forloop.index0 }}">
-                    <div style="border:2px solid red;" class="cart__discount_tiers-item {% if cartTotal >= tier %}_active{% endif %}" data-limit="{{ tier }}">
+                    <div class="cart__discount_tiers-item {% if cartTotal >= tier %}_active{% endif %}" data-limit="{{ tier }}">
                         <div class="ship-container">
                             <span class="main-svgs-parent-{{ forloop.index }}">
                               {% if forloop.index == 1 %}
