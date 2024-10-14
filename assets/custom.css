@@ -4584,6 +4584,11 @@ label.block-swatch span.overlay, div.custom-product-buttons .bundle-set-button s
     position: relative;
     left: 6px;  
 }
+.cart__discount_tiers-items .discount_price_container.discount_price_container_1 {
+    width: 0;
+    position: relative;
+    left: 0px;  
+}
 
 .cart__discount_tiers-items .price-text {
     width: 87px;
