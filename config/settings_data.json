@@ -105,6 +105,12 @@
         "disabled": false,
         "settings": {
         }
+      },
+      "8035815586522894503": {
+        "type": "shopify://apps/salepify/blocks/free-gift.embed/f616e94d-36ae-45cb-9d98-57804196c7a7",
+        "disabled": false,
+        "settings": {
+        }
       }
     }
   },
