@@ -556,39 +556,6 @@ $(document).on('click','.product-info .loox-rating',function(){
 });
 
 
-/* card variant */
-// $(document).ready(function(){
-//   // $('.custom-add').click(function(){
-//      $(document).on('click','.custom-add',function(){
-//      let parentEle = $(this).closest('form');
-//      // parentEle.find('.variant_container').toggle();
-//      parentEle.find('.variant_container').toggleClass('variant-box');
-//   });
-//   $(document).on('click','.variant-data',function(){
-//   // $('.variant-data').click(function() {
-//     $('.variant-data').removeClass('active');
-//      let variant_id = $(this).data('variant-id');
-//      let input_box = $(this).closest('form');
-//      let findVariant = $(this).closest('.variant_container');
-//      let input_id = input_box.find('input[name="id"]').val(variant_id);
-//      $(this).addClass('active');
-//      $(this).addClass('loader-active');
-//      let form = $(this).closest('form');
-//      let button = form.find('.whif-product-button button[type="submit"]');
-//      let button_loader = $(this).find('.loader');
-//      button.trigger('click');
-//      button_loader.css('opacity', '1');
-//      setTimeout(function() {
-//           let cartDrawer = $('html'); 
-//           button_loader.css('opacity', '0');
-//           $('.variant-data').removeClass('loader-active');
-//           findVariant.removeClass('variant-box');
-//        }, 2300);
-//  });
- 
-// });
-
-
 
 // =====================================================================
 // When a user clicks on the 'ADD' button, the product options will appear, 
