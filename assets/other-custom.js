@@ -208,7 +208,7 @@ headerProgressBar();
     // Calculate the progress track percentage
     var track = ((cartTotal / 300) * 100);
     if(cartTotal <= 100 ){
-      track = ((cartTotal / 250) * 100)
+      track = ((cartTotal / 300) * 100)
     }
 
     if(cartTotal >= limits[2]){
