@@ -202,21 +202,7 @@ headerProgressBar();
     if(cartTotal <= 100 ){
       track = ((cartTotal / 500) * 100)
     }
-    // if (cartTotal >= limits[0] && cartTotal < limits[1]) {
-    //   track = 32;
-      
-    // } else if (cartTotal >= limits[1] && cartTotal < limits[2]) {
-    //   track = 56;
-     
-    // } else if (cartTotal >= limits[2] && cartTotal < limits[3]) {
-    //   track = 76;
 
-    // } else if (cartTotal >= limits[3]) {
-    //   track = 100;
-      
-    // }else{
-    //   track = ((cartTotal / upperLimit) * 100);
-    // }
     if(cartTotal >= limits[3]){
        track = 100;
     }
