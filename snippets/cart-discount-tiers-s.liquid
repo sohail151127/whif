@@ -73,7 +73,19 @@
   top:-8px;
 }
 /* Vertical line between circle and reward box */
-.reward-box::before {
+.reward-box-0::before {
+    content: '';
+    position: absolute;
+    top: -50px; /* Adjust as needed to reach the progress circle */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 50px; /* Adjust based on the distance from circle to box */
+    background-color: #ddd; /* Adjust line color */
+    z-index: 0;
+}
+/* Vertical line between circle and reward box */
+.reward-box-1::before {
     content: '';
     position: absolute;
     top: -50px; /* Adjust as needed to reach the progress circle */
