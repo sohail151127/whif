@@ -256,6 +256,17 @@ headerProgressBar();
         if (shipCheck) {
             shipCheck.style.display = 'block';
         }
+
+        // Check for Free Shipping Tier
+        if (limit === 100 && cartTotal >= 100) {
+            freeShippingTick.style.display = 'block'; // Show tick for Free Shipping box
+        }
+
+        // Check for Free Gift Tier
+        if (limit === 150 && cartTotal >= 150) {
+            freeGiftTick.style.display = 'block'; // Show tick for Free Gift box
+        }
+          
         }
     });
 }
