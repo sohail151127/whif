@@ -122,8 +122,7 @@ $('.slider-single').slick({
         nextNode.innerHTML = `👉 Spend another $${limitToShow} to unlock ${nextDiscount}% OFF`;
       } else if (cartTotal >= upperLimit) {
           successNode.classList.remove('_hide');
-          successNode.innerHTML = `🎉 Congrats you unlocked <strong>${discounts[discounts.length - 1]}% OFF + FREE SHIPPING</strong>`;
-         // nextNode.innerHTML = `👉 Spend another $${limitToShow} to unlock ${nextDiscount}% OFF`;
+          successNode.innerHTML = `🎉 Congrats you unlocked <strong> FREE SHIPPING + FREE GIFT</strong>`;
       }
     });
 
