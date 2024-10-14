@@ -232,7 +232,6 @@ headerProgressBar();
       } else if (cartTotal >= upperLimit) {
           successNode.classList.remove('_hide');
           successNode.innerHTML = `🎉 Congrats you unlocked <strong> FREE SHIPPING + FREE gift</strong>`;
-         // nextNode.innerHTML = `👉 Spend another $${limitToShow} to unlock ${nextDiscount}% OFF`;
       }
     });
 
