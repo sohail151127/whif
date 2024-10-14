@@ -226,12 +226,15 @@ headerProgressBar();
       var nextDiscount = discounts[nextIndex];
       var limitToShow = (nextLimit - cartTotal).toFixed(2);
 
+
+// =====================   inside the cart drawer ============================
+      
        if (cartTotal >= limit && cartTotal < nextLimit) {
         successNode.classList.add('_hide');
         nextNode.innerHTML = `👉 Spend another $${limitToShow} to unlock a FREE gift`;
       } else if (cartTotal >= upperLimit) {
           successNode.classList.remove('_hide');
-          successNode.innerHTML = `🎉 Congrats you unlocked <strong> FREE SHIPPING + FREE gift</strong>`;
+          successNode.innerHTML = `🎉 Congrats you unlocked <strong> FREE SHIPPING + FREE GIFT</strong>`;
       }
     });
 
