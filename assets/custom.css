@@ -5283,7 +5283,7 @@ search-drawer form.v-stack {
         font-size: 10px;
       } */
       .cart__discount_tiers-message--success, .cart__discount_tiers-message--next {
-        font-size: 14px;
+        font-size: 12px;
       }
       .feature-collection-2-parent section-header.section-header .prose {
         max-width: calc(100%);
