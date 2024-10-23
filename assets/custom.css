@@ -4518,6 +4518,8 @@ cart-drawer .shipping_pro_cont .protection_content .toggle_button {
     gap: 10px;
     align-items: center;
     flex-wrap: wrap;
+
+    justify-content: center;
 }
 .homepage-bnner .banner-reviews .looxstars {
     display: flex;
