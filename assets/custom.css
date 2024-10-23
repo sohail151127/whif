@@ -4383,6 +4383,9 @@ cart-drawer .shipping_pro_cont .protection_content .toggle_button {
   display: block;
   line-height: 1;
   text-align: center;
+
+  margin-top: -3px;
+  
 }
 .cart__discount_tiers-item .ship-container > span.discount-off {
     font-size: 10px;
