@@ -1,12 +1,12 @@
 /*
-* ------------------------------------------------------------
-* IMPORTANT: The contents of this file are auto-generated.
-*
-* This file may be updated by the Shopify admin theme editor
-* or related systems. Please exercise caution as any changes
-* made to this file may be overwritten.
-* ------------------------------------------------------------
-*/
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "collection_list_slider_9gDHw7": {
@@ -85,15 +85,15 @@
         "slide-1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Untitled_design_-_2024-08-20T201122.005.png",
+            "image": "shopify://shop_images/Untitled_design_-_2024-10-23T205405.770.png",
             "mobile_image": "shopify://shop_images/Untitled_design_-_2024-08-21T094143.804.png",
             "content_max_width": 1200,
             "mobile_text_position": "place-self-center text-center",
             "desktop_text_position": "sm:place-self-center sm:text-center",
-            "title": "Designer perfumes",
+            "title": "FREE DISCOVERY SET!",
             "show-color": "rgba(0,0,0,0)",
             "heading_tag": "h1",
-            "subheading": "without the price tag.",
+            "subheading": "Valued At $80. Limited To Just 100 Orders!",
             "button_text": "SHOP ALL",
             "review": true,
             "button_link": "shopify://collections/all",

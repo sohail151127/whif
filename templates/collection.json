@@ -15,19 +15,20 @@
         "heading_CbVEHc": {
           "type": "heading",
           "settings": {
-            "text": "FREE GIFT ALERT!",
+            "text": "FREE GIFT ALERT - 100 ONLY!💛",
             "heading_tag": "h1"
           }
         },
         "heading_QRFqhW": {
           "type": "heading",
           "settings": {
-            "text": "Spend $150 For A Free Discovery Set!",
+            "text": "Spend $150 For A Free Discovery Set",
             "heading_tag": "h4"
           }
         },
         "button_8KqmTN": {
           "type": "button",
+          "disabled": true,
           "settings": {
             "style": "fill",
             "size": "base",
