@@ -4494,10 +4494,10 @@ cart-drawer .shipping_pro_cont .protection_content .toggle_button {
     justify-content: flex-start;
 }
 .homepage-bnner .content-over-media .text-custom {
-    justify-content: left;
-    align-items: center;
+    justify-content: center;
+    align-items: flex-start;
     color: #000;
-    text-align: left!important;
+    text-align: center!important;
     /* padding: 0 50px!important; */
 }
 .homepage-bnner .content-over-media .text-custom .prose .h1 {
@@ -5025,6 +5025,9 @@ search-drawer form.v-stack {
   }
   .homepage-bnner .content-over-media .text-custom .prose {
     width: 36%;
+
+padding-top: 3rem;
+    
   }
 }
 @media(max-width: 991px) {
