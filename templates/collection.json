@@ -15,14 +15,14 @@
         "heading_CbVEHc": {
           "type": "heading",
           "settings": {
-            "text": "FREE GIFT ALERT - FIRST 100 ORDERS!💛",
+            "text": "",
             "heading_tag": "h2"
           }
         },
         "heading_QRFqhW": {
           "type": "heading",
           "settings": {
-            "text": "Spend $150 For A Free Discovery Set",
+            "text": "",
             "heading_tag": "h4"
           }
         },
@@ -60,7 +60,7 @@
         "allow_transparent_header": false,
         "enable_parallax": false,
         "image_size": "auto",
-        "image": "shopify://shop_images/Untitled_design_-_2024-10-23T203213.477.png",
+        "image": "shopify://shop_images/Untitled_design_-_2024-10-24T110335.062.png",
         "mobile_image": "shopify://shop_images/Untitled_design_-_2024-10-24T103201.140.png",
         "mobile_text_position": "place-self-start-center text-center",
         "desktop_text_position": "sm:place-self-center-start sm:text-start",
