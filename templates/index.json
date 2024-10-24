@@ -86,7 +86,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/ALL_ORDERS_OVER_150_1.png",
-            "mobile_image": "shopify://shop_images/Untitled_1080_x_1350_px_8.png",
+            "mobile_image": "shopify://shop_images/Untitled_1080_x_1350_px_9.png",
             "content_max_width": 1200,
             "mobile_text_position": "place-self-center text-center",
             "desktop_text_position": "sm:place-self-start sm:text-start",
