@@ -4494,8 +4494,8 @@ cart-drawer .shipping_pro_cont .protection_content .toggle_button {
     justify-content: flex-start;
 }
 .homepage-bnner .content-over-media .text-custom {
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: end;
+    align-items: center;
     color: #000;
     text-align: center!important;
     /* padding: 0 50px!important; */
