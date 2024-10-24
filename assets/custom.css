@@ -5028,7 +5028,8 @@ search-drawer form.v-stack {
   .homepage-bnner .content-over-media .text-custom .prose {
     width: 36%;
 
-padding-top: 3rem;
+    margin-bottom: 8rem;
+    margin-right: 11rem;
     
   }
 }
