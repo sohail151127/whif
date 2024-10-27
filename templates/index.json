@@ -1,12 +1,12 @@
 /*
-* ------------------------------------------------------------
-* IMPORTANT: The contents of this file are auto-generated.
-*
-* This file may be updated by the Shopify admin theme editor
-* or related systems. Please exercise caution as any changes
-* made to this file may be overwritten.
-* ------------------------------------------------------------
-*/
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "collection_list_slider_9gDHw7": {
@@ -367,7 +367,7 @@
             "title": "Travel Bottles",
             "show-color": "rgba(0,0,0,0)",
             "heading_tag": "h1",
-            "subheading": "Grab your fav in 10ml!",
+            "subheading": "Grab your fave in 10ml!",
             "button_text": "SHOP NOW",
             "review": false,
             "button_link": "shopify://collections/new-drops",
@@ -511,7 +511,7 @@
         "products_per_row_mobile": "1",
         "products_per_row_desktop": "4.2",
         "subheading": "",
-        "title": "Current faves",
+        "title": "Most Popular",
         "mobile_heading_size": 35,
         "content": "",
         "link_url": "",
