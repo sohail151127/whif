@@ -261,7 +261,7 @@ async function fetchCart() {
         }
 
         // Check for Free Shipping Tier
-        if (limit === 100 && cartTotal >= 100) {
+        if (limit === 120 && cartTotal >= 120) {
           freeShippingTick.style.display = 'block'; // Show tick for Free Shipping
         }
 
