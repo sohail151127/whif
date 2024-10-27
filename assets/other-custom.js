@@ -217,7 +217,7 @@ async function fetchCart() {
     });
 
     // Calculate the progress track percentage
-    var track = ((cartTotal / 225) * 100); // Use 225 to spread across progress bar
+    var track = ((cartTotal / 300) * 100); // Use 225 to spread across progress bar
 
     if (cartTotal >= limits[1]) { // No more than two limits
        track = 100;
