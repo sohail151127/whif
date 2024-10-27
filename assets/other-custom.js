@@ -84,7 +84,7 @@ $('.slider-single').slick({
         }
       });
       let fixed_item_price = (itemPrice / 100).toFixed(2);
-      var limits = [100, 150];
+      var limits = [120, 150];
       var discounts = [0, 10];
       var cartPrice = cart.items_subtotal_price / 100;
       var cartTotal = cartPrice-fixed_item_price;
