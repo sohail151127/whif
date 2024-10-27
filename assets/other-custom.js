@@ -84,7 +84,7 @@ $('.slider-single').slick({
         }
       });
       let fixed_item_price = (itemPrice / 100).toFixed(2);
-      var limits = [100, 140, 180, 230];
+      var limits = [120, 140, 180, 230];
       var discounts = [0, 10, 15, 20];
       var cartPrice = cart.items_subtotal_price / 100;
       var cartTotal = cartPrice-fixed_item_price;
@@ -158,7 +158,7 @@ headerProgressBar();
        // console.log(itemPrice);
       let fixed_item_price = (itemPrice / 100).toFixed(2);
       // let fixed_item_price = 0;
-      var limits = [100, 140, 180, 230];
+      var limits = [120, 140, 180, 230];
       var discounts = [0, 10, 15, 20];
       var cartPrice = cart.items_subtotal_price / 100;
       var cartTotal = cartPrice-fixed_item_price;
