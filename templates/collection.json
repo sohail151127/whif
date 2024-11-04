@@ -60,7 +60,7 @@
         "enable_parallax": false,
         "image_size": "auto",
         "image": "shopify://shop_images/Copy_of_LAST_CHANCE_-_Ending_Soon_1500_x_650_px.svg",
-        "mobile_image": "shopify://shop_images/Collection_Page_Banner_Mobile_1350_x_1600_px.svg",
+        "mobile_image": "shopify://shop_images/Collection_Page_Banner_Mobile_1350_x_1600_px_1350_x_1500_px_1350_x_1350_px.svg",
         "mobile_text_position": "place-self-end-center text-center",
         "desktop_text_position": "sm:place-self-center-start sm:text-start",
         "icon_image_width": 30,
