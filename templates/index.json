@@ -759,6 +759,43 @@
         "btn_bg_2": "#ffffff",
         "btn_color_2": "#000000"
       }
+    },
+    "banner_slider_LnxdDY": {
+      "type": "banner-slider",
+      "blocks": {
+        "collection_wjyDUr": {
+          "type": "collection",
+          "settings": {
+            "collection": "gourmand-collection",
+            "image": "shopify://shop_images/Untitled_design_5_6ae8d3e9-8ffb-4cbf-8d8e-25b05c4e85e4.png"
+          }
+        },
+        "collection_rQbRyt": {
+          "type": "collection",
+          "settings": {
+            "collection": "floral-collection",
+            "image": "shopify://shop_images/Untitled_design_-_2024-07-31T200205.379.png"
+          }
+        },
+        "collection_UqmFRL": {
+          "type": "collection",
+          "settings": {
+            "collection": "maculine-collection",
+            "image": "shopify://shop_images/Untitled_design_-_2024-07-31T202932.079.png"
+          }
+        }
+      },
+      "block_order": [
+        "collection_wjyDUr",
+        "collection_rQbRyt",
+        "collection_UqmFRL"
+      ],
+      "settings": {
+        "desktop_top_spacing": 60,
+        "desktop_bottom_spacing": 0,
+        "mobile_top_spacing": 50,
+        "mobile_bottom_spacing": 0
+      }
     }
   },
   "order": [
@@ -775,6 +812,7 @@
     "slideshow_KT7MJR",
     "featured_collection_2_Rt7nc6",
     "slideshow_TggjAV",
-    "collection_list_FbmwGt"
+    "collection_list_FbmwGt",
+    "banner_slider_LnxdDY"
   ]
 }
