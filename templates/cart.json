@@ -1,1 +1,78 @@
-{"sections":{"main":{"type":"main-cart","blocks":{"totals":{"type":"totals","settings":{}},"cart_note":{"type":"cart_note","settings":{}},"checkout_button":{"type":"checkout_button","settings":{}}},"block_order":["totals","cart_note","checkout_button"],"settings":{}}},"order":["main"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-cart",
+      "blocks": {
+        "totals": {
+          "type": "totals",
+          "settings": {
+            "show_order_weight": false,
+            "show_shipping_text": true
+          }
+        },
+        "cart_note": {
+          "type": "cart_note",
+          "settings": {
+          }
+        },
+        "checkout_button": {
+          "type": "checkout_button",
+          "settings": {
+          }
+        },
+        "abra_promotions_tiered_banner_8dKW74": {
+          "type": "shopify://apps/abra-promotions/blocks/tiered-banner/daa1493a-23b5-48bb-8cb5-7ab1267b4642",
+          "settings": {
+            "name": "Default",
+            "preview_tier_type": "gift",
+            "banner_background_color": "#FFFFFF",
+            "banner_padding_y": 14,
+            "banner_padding_x": 14,
+            "progress_bar_text_and_icon_color": "#000000",
+            "progress_bar_color": "#119E52",
+            "reward_tier_color": "#CFECDC",
+            "active_reward_tier_color": "#119E52",
+            "reward_tier_text_color": "#000000",
+            "reward_tier_icon_color": "#000000",
+            "active_reward_tier_icon_color": "#FFFFFF",
+            "progress_bar_text_size": 14,
+            "progress_bar_icon_size": 14,
+            "gift_background_color": "#E7F5EE",
+            "gift_badge_text_and_icon_color": "#FFFFFF",
+            "gift_product_name_color": "#000000",
+            "gift_product_price_color": "#000000",
+            "gift_badge_border_radius": 48,
+            "gift_badge_text_size": 12,
+            "gift_badge_icon_size": 12,
+            "gift_product_name_text_size": 14,
+            "gift_product_price_text_size": 14,
+            "gift_padding_y": 14,
+            "gift_padding_x": 14
+          }
+        }
+      },
+      "block_order": [
+        "totals",
+        "cart_note",
+        "checkout_button",
+        "abra_promotions_tiered_banner_8dKW74"
+      ],
+      "settings": {
+        "show_shipping_estimator": true,
+        "show_payment_icons": true
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
