@@ -792,9 +792,9 @@
       ],
       "settings": {
         "desktop_top_spacing": 60,
-        "desktop_bottom_spacing": 0,
+        "desktop_bottom_spacing": 51,
         "mobile_top_spacing": 50,
-        "mobile_bottom_spacing": 0
+        "mobile_bottom_spacing": 50
       }
     }
   },
