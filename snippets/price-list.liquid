@@ -47,11 +47,14 @@ Supported variables
         {%- else -%}
           {{- variant.price | money -}}
         {%- endif -%}
+      
+      {% comment %}
       {%- if variant.compare_at_price > variant.price and product.template_suffix != 'subscription' -%}
         <span class="sale-compare-price">{{- variant.compare_at_price | money -}}</span>
       {%- elsif variant.compare_at_price > variant.price and show_compare_at_price -%}
         <span class="sale-compare-price">{{- variant.compare_at_price | money -}}</span>
       {%- endif -%}
+      {% endcomment %}
       
     </sale-price>
 
