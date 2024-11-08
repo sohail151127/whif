@@ -61,7 +61,7 @@ Color swatch specific parameters:
 {%- endif -%}
 <div class="input-label-design">
 {%- unless href -%}
-  <input class="sr-only" type="{% if allow_multiple %}checkbox{% else %}radio{% endif %}" name="{{ name }}" {% if form %}form="{{ form | escape }}"{% endif %} id="{{ id | escape }}" value="{{ value | escape }}" {% if disabled %}disabled{% endif %} {% if selected %}checked="checked"{% endif %} data-price="{{ value.variant.price | money  }}">
+  <input class="sr-only" type="{% if allow_multiple %}checkbox{% else %}radio{% endif %}" name="{{ name }}" {% if form %}form="{{ form | escape }}"{% endif %} id="{{ id | escape }}" value="{{ value | escape }}" {% if disabled %}disabled{% endif %} {% if selected %}checked="checked"{% endif %} data-price="{{ value.variant.price | money  }}" data-compare-price="{{ value.variant.compare_at_price | money  }}" data-variant-id="{{ value.variant.id }}"  >
 {%- endunless -%}
 
 {%- case swatch -%}
