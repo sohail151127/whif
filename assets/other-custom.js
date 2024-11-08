@@ -674,13 +674,42 @@ $(function(){
       }
   });
 });
-let customPrice = $('.variant-picker__option-values .input-label-design input[type="radio"]').data('price');
+
+
+
+
+
+
+
+
+// ===================================================================
+// ================  add to cart button price feature ================
+// ===================================================================
+
+// let customPrice = $('.variant-picker__option-values .input-label-design input[type="radio"]').data('price');
+// $('.custom-product-buttons form buy-buttons button .button__price').text(` - ${customPrice}`);
+// $('.variant-picker__option-values .input-label-design input[type="radio"]').change(function(){
+//  let price = $(this).data('price');
+//   let buttonFind = $(this).closest('.product-info').find('.custom-product-buttons form buy-buttons button .button__price').text(` - ${price}`);
+//   console.log(buttonFind);
+// })
+
+
+
+
+// On page load, set the button price based on the initially selected variant
+let selectedRadio = $('.variant-picker__option-values .input-label-design input[type="radio"]:checked');
+let customPrice = selectedRadio.data('price'); // Get the price of the selected variant
 $('.custom-product-buttons form buy-buttons button .button__price').text(` - ${customPrice}`);
+
+// Event listener for changes in the variant picker
 $('.variant-picker__option-values .input-label-design input[type="radio"]').change(function(){
- let price = $(this).data('price');
-  let buttonFind = $(this).closest('.product-info').find('.custom-product-buttons form buy-buttons button .button__price').text(` - ${price}`);
-  console.log(buttonFind);
-})
+    let price = $(this).data('price');
+    let buttonFind = $(this).closest('.product-info').find('.custom-product-buttons form buy-buttons button .button__price').text(` - ${price}`);
+    console.log(buttonFind);
+});
+
+
 
 
 
