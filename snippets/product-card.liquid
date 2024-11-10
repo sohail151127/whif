@@ -315,6 +315,8 @@ Supported variables
       {% endif %} 
       <div class="price-tag-container 111">
         <p>{{ product.selected_or_first_available_variant.price | money }}</p>
+        <p>{{ product.selected_or_first_available_variant.compare_at_price | money }}</p>
+        <p>SAVE {{ product.selected_or_first_available_variant.compare_at_price | minus:product.selected_or_first_available_variant.price  | money }}</p>
       </div>
     </div>
 
