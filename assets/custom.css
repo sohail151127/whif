@@ -4420,6 +4420,7 @@ cart-drawer .shipping_pro_cont .protection_content .toggle_button {
   }
 .collection-text-block.product-card .main-container {
     background-color: #FFCF2A;
+    background-color: transparent;
     border: none;
 }
 .collection-text-block.product-card .main-container h3, .collection-text-block.product-card .main-container p {
