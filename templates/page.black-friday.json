@@ -9,21 +9,43 @@
  */
 {
   "sections": {
+    "0c67df7a-4329-4e71-9823-cfa5d1a4d5d8": {
+      "type": "whif-main-page",
+      "disabled": true,
+      "settings": {
+        "width": "narrow",
+        "alignment": "center",
+        "show_title": false,
+        "title_size": "h1",
+        "show_content": true,
+        "background": "#f9f9f6",
+        "text_color": "#000000",
+        "top": 40,
+        "bottom": 40,
+        "mobile_top": 20,
+        "mobile_bottom": 20
+      }
+    },
     "51eb7a7c-fe24-4852-9c30-f6ae04873fec": {
       "type": "slideshow",
       "blocks": {
         "template--19953642209598__51eb7a7c-fe24-4852-9c30-f6ae04873fec-image-1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/1651162499-102107107.png",
+            "image": "shopify://shop_images/25_Off_Home_Small_Banners_PC_1_a52d9eac-9307-40aa-a7ff-3d9177bdfcf5.png",
             "content_max_width": 780,
             "mobile_text_position": "place-self-center-start text-start",
             "desktop_text_position": "sm:place-self-center-start sm:text-start",
-            "title": "About Us",
+            "title": "Black Friday",
+            "show-color": "",
             "heading_tag": "h0",
             "subheading": "",
             "button_text": "",
+            "review": false,
             "button_link": "",
+            "sec_button_text": "",
+            "sec_button_link": "",
+            "button_transparent": false,
             "text_color": "#ffffff",
             "button_background": "#ffffff",
             "button_text_color": "#000000",
@@ -38,36 +60,24 @@
         "template--19953642209598__51eb7a7c-fe24-4852-9c30-f6ae04873fec-image-1"
       ],
       "settings": {
+        "addClass": "",
+        "section_display": "all",
         "full_width": true,
         "allow_transparent_header": false,
         "image_size": "auto",
+        "banner_height": 90,
         "controls_type": "dots",
         "transition_type": "fade_with_text",
         "autoplay": false,
         "cycle_speed": 6,
         "background": "#f9f9f6",
-        "background_gradient": ""
-      }
-    },
-    "0c67df7a-4329-4e71-9823-cfa5d1a4d5d8": {
-      "type": "whif-main-page",
-      "settings": {
-        "width": "narrow",
-        "alignment": "center",
-        "show_title": false,
-        "title_size": "h1",
-        "show_content": true,
-        "background": "#f9f9f6",
-        "text_color": "#000000",
-        "top": 40,
-        "bottom": 40,
-        "mobile_top": 20,
-        "mobile_bottom": 20
+        "background_gradient": "",
+        "loading-lazy": false
       }
     }
   },
   "order": [
-    "51eb7a7c-fe24-4852-9c30-f6ae04873fec",
-    "0c67df7a-4329-4e71-9823-cfa5d1a4d5d8"
+    "0c67df7a-4329-4e71-9823-cfa5d1a4d5d8",
+    "51eb7a7c-fe24-4852-9c30-f6ae04873fec"
   ]
 }
