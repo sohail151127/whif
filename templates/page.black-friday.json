@@ -32,7 +32,8 @@
         "template--19953642209598__51eb7a7c-fe24-4852-9c30-f6ae04873fec-image-1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/25_Off_Home_Small_Banners_PC_1_a52d9eac-9307-40aa-a7ff-3d9177bdfcf5.png",
+            "image": "shopify://shop_images/Untitled_2800_x_1600_px_2800_x_1300_px_2.png",
+            "mobile_image": "shopify://shop_images/Untitled_1200_x_1600_px_1.png",
             "content_max_width": 780,
             "mobile_text_position": "place-self-center-start text-start",
             "desktop_text_position": "sm:place-self-center-start sm:text-start",
