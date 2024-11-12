@@ -63,7 +63,8 @@
       "custom_css": [
         ".button-arrow {background: #fedf5f;}",
         ".button-arrow path {fill: #fff;}",
-        ".content-over-media > :not(img, video, iframe, svg, video-media) {padding-left: 0;}"
+        ".content-over-media > :not(img, video, iframe, svg, video-media) {padding-left: 0;}",
+        ".slideshow {padding: 10px;}"
       ],
       "settings": {
         "addClass": "homepage-bnner",
