@@ -66,7 +66,7 @@
         ".content-over-media > :not(img, video, iframe, svg, video-media) {padding-left: 0;}"
       ],
       "settings": {
-        "addClass": "black-friday-page-banner",
+        "addClass": "homepage-bnner",
         "section_display": "all",
         "full_width": true,
         "allow_transparent_header": false,
