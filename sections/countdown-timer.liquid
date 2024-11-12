@@ -1,6 +1,202 @@
+{% liquid
+assign date_picker_time = section.settings.date_picker
+assign section_bg_color = section.settings.bg_color
+assign timer_color = section.settings.timer_color
+ %}
+
+{% style %}
+.timer-flex-container {
+    background: {{ section_bg_color }};
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 15px;
+    /* font-family: Arial, sans-serif; */
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
+
+    max-width: 28rem;
+    margin: auto;
+}
+
+.timer-block {
+    background-color: {{ timer_color }};
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.timer-block__num {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.timer-block__unit {
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+.hide-element {
+    display: none;
+}
+.timer-flex-container .timer {
+    display: flex;
+    gap: 10px;  
+}
+.timer-flex-container .custom-text1 {
+  text-align:center;
+  margin-top: 20px;
+}
+
+{% endstyle %}
+
+{% unless date_picker_time == blank %}
+<div class="timer-flex-container hide-element">
+    <countdown-timer-bar schema-time="{{ date_picker_time }}">
+        <div class="timer">
+            <div class="timer-block">
+                <span class="timer-block__num js-timer-days">00</span>
+                <span class="timer-block__unit">Days</span>
+            </div>
+            <div class="timer-block">
+                <span class="timer-block__num js-timer-hours">00</span>
+                <span class="timer-block__unit">Hrs</span>
+            </div>
+            <div class="timer-block">
+                <span class="timer-block__num js-timer-minutes">00</span>
+                <span class="timer-block__unit">Mins</span>
+            </div>
+            <div class="timer-block">
+                <span class="timer-block__num js-timer-seconds">00</span>
+                <span class="timer-block__unit">Secs</span>
+            </div>
+        </div>
+    </countdown-timer-bar>
+    {% if section.settings.custom-text1 != blank %}
+    <div class="custom-text1">{{ section.settings.custom-text1 }}</div>
+    {% endif %}
+    {% if section.settings.liquid1 != blank %}
+    <div class="custom-liquid1">{{ section.settings.liquid1 }}</div>
+    {% endif %}
+</div>
+{% endunless %}
+
+{% javascript %}
+class CountdownTimerBar extends HTMLElement {
+    constructor() {
+        super();
+    }
+
+    init() {
+        this.schemaTime = this.getAttribute('schema-time');
+        this.timer = this.querySelector(".timer");
+        this.countdown = new Date(this.schemaTime).getTime();
+        this.second = 1000;
+        this.minute = this.second * 60;
+        this.hour = this.minute * 60;
+        this.day = this.hour * 24;
+        this.timerInterval = null;
+        this.startTimer();
+        setTimeout(() => this.timer.style.visibility = "visible", 1000);
+    }
+
+    padWithLeadingZero = (number) => number < 10 ? '0' + number : number;
+
+    startTimer() {
+        this.timerInterval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = this.countdown - now;
+
+            if (distance < 0) {
+                clearInterval(this.timerInterval);
+                this.removeTimer();
+                return;
+            }
+
+            const days = Math.floor(distance / this.day);
+            const hours = Math.floor((distance % this.day) / this.hour);
+            const minutes = Math.floor((distance % this.hour) / this.minute);
+            const seconds = Math.floor((distance % this.minute) / this.second);
+
+            this.updateDisplay(days, hours, minutes, seconds);
+        }, this.second);
+    }
+
+    updateDisplay(days, hours, minutes, seconds) {
+        this.timer.querySelector('.js-timer-days').textContent = this.padWithLeadingZero(days);
+        this.timer.querySelector('.js-timer-hours').textContent = this.padWithLeadingZero(hours);
+        this.timer.querySelector('.js-timer-minutes').textContent = this.padWithLeadingZero(minutes);
+        this.timer.querySelector('.js-timer-seconds').textContent = this.padWithLeadingZero(seconds);
+    }
+
+    removeTimer() {
+        const container = document.querySelector(".timer-flex-container");
+        container && container.remove();
+    }
+
+    connectedCallback() {
+        this.init();
+        console.log("Countdown timer added to the page");
+        const container = document.querySelector(".timer-flex-container");
+        container.classList.remove("hide-element");
+    }
+
+    disconnectedCallback() {
+        console.log("Countdown timer removed from the page");
+        clearInterval(this.timerInterval);
+    }
+}
+
+customElements.define('countdown-timer-bar', CountdownTimerBar);
+{% endjavascript %}
+
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+    "name": "Countdown Timer",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Countdown Timer Settings"
+        },
+        {
+            "type": "color",
+            "id": "bg_color",
+            "default": "#ffffff",
+            "label": "Background Color"
+        },
+        {
+            "type": "text",
+            "id": "date_picker",
+            "label": "End Date",
+            "default": "11/21/2024",
+            "info": "Enter the end date in MM/DD/YYYY format. If the date is in the past, the timer will be hidden."
+        },
+        {
+            "type": "color",
+            "id": "timer_color",
+            "default": "#2c3e8f",
+            "label": "Timer Color"
+        },
+        {
+            "type": "richtext",
+            "id": "custom-text1",
+            "label": "Text"
+        },
+        {
+            "type": "liquid",
+            "id": "liquid1",
+            "label": "Short code"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Countdown Timer"
+        }
+    ]
+}
 {% endschema %}
