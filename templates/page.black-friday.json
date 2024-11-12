@@ -36,7 +36,7 @@
             "content_max_width": 780,
             "mobile_text_position": "place-self-center-start text-start",
             "desktop_text_position": "sm:place-self-center-start sm:text-start",
-            "title": "Black Friday",
+            "title": "",
             "show-color": "",
             "heading_tag": "h0",
             "subheading": "",
@@ -74,10 +74,21 @@
         "background_gradient": "",
         "loading-lazy": false
       }
+    },
+    "countdown_timer_KHik8i": {
+      "type": "countdown-timer",
+      "settings": {
+        "bg_color": "#f9f9f6",
+        "date_picker": "11/19/2024",
+        "timer_color": "#2c3e8f",
+        "custom-text1": "<h3><strong>Our website is closed as we prepare for our biggest sale EVER!</strong></h3><h4><strong><br/>Tuesday November 19th - 7am AEDT</strong></h4>",
+        "liquid1": "<div class=\"klaviyo-form-YyWSkH\"></div>"
+      }
     }
   },
   "order": [
     "0c67df7a-4329-4e71-9823-cfa5d1a4d5d8",
-    "51eb7a7c-fe24-4852-9c30-f6ae04873fec"
+    "51eb7a7c-fe24-4852-9c30-f6ae04873fec",
+    "countdown_timer_KHik8i"
   ]
 }
