@@ -1,3 +1,21 @@
+<style>
+#shopify-section-{{ section.id }} .pdp-image-banner {
+    position: absolute;
+    z-index: 9999;
+    bottom: 1px;
+    width: 100%;
+    text-align: center;
+    background: black;
+    color: white;
+    font-weight: bold;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding: 10px 0px;
+}
+</style>
+
+
+
 {%- assign default_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media -%}
 {%- capture product_form_id -%}product-form-{{ product.id }}-{{ section.id }}{%- endcapture -%}
 {%- capture product_gallery_id -%}product-gallery-{{ product.id }}-{{ section.id }}{%- endcapture -%}
@@ -108,6 +126,13 @@ only way to do it on Shopify right now.
 
             {%- render 'media', media: media, sizes: sizes, preload: preload, autoplay: section.settings.enable_video_autoplay, loop: section.settings.enable_video_looping, group: 'product' -%}
 
+            
+            {% if section.settings.pdp-image-banner != blank %}
+            <div class="pdp-image-banner">{{ section.settings.pdp-image-banner }}</div>
+            {% endif %}
+            
+            
+            
             {%- if section.settings.enable_image_zoom and section.settings.desktop_media_layout contains 'grid' and media.media_type == 'image' -%}
               <div class="product-gallery__zoom hidden md:block">
                 <button type="button" is="product-zoom-button" class="circle-button circle-button--fill ring">
