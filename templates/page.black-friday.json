@@ -60,14 +60,19 @@
       "block_order": [
         "template--19953642209598__51eb7a7c-fe24-4852-9c30-f6ae04873fec-image-1"
       ],
+      "custom_css": [
+        ".button-arrow {background: #fedf5f;}",
+        ".button-arrow path {fill: #fff;}",
+        ".content-over-media > :not(img, video, iframe, svg, video-media) {padding-left: 0;}"
+      ],
       "settings": {
-        "addClass": "",
+        "addClass": "black-friday-page-banner",
         "section_display": "all",
         "full_width": true,
         "allow_transparent_header": false,
-        "image_size": "auto",
-        "banner_height": 90,
-        "controls_type": "dots",
+        "image_size": "lg",
+        "banner_height": 75,
+        "controls_type": "numbers",
         "transition_type": "fade_with_text",
         "autoplay": false,
         "cycle_speed": 6,
