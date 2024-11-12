@@ -65,14 +65,14 @@
         ".button-arrow path {fill: #fff;}",
         ".content-over-media > :not(img, video, iframe, svg, video-media) {padding-left: 0;}",
         ".slideshow {padding: 10px;}",
-        ".slideshow .content-over-media {border-radius:1.87rem;}"
+        ".slideshow .content-over-media {border-radius: 1.87rem;}"
       ],
       "settings": {
         "addClass": "homepage-bnner",
         "section_display": "all",
         "full_width": true,
         "allow_transparent_header": false,
-        "image_size": "lg",
+        "image_size": "auto",
         "banner_height": 75,
         "controls_type": "numbers",
         "transition_type": "fade_with_text",
