@@ -42,6 +42,8 @@
     "text_font_letter_spacing": 5,
     "show_page_transition": true,
     "heading_apparition": "split_fade",
+    "show_secondary_image": true,
+    "show_quick_buy": true,
     "product_color_display": "swatch",
     "product_image_aspect_ratio": "tall",
     "product_info_alignment": "start",
@@ -66,57 +68,47 @@
     "social_facebook_link": "https://www.facebook.com/getwhif",
     "social_instagram_link": "https://www.instagram.com/getwhif/",
     "social_tiktok_link": "https://www.tiktok.com/@getwhif",
-    "content_for_index": [
-
-    ],
+    "content_for_index": [],
     "blocks": {
       "855628211100114053": {
         "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
         "disabled": false,
-        "settings": {
-        }
+        "settings": {}
       },
       "11532412952436166569": {
         "type": "shopify://apps/loox-reviews/blocks/loox-inject/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
         "disabled": false,
-        "settings": {
-        }
+        "settings": {}
       },
       "11349500561483629931": {
         "type": "shopify://apps/notify-me-preorder/blocks/app-embed/b399b727-6c85-44fc-9e21-63114bd72054",
         "disabled": false,
-        "settings": {
-        }
+        "settings": {}
       },
       "8610236901155571639": {
         "type": "shopify://apps/avada-seo-suite/blocks/avada-seo/15507c6e-1aa3-45d3-b698-7e175e033440",
         "disabled": false,
-        "settings": {
-        }
+        "settings": {}
       },
       "11068332061543699368": {
         "type": "shopify://apps/booster-page-speed-optimizer/blocks/app-embed/d920faf3-7c60-423a-9636-22618b5561b5",
         "disabled": false,
-        "settings": {
-        }
+        "settings": {}
       },
       "15714838451323730227": {
         "type": "shopify://apps/salepify/blocks/advanced-free-gift/f616e94d-36ae-45cb-9d98-57804196c7a7",
         "disabled": true,
-        "settings": {
-        }
+        "settings": {}
       },
       "8035815586522894503": {
         "type": "shopify://apps/salepify/blocks/free-gift.embed/f616e94d-36ae-45cb-9d98-57804196c7a7",
         "disabled": true,
-        "settings": {
-        }
+        "settings": {}
       },
       "14952540001915115444": {
         "type": "shopify://apps/upcart-cart-drawer/blocks/app-embed/af3da5fb-f5f7-40ec-8273-41bf50059d4b",
         "disabled": true,
-        "settings": {
-        }
+        "settings": {}
       }
     }
   },
