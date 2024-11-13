@@ -95,16 +95,6 @@
         "disabled": false,
         "settings": {}
       },
-      "15714838451323730227": {
-        "type": "shopify://apps/salepify/blocks/advanced-free-gift/f616e94d-36ae-45cb-9d98-57804196c7a7",
-        "disabled": true,
-        "settings": {}
-      },
-      "8035815586522894503": {
-        "type": "shopify://apps/salepify/blocks/free-gift.embed/f616e94d-36ae-45cb-9d98-57804196c7a7",
-        "disabled": true,
-        "settings": {}
-      },
       "14952540001915115444": {
         "type": "shopify://apps/upcart-cart-drawer/blocks/app-embed/af3da5fb-f5f7-40ec-8273-41bf50059d4b",
         "disabled": true,
