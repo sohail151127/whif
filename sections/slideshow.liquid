@@ -147,7 +147,7 @@ LIQUID
                 {%- endif -%}
               </div>
               {% if block.settings.review == true %}
-                <div class="banner-reviews">
+                <div class="banner-reviews banner-reviews-s">
                 {% assign looxstats = shop.metafields.loox["global_stats"] | split: "," %}
                  {% assign looxstar = looxstats[0] | round %}
                  {% assign looxcount = looxstats[1] | times:100 | money_without_currency | remove: '.00' %}
