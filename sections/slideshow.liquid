@@ -62,6 +62,13 @@ CSS
 </style>
 
 <style>
+@media screen and (min-width:768px) {
+.banner-reviews.banner-reviews-mobile {
+  display:none:
+}
+  
+}
+  
 @media screen and (max-width:767px) {
   .banner-reviews.banner-reviews-s {
     display:none;
@@ -145,6 +152,16 @@ LIQUID
               {%- if block.settings.subheading != blank -%}
                 <p class="subHeading" data-sequence="subheading">{{ block.settings.subheading | newline_to_br }}</p>
               {%- endif -%}
+
+              {% if block.settings.review == true %}
+                <div class="banner-reviews banner-reviews-mobile">
+                {% assign looxstats = shop.metafields.loox["global_stats"] | split: "," %}
+                 {% assign looxstar = looxstats[0] | round %}
+                 {% assign looxcount = looxstats[1] | times:100 | money_without_currency | remove: '.00' %}
+                  <span class="looxstars">{% for i in (1..looxstar) %}{%- render 'icon' with 'rating-star', width: 15, height: 15, class: 'rating__star' -%}{% endfor %}</span><span>{{ looxstats[0] }} from {{ looxcount }} reviews</span>
+                </div>
+              {% endif %}
+                
               </div>
               <div class="review-with-button">
               <div class="banner_btn">
