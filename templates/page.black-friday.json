@@ -33,7 +33,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Untitled_2800_x_1600_px_2800_x_1300_px_3_60076dda-4cf8-40a6-a2a6-f0b1d4c3b6d8.png",
-            "mobile_image": "shopify://shop_images/Untitled_1200_x_1600_px_1.png",
+            "mobile_image": "shopify://shop_images/Untitled_1200_x_1600_px_3.png",
             "content_max_width": 1200,
             "mobile_text_position": "place-self-center text-center",
             "desktop_text_position": "sm:place-self-center sm:text-center",
