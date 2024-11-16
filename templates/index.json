@@ -85,20 +85,20 @@
         "slide-1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Untitled_design_-_2024-08-20T201122.005.png",
-            "mobile_image": "shopify://shop_images/Untitled_design_-_2024-08-21T094143.804.png",
+            "image": "shopify://shop_images/Untitled_2800_x_1600_px_2800_x_1300_px_2800_x_1500_px_1.png",
+            "mobile_image": "shopify://shop_images/Untitled_1200_x_1600_px_5.png",
             "content_max_width": 1200,
             "mobile_text_position": "place-self-center text-center",
             "desktop_text_position": "sm:place-self-center sm:text-center",
-            "title": "Designer perfumes",
+            "title": "",
             "show-color": "rgba(0,0,0,0)",
             "heading_tag": "h1",
-            "subheading": "without the price tag.",
-            "button_text": "SHOP ALL",
-            "review": true,
-            "button_link": "shopify://collections/all",
-            "sec_button_text": "MOST POPULAR",
-            "sec_button_link": "shopify://collections/most-popular",
+            "subheading": "",
+            "button_text": "",
+            "review": false,
+            "button_link": "shopify://pages/black-friday",
+            "sec_button_text": "",
+            "sec_button_link": "shopify://pages/black-friday",
             "button_transparent": false,
             "text_color": "#ffffff",
             "button_background": "#ffffff",
@@ -538,9 +538,7 @@
       "type": "featured-collection-2",
       "settings": {
         "collection": "most-popular",
-        "products": [
-
-        ],
+        "products": [],
         "full_width": true,
         "stack_products": false,
         "show_progress_bar": false,
@@ -624,9 +622,7 @@
       "type": "featured-collection-2",
       "settings": {
         "collection": "new-drops",
-        "products": [
-
-        ],
+        "products": [],
         "full_width": true,
         "stack_products": false,
         "show_progress_bar": false,
