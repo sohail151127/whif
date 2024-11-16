@@ -32,7 +32,7 @@
         "template--19953642209598__51eb7a7c-fe24-4852-9c30-f6ae04873fec-image-1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Untitled_2800_x_1600_px_2800_x_1300_px_2.png",
+            "image": "shopify://shop_images/Untitled_2800_x_1600_px_2800_x_1300_px_3_60076dda-4cf8-40a6-a2a6-f0b1d4c3b6d8.png",
             "mobile_image": "shopify://shop_images/Untitled_1200_x_1600_px_1.png",
             "content_max_width": 1200,
             "mobile_text_position": "place-self-center text-center",
@@ -88,7 +88,7 @@
       "settings": {
         "bg_color": "#f9f9f6",
         "date_picker": "11/19/2024",
-        "time_picker": "12:00",
+        "time_picker": "13:00",
         "timer_color": "#2c3e8f",
         "custom-text1": "<h3><strong>Our biggest sale EVER is coming soon! Sign up below so that you don't miss out.</strong></h3><h4><strong><br/>Tuesday November 19th - 12pm AEDT</strong></h4>",
         "liquid1": "<div class=\"klaviyo-form-YyWSkH\"></div>"
