@@ -90,7 +90,7 @@
         "date_picker": "11/19/2024",
         "time_picker": "13:00",
         "timer_color": "#2c3e8f",
-        "custom-text1": "<h3><strong>Our biggest sale EVER is coming soon! Sign up below so that you don't miss out.</strong></h3><h4><strong><br/>Tuesday November 19th - 12pm AEDT</strong></h4><h4><strong>Please expect up to 15 days order processing.</strong></h4>",
+        "custom-text1": "<h3><strong>Our biggest sale EVER is coming soon! Sign up below so that you don't miss out.</strong></h3><h4><strong><br/>Tuesday November 19th - 12pm AEDT</strong></h4><h5><strong>Please expect up to 15 days order processing.</strong></h5>",
         "liquid1": "<div class=\"klaviyo-form-YyWSkH\"></div>"
       }
     }
